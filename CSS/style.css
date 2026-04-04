@@ -1,222 +1,217 @@
-/* General Reset */
+/* ================= RESET ================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ================= LOGIN PAGE ================= */
 .login-body {
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background-color: #f0f2f5;
+  height: 100vh;
 }
 
+/* Layout */
+.login-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+/* LEFT SIDE */
 .login-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    width: 350px;
-    text-align: center;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: #f0f2f5;
 }
 
-h2 {
-    color: #2c3e50;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+/* CARD */
+.login-card {
+  width: 100%;
+  max-width: 350px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
+.login-card h2 {
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.login-card p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+/* Inputs */
 .input-group {
-    text-align: left;
-    margin-bottom: 1rem;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
 label {
-    display: block;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  display: block;
 }
 
 input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
 }
 
+/* Button */
 .btn-login {
-    width: 100%;
-    padding: 10px;
-    background-color: #27ae60; /* Green for fresh products */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
+  width: 100%;
+  padding: 10px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .btn-login:hover {
-    background-color: #219150;
+  background-color: #219150;
 }
 
-/* Color Palette & Variables */
+/* Message */
+#message {
+  margin-top: 10px;
+  color: red;
+}
+
+/* RIGHT SIDE */
+.login-left {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: #ffffff;
+}
+
+.logo {
+  width: 300px;
+  max-width: 80%;
+}
+
+/* ================= DASHBOARD ================= */
 :root {
-    --primary-color: #2c3e50;    /* Dark Blue-Grey para sa Sidebar */
-    --accent-color: #27ae60;     /* Fresh Green para sa buttons/success */
-    --warning-color: #f39c12;    /* Orange para sa Near Expiry */
-    --danger-color: #e74c3c;     /* Red para sa Expired/Low Stock */
-    --bg-light: #f4f7f6;         /* Light Grey background */
-    --white: #ffffff;
+  --primary-color: #2c3e50;
+  --accent-color: #27ae60;
+  --warning-color: #f39c12;
+  --danger-color: #e74c3c;
+  --bg-light: #f4f7f6;
+  --white: #ffffff;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+/* IMPORTANT FIX: do NOT affect login page */
+body:not(.login-body) {
+  display: flex;
+  background-color: var(--bg-light);
+  height: 100vh;
 }
 
-body {
-    display: flex;
-    background-color: var(--bg-light);
-    height: 100vh;
-}
-
-/* Sidebar Styling */
+/* Sidebar */
 .sidebar {
-    width: 260px;
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+  width: 260px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar h2 {
-    font-size: 1.2rem;
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    margin-bottom: 20px;
+  font-size: 1.2rem;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
 }
 
 .sidebar ul {
-    list-style: none;
+  list-style: none;
 }
 
 .sidebar ul li {
-    padding: 15px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: 0.3s;
-    margin-bottom: 5px;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+  margin-bottom: 5px;
 }
 
 .sidebar ul li:hover {
-    background-color: var(--accent-color);
+  background-color: var(--accent-color);
 }
 
-/* Main Content Area */
+/* Main */
 .main-content {
-    flex: 1;
-    padding: 30px;
-    overflow-y: auto;
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-header h1 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-}
-
-/* Dashboard Cards */
+/* Cards */
 .cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .card {
-    background: var(--white);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    border-left: 5px solid var(--accent-color);
-    font-weight: bold;
-    color: #555;
+  background: var(--white);
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 5px solid var(--accent-color);
 }
 
-/* Red border for urgent alerts */
-.card:nth-child(2) { border-left-color: var(--warning-color); }
-.card:nth-child(3) { border-left-color: var(--danger-color); }
-
-.card span {
-    display: block;
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-top: 10px;
-}
-
-/* Inventory Table Styling */
+/* Table */
 .inventory-table {
-    background: var(--white);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.inventory-table h3 {
-    margin-bottom: 20px;
-    color: var(--primary-color);
+  margin-top: 20px;
+  background: var(--white);
+  padding: 20px;
+  border-radius: 12px;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-table th, table td {
-    text-align: left;
-    padding: 15px;
-    border-bottom: 1px solid #eee;
+table th,
+table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
 }
 
-table th {
-    background-color: #f8f9fa;
-    color: #777;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-}
-
-/* Status Badges */
+/* Status */
 .status-badge {
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
 }
 
-.status-fresh { background: #d4edda; color: #155724; }
-.status-low { background: #f8d7da; color: #721c24; }
-
-
-/* Logout Button Specific Style */
-#logout-btn {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    margin-top: 50px; /* Distansya gikan sa ubang menu */
+.status-fresh {
+  background: #d4edda;
+}
+.status-low {
+  background: #f8d7da;
 }
 
+/* Logout */
 #logout-btn:hover {
-    background-color: #c0392b !important; /* Mas itom nga pula inig hover */
-    color: white !important;
+  background-color: #c0392b;
+  color: white;
 }
