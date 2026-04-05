@@ -5,7 +5,7 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
+/*link color fix*/
 a {
   text-decoration: none;
 }
@@ -213,6 +213,112 @@ table td {
 }
 .status-low {
   background: #f8d7da;
+}
+
+/*POS Page*/
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 30px;
+  width: 100%;
+}
+
+/* LEFT SIDE */
+.products {
+  flex: 3;
+}
+
+.products h2 {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  margin: 0;
+}
+
+.card p {
+  color: #6c5ce7;
+  font-size: 18px;
+}
+
+.card button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background: #6c5ce7;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background: #4834d4;
+}
+
+/* RIGHT SIDE */
+.cart {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  height: fit-content;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout {
+  width: 100%;
+  padding: 12px;
+  background: #00b894;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.checkout:hover {
+  background: #019875;
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover; /* keeps image clean and not stretched */
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card {
+  text-align: left;
+}
+
+.card span {
+  display: block;
+  margin-top: 5px;
+  color: gray;
 }
 
 /* Logout */
