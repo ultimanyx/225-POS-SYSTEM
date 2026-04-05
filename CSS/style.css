@@ -243,10 +243,14 @@ table td {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: white;
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
 .card h3 {
@@ -258,6 +262,11 @@ table td {
   font-size: 18px;
 }
 
+.card span {
+  color: #636e72;
+  font-size: 0.9rem;
+  padding: 5px 5px;
+}
 .card button {
   width: 100%;
   padding: 10px;
@@ -267,6 +276,7 @@ table td {
   color: white;
   border-radius: 8px;
   cursor: pointer;
+  margin-top: auto; /* pushes button to the bottom */
 }
 
 .card button:hover {
