@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POS - W&A Inventory</title>
+    <link rel="stylesheet" href="/CSS/style.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>W&A Inventory</h2>
+      <ul>
+        <li><b>POS</b></li>
+        <li>Product Management</li>
+        <li>Stock</li>
+        <li>Reports</li>
+        <li style="margin-top: auto; color: #e74c3c; font-weight: bold">
+          Logout
+        </li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <header>
+        <h1>Point of Sale</h1>
+        <div class="user-info">Cashier</div>
+      </header>
+
+      <!-- Product Selection -->
+      <section class="pos-section">
+        <h3>Select Product</h3>
+        <div class="product-list">
+          <button class="product-btn">Milk</button>
+          <button class="product-btn">Bread</button>
+          <button class="product-btn">Eggs</button>
+          <button class="product-btn">Juice</button>
+        </div>
+      </section>
+
+      <!-- Cart -->
+      <section class="pos-section">
+        <h3>Cart</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Milk</td>
+              <td>1</td>
+              <td>50</td>
+              <td>50</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Total & Payment -->
+      <section class="pos-section">
+        <h3>Payment</h3>
+        <div class="payment-box">
+          <p>Total: <strong>₱50</strong></p>
+          <label>Cash:</label>
+          <input type="number" placeholder="Enter cash" />
+
+          <p>Change: ₱0</p>
+
+          <button class="checkout-btn">Checkout</button>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -6,6 +6,10 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* ================= LOGIN PAGE ================= */
 .login-body {
   background-color: #f0f2f5;
@@ -150,6 +154,7 @@ body:not(.login-body) {
   border-radius: 8px;
   transition: 0.3s;
   margin-bottom: 5px;
+  color: white;
 }
 
 .sidebar ul li:hover {

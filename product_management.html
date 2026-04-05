@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Management</title>
+    <link rel="stylesheet" href="/CSS/style.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>W&A Inventory</h2>
+      <ul>
+        <li><a href="pos.html">POS</a></li>
+        <li>
+          <a href="products.html"><b>Product Management</b></a>
+        </li>
+        <li><a href="stock.html">Stock</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="login.html" style="color: #e74c3c">Logout</a></li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <header>
+        <h1>Product Management</h1>
+      </header>
+
+      <section class="product-table">
+        <h3>Manage Products</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Price (₱)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Milk</td>
+              <td>Dairy</td>
+              <td><input type="number" value="50" /></td>
+              <td><button class="save-btn">Save</button></td>
+            </tr>
+
+            <tr>
+              <td>Bread</td>
+              <td>Bakery</td>
+              <td><input type="number" value="30" /></td>
+              <td><button class="save-btn">Save</button></td>
+            </tr>
+
+            <tr>
+              <td>Eggs</td>
+              <td>Poultry</td>
+              <td><input type="number" value="120" /></td>
+              <td><button class="save-btn">Save</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,58 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>W&A Inventory System</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="/CSS/style.css" />
+  </head>
+  <body>
     <script src="script.js"></script>
 
-    
     <div class="sidebar">
-        <h2>W&A Inventory</h2>
-        <ul>
-            <li>Dashboard</li>
-            <li>Product Management</li>
-            <li>Stock In/Out</li>
-            <li>Reports</li>
+      <h2>W&A Inventory</h2>
+      <ul>
+        <a href="pos.html"><li>POS</li></a>
+        <a href="product_management.html"><li>Product Management</li></a>
+        <li>Stock</li>
+        <li>Reports</li>
 
-            <li id="logout-btn" style="margin-top: auto; color: #e74c3c; font-weight: bold;">Logout</li>
-        </ul>
-
-
+        <li
+          id="logout-btn"
+          style="margin-top: auto; color: #e74c3c; font-weight: bold"
+        >
+          Logout
+        </li>
+      </ul>
     </div>
 
     <div class="main-content">
-        <header>
-            <h1>Inventory Overview</h1>
-            <div class="user-info">Welcome, Admin</div>
-        </header>
+      <header>
+        <h1>Inventory Overview</h1>
+        <div class="user-info">Welcome, Admin</div>
+      </header>
 
-        <div class="cards">
-            <div class="card">Total Products: <span id="total-items">0</span></div>
-            <div class="card">Near Expiry: <span id="near-expiry">0</span></div>
-            <div class="card">Low Stock: <span id="low-stock">0</span></div>
-        </div>
+      <div class="cards">
+        <div class="card">Total Products: <span id="total-items">0</span></div>
+        <div class="card">Near Expiry: <span id="near-expiry">0</span></div>
+        <div class="card">Low Stock: <span id="low-stock">0</span></div>
+      </div>
 
-        <section class="inventory-table">
-            <h3>Current Stock</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                        <th>Stock Level</th>
-                        <th>Expiration Date</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="inventory-body">
-                    </tbody>
-            </table>
-        </section>
+      <section class="inventory-table">
+        <h3>Current Stock</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Stock Level</th>
+              <th>Expiration Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="inventory-body"></tbody>
+        </table>
+      </section>
     </div>
-</body>
+  </body>
 </html>
