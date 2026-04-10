@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account - W&A Inventory</title>
+    <style>
+        /* ================= GLOBAL STYLES ================= */
+        :root {
+            --primary-green: #27ae60;
+            --dark-green: #1e8449;
+            --text-main: #2c3e50;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg-light);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ================= LAYOUT WRAPPER (SAME AS INDEX) ================= */
+        .login-wrapper {
+            display: flex;
+            width: 90%;
+            max-width: 1000px;
+            height: 600px; /* Gi-lock sa 600px para consistent */
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        /* LEFT SIDE: BRANDING (COPY FROM INDEX) */
+        .login-left {
+            flex: 1;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .logo { 
+            width: 150px; 
+            height: auto; 
+            margin-bottom: 20px; 
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); 
+        }
+
+        .brand-content h1 { 
+            font-size: 2.8rem; 
+            font-weight: 700; 
+            letter-spacing: -1px;
+            margin-bottom: 10px; 
+        }
+
+        .brand-content p { 
+            font-size: 1rem; 
+            opacity: 0.8; 
+            font-weight: 300;
+            margin: 0; /* Gi-awat ang index para dili molihok ang text */
+        }
+
+        /* RIGHT SIDE: FORM (SAME AS INDEX) */
+        .login-right {
+            flex: 1.2;
+            background-color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px; /* Parehas na og padding sa index */
+        }
+
+        .login-card { width: 100%; max-width: 380px; }
+        .card-header { margin-bottom: 25px; }
+        .login-card h2 { color: var(--text-main); font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+        .subtitle { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* ================= FORM ELEMENTS ================= */
+        .input-group { 
+            margin-bottom: 12px; /* Nipis nga margin para moigo ang 4 ka fields */
+            text-align: left; 
+        }
+
+        .input-group label { 
+            display: block; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            color: var(--text-main); 
+            margin-bottom: 6px; 
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px; 
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background-color: #fcfcfc;
+        }
+
+        .input-group input:focus { 
+            outline: none; 
+            border-color: var(--primary-green); 
+            box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1); 
+        }
+
+        .btn-signup {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+        }
+
+        .btn-signup:hover { 
+            background-color: var(--dark-green); 
+            transform: translateY(-2px); 
+        }
+
+        .footer-text { margin-top: 25px; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+        .footer-text a { color: var(--primary-green); text-decoration: none; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .login-wrapper { flex-direction: column; height: auto; max-width: 450px; }
+            .login-left { padding: 40px 20px; }
+            .login-right { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-left">
+            <div class="brand-content">
+                <img src="/Image/Logo.png" alt="Logo" class="logo" />
+                <h1>W&A</h1>
+                <p>Fresh and Frozen Products Inventory</p>
+            </div>
+        </div>
+
+        <div class="login-right">
+            <div class="login-card">
+                <div class="card-header">
+                    <h2>Create Account</h2>
+                    <p class="subtitle">Enter your details to get started</p>
+                </div>
+
+                <form id="signupForm">
+                    <div class="input-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" required placeholder="Juan Dela Cruz" />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required placeholder="e.g. juan_admin" />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required placeholder="••••••••" />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" id="confirm_password" required placeholder="••••••••" />
+                    </div>
+
+                    <button type="submit" class="btn-signup">Create Account</button>
+                </form>
+
+                <div class="footer-text">
+                    <p>Already have an account? <a href="index.html">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const confirmPass = document.getElementById('confirm_password').value;
+
+            // Simple Password Match Check
+            if (pass !== confirmPass) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // I-save sa browser memory para mabasa sa index.html
+            localStorage.setItem('savedUsername', user);
+            localStorage.setItem('savedPassword', pass);
+
+            alert("Account created successfully! Redirecting to login...");
+            window.location.href = "index.html"; 
+        });
+    </script>
+</body>
+</html>

@@ -1,150 +1,335 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>POS - W&A Inventory</title>
-    <link rel="stylesheet" href="CSS/style.css" />
-  </head>
-  <body>
+    <style>
+        /* ================= GLOBAL RESET (MATCHED WITH DASHBOARD) ================= */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-purple: #667eea;
+            --sidebar-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-green: #27ae60;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+            --text-dark: #333;
+            --text-muted: #7f8c8d;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --danger-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background-color: var(--bg-light);
+            min-height: 100vh;
+            color: var(--text-dark);
+            overflow: hidden; 
+        }
+
+        /* ================= SIDEBAR (STRICT CONSISTENCY FIX) ================= */
+        .sidebar {
+            width: 260px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            position: sticky; /* Added to match Dashboard */
+            top: 0;
+            height: 100vh;
+            flex-shrink: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 1.4rem;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px; /* Matched to 25px */
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 8px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Hover Effect */
+        .sidebar ul li:hover {
+            background: var(--sidebar-gradient);
+            transform: translateX(8px);
+        }
+
+        /* Active State */
+        .sidebar ul li.active {
+            background: var(--sidebar-gradient);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        #logout-btn {
+            margin-top: auto;
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+
+        #logout-btn:hover {
+            background: var(--danger-color);
+            transform: none;
+        }
+
+        /* ================= MAIN POS LAYOUT ================= */
+        .pos-container {
+            display: flex;
+            flex: 1;
+            padding: 40px; /* Matched Dashboard padding */
+            gap: 30px;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* LEFT SIDE: PRODUCTS */
+        .products-area {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .products-area h2 {
+            margin-bottom: 35px; /* Matched Dashboard header margin */
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            overflow-y: auto; 
+            padding-bottom: 20px;
+        }
+
+        /* PRODUCT CARD */
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #edf2f7;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background-color: #f8f9fa;
+        }
+
+        .card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .card .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            margin-bottom: 5px;
+        }
+
+        .card .stock {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .card button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: var(--sidebar-gradient);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: auto;
+        }
+
+        /* RIGHT SIDE: CART */
+        .cart-area {
+            flex: 1.2;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            min-width: 350px;
+            height: 100%;
+        }
+
+        .cart-header {
+            padding: 25px;
+            background: var(--sidebar-gradient);
+            color: white;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-footer {
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 0 0 20px 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--text-dark);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            margin-top: 20px;
+            border: none;
+            background: var(--success-green);
+            color: white;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
     <div class="sidebar">
-      <h2>W&A Inventory</h2>
-      <ul>
-        <a href="dashboard.html"><li><b>Dashboard</b></li></a>
-        <a href="pos.html"><li>POS</li></a>
-        <a href="product_management.html"><li>Product Management</li></a>
-        <a href="stocks.html"><li>Stock</li></a>
-        <a href="reports.html"><li>Reports</li></a>
-
-        <li
-          id="logout-btn"
-        >
-          Logout
-        </li>
-      </ul>
+        <h2>W&A Inventory</h2>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li class="active"><a href="pos.html">POS</a></li>
+            <li><a href="product_management.html">Product Management</a></li>
+            <li><a href="stocks.html">Stock</a></li>
+            <li><a href="reports.html">Reports</a></li>
+            <li id="logout-btn"><a href="index.html" style="color: #ff7675;">Logout</a></li>
+        </ul>
     </div>
-    <div class="container">
-      <!-- LEFT SIDE (PRODUCTS) -->
-      <div class="products">
-        <h2> Frozen Products</h2>
 
-        <div class="grid">
-          <div class="card">
-            <!-- 1st item -->
-            <img 
-              src="/Image/dressed chicken.jpg" 
-              alt="Whole Dressed Chicken" />
-            <h3>Whole Dressed Chicken</h3>
-            <p>₱210.00</p>
-            <span>Stock: 21kg</span>
-            <button>Add to Cart</button>
-          </div>
-
-          <div class="card">
-            <!-- 2nd item -->
-            <img
-              src="/Image/chicken feet.jpg"
-              alt="Chicken Feet"
-            />
-            <h3>Chicken Feet</h3>
-            <p>₱140.00</p>
-            <span>Stock: 10kg</span>
-            <button>Add to Cart</button>
-          </div>
-
-          <div class="card">
-            <!-- 3rd item -->
-            <img
-            src="/Image/chicken neck.jpg" 
-            alt="Chicken Neck"
-            />
-            <h3>Chicken Neck</h3>
-            <p>₱160.00</p>
-            <span>Stock: 8kg</span>
-            <button>Add to Cart</button>
-          </div>
-
-          <div class="card">
-            <!-- 4th item -->
-            <img
-              src="/Image/chicken head.jpg"
-              alt="Chicken Head"
-            />
-            <h3>Chicken Head</h3>
-            <p>₱50.00</p>
-            <span>Stock:7kg</span>
-            <button>Add to Cart</button>
-          </div>
-          <div class="card">
-            <!-- 5th item -->
-            <img 
-              src="/Image/bigshot hotdog 1KG.jpg" 
-              alt="BigShot Hotdog 1kg" />
-            <h3>BigShot Hotdog 1kg</h3>
-            <p>₱175.00</p>
-            <span>Stock: 21kg</span>
-            <button>Add to Cart</button>
-          </div>
-
-          <div class="card">
-            <!-- 6th item -->
-            <img
-              src="/Image/sweet ham.jpg"
-              alt="Sweet Ham"
-            />
-            <h3>Sweet Ham</h3>
-            <p>₱140.00</p>
-            <span>Stock: 10kg</span>
-            <button>Add to Cart</button>
-          </div>
-
-          <div class="card">
-            <!-- 7th item -->
-            <img
-            src="/Image/chicken neck.jpg" 
-            alt="Chicken Neck"
-            />
-            <h3>Chicken Neck</h3>
-            <p>₱160.00</p>
-            <span>Stock: 8kg</span>
-            <button>Add to Cart</button>
-          </div>
-
-          <div class="card">
-            <!-- 8th item -->
-            <img
-              src="/Image/pork tocino.jpg"
-              alt="Pork Tocino"
-            />
-            <h3>Pork Tocino</h3>
-            <p>₱70.00</p>
-            <span>Stock: 12 packs</span>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-        </div>
-      </div>
-
-
-      <!-- RIGHT SIDE (CART) -->
-      <div class="cart">
-        <h2>🛒 Shopping Cart</h2>
-
-        <div class="cart-item">
-          <p>Fresh Salmon</p>
-          <span>$12.99</span>
+    <div class="pos-container">
+        <div class="products-area">
+            <h2>❄️ Frozen Products</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="/Image/dressed chicken.jpg" alt="Whole Dressed Chicken">
+                    <div class="card-body">
+                        <h3>Whole Dressed Chicken</h3>
+                        <p class="price">₱210.00</p>
+                        <p class="stock">Stock: 21kg</p>
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/Image/chicken feet.jpg" alt="Chicken Feet">
+                    <div class="card-body">
+                        <h3>Chicken Feet</h3>
+                        <p class="price">₱140.00</p>
+                        <p class="stock">Stock: 10kg</p>
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/Image/bigshot hotdog 1KG.jpg" alt="BigShot Hotdog">
+                    <div class="card-body">
+                        <h3>BigShot Hotdog 1kg</h3>
+                        <p class="price">₱175.00</p>
+                        <p class="stock">Stock: 15 packs</p>
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <hr />
+        <div class="cart-area">
+            <div class="cart-header">
+                <h3>🛒 Order Summary</h3>
+                <span id="item-count">1 Item</span>
+            </div>
+            
+            <div class="cart-items">
+                <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8fafc; border-radius: 8px; margin-bottom: 10px;">
+                    <div>
+                        <p style="font-weight: 600;">Whole Dressed Chicken</p>
+                        <small style="color: #7f8c8d;">Qty: 1</small>
+                    </div>
+                    <div style="font-weight: 700; color: #667eea;">₱210.00</div>
+                </div>
+            </div>
 
-        <p>Subtotal: $12.99</p>
-        <p>Tax: $1.30</p>
-
-        <h3>Total: $14.29</h3>
-
-        <button class="checkout">Checkout</button>
-      </div>
+            <div class="cart-footer">
+                <div style="display: flex; justify-content: space-between; color: #7f8c8d;">
+                    <span>Subtotal</span>
+                    <span>₱210.00</span>
+                </div>
+                <div class="total-row">
+                    <span>Total</span>
+                    <span>₱210.00</span>
+                </div>
+                <button class="checkout-btn">Complete Transaction</button>
+            </div>
+        </div>
     </div>
-    </div>
-  </body>
+
+    <script src="script.js"></script>
+</body>
 </html>

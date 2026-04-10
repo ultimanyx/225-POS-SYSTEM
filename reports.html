@@ -1,35 +1,199 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reports</title>
-    <link rel="stylesheet" href="CSS/style.css" />
-  </head>
-  <body>
-    <div class="sidebar">
-      <h2>W&A Inventory</h2>
-      <ul>
-        <a href="dashboard.html"
-          ><li><b>Dashboard</b></li></a
-        >
-        <a href="pos.html"><li>POS</li></a>
-        <a href="product_management.html"><li>Product Management</li></a>
-        <a href="stocks.html"><li>Stock</li></a>
-        <a href="reports.html"><li>Reports</li></a>
+    <title>Reports - W&A Inventory</title>
+    <style>
+        /* ================= GLOBAL STYLES (MATCHED TO STOCKS) ================= */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-purple: #667eea;
+            --sidebar-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-green: #27ae60;
+            --danger-red: #e74c3c;
+            --warning-orange: #f39c12;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+            --text-dark: #333;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
 
-        <li id="logout-btn">Logout</li>
-      </ul>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", sans-serif; }
+        body { display: flex; background-color: var(--bg-light); min-height: 100vh; }
+
+        /* ================= SIDEBAR (STRICT STOCKS COPY) ================= */
+        .sidebar {
+            width: 260px; background-color: var(--primary-color); color: var(--white);
+            padding: 25px; display: flex; flex-direction: column;
+            position: sticky; top: 0; height: 100vh; flex-shrink: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 1.4rem;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+        .sidebar ul { list-style: none; }
+        .sidebar ul li { margin-bottom: 8px; border-radius: 10px; transition: 0.3s; }
+        .sidebar ul li a { display: block; padding: 15px 20px; color: white; text-decoration: none; font-weight: 500; }
+        .sidebar ul li:hover { background: var(--sidebar-gradient); transform: translateX(8px); }
+        .sidebar ul li.active { background: var(--sidebar-gradient); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        
+        #logout-btn { margin-top: auto; background-color: rgba(231, 76, 60, 0.1); }
+        #logout-btn:hover { background: var(--danger-red); transform: none; }
+
+        /* ================= MAIN CONTENT (EXACT SPACING) ================= */
+        .main-content { 
+            flex: 1; 
+            padding: 40px; /* EXACT MATCH TO STOCKS */
+            overflow-y: auto; 
+        }
+
+        .header-banner {
+            margin-bottom: 35px; /* EXACT MATCH TO STOCKS HEADER */
+            background: var(--sidebar-gradient);
+            padding: 30px; 
+            border-radius: 15px; 
+            color: white; 
+            box-shadow: var(--shadow);
+        }
+
+        /* SUMMARY CARDS (EXACT STOCKS DESIGN) */
+        .report-cards {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; /* EXACT MATCH TO STOCKS GAP */
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--white); 
+            padding: 20px; 
+            border-radius: 15px;
+            box-shadow: var(--shadow); 
+            border-top: 5px solid var(--accent-purple); /* EXACT MATCH TO STOCKS TOP-BORDER */
+        }
+
+        .card small { color: #777; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; }
+        .card h2 { font-size: 1.8rem; margin-top: 5px; color: var(--primary-color); }
+
+        /* TABLE CONTAINER (EXACT STOCKS DESIGN) */
+        .table-container { 
+            background: var(--white); 
+            border-radius: 15px; 
+            box-shadow: var(--shadow); 
+            overflow: hidden; 
+        }
+
+        .table-header { 
+            padding: 20px 25px; 
+            background: #fafafa; 
+            border-bottom: 1px solid #eee; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        .report-table { width: 100%; border-collapse: collapse; }
+        .report-table th { 
+            text-align: left; 
+            padding: 18px; 
+            background: #f8f9fa; 
+            font-weight: 600; 
+            border-bottom: 2px solid #eee; 
+            color: var(--primary-color);
+        }
+        .report-table td { 
+            padding: 18px; 
+            border-bottom: 1px solid #f1f1f1; 
+            vertical-align: middle; 
+        }
+
+        /* BUTTON (MATCHED STYLE) */
+        .btn-update { 
+            background: var(--success-green); 
+            color: white; 
+            border: none; 
+            padding: 8px 15px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            transition: 0.2s; 
+        }
+        .btn-update:hover { background: #219150; transform: scale(1.05); }
+
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>W&A Inventory</h2>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="pos.html">POS</a></li>
+            <li><a href="product_management.html">Product Management</a></li>
+            <li><a href="stocks.html">Stock</a></li>
+            <li class="active"><a href="reports.html">Reports</a></li>
+            <li id="logout-btn"><a href="index.html" style="color: #ff7675;">Logout</a></li>
+        </ul>
     </div>
 
     <div class="main-content">
-      <header>
-        <h1>Reports</h1>
-      </header>
+        <header class="header-banner">
+            <h1>Business Reports</h1>
+            <p>Track your sales performance and daily summaries</p>
+        </header>
 
-      <section class="placeholder">
-        <p>This page is ready for report content.</p>
-      </section>
+        <div class="report-cards">
+            <div class="card">
+                <small>Today's Sales</small>
+                <h2>₱ 4,250</h2>
+            </div>
+            <div class="card" style="border-top-color: var(--success-green);">
+                <small>Orders Done</small>
+                <h2>28</h2>
+            </div>
+            <div class="card" style="border-top-color: var(--warning-orange);">
+                <small>Top Item</small>
+                <h2 style="font-size: 1.4rem;">Chicken</h2>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-header">
+                <h3>Recent Transactions</h3>
+                <input type="date" value="2026-04-10" style="padding: 8px; border-radius: 6px; border: 1px solid #ddd;">
+            </div>
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Ref No.</th>
+                        <th>Date & Time</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#WA-9920</td>
+                        <td>Apr 10 | 02:30 PM</td>
+                        <td><strong>₱ 770.00</strong></td>
+                        <td><button class="btn-update">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>#WA-9919</td>
+                        <td>Apr 10 | 01:15 PM</td>
+                        <td><strong>₱ 1,050.00</strong></td>
+                        <td><button class="btn-update">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </body>
+
+</body>
 </html>

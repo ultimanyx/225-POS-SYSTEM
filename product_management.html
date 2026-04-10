@@ -1,151 +1,321 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Management</title>
-    <link rel="stylesheet" href="/CSS/style.css" />
-  </head>
-  <body>
+    <title>Product Management - W&A Inventory</title>
+    <style>
+        /* ================= GLOBAL STYLES (MATCHED) ================= */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-purple: #667eea;
+            --sidebar-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-green: #27ae60;
+            --danger-red: #e74c3c;
+            --warning-orange: #f39c12;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+            --text-dark: #333;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background-color: var(--bg-light);
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        /* ================= SIDEBAR (STRICT CONSISTENCY) ================= */
+        .sidebar {
+            width: 260px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            flex-shrink: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 1.4rem;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px; /* Matched to Dashboard/POS */
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 8px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .sidebar ul li:hover {
+            background: var(--sidebar-gradient);
+            transform: translateX(8px);
+        }
+
+        /* Active Page Highlight */
+        .sidebar ul li.active {
+            background: var(--sidebar-gradient);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        #logout-btn {
+            margin-top: auto;
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+
+        #logout-btn:hover {
+            background: var(--danger-red);
+            transform: none;
+        }
+
+        /* ================= MAIN CONTENT ================= */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .pm-header {
+            margin-bottom: 35px; /* Matched Dashboard header spacing */
+            background: var(--sidebar-gradient);
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .pm-header h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        .pm-header p { opacity: 0.9; font-size: 0.95rem; }
+
+        /* CONTROL PANEL */
+        .control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 20px;
+        }
+
+        .search-box { flex: 1; max-width: 400px; }
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus { border-color: var(--accent-purple); }
+
+        .btn-add-product {
+            padding: 12px 25px;
+            background: var(--sidebar-gradient);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-add-product:hover { transform: translateY(-2px); }
+
+        /* TABLE SECTION */
+        .product-table-section {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .table-header {
+            padding: 20px 25px;
+            background: #fafafa;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-products {
+            background: var(--accent-purple);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .product-table th {
+            text-align: left;
+            padding: 18px;
+            background: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 600;
+            border-bottom: 2px solid #eee;
+        }
+
+        .product-table td {
+            padding: 18px;
+            border-bottom: 1px solid #f1f1f1;
+            vertical-align: middle;
+        }
+
+        /* INPUTS & BADGES */
+        .price-input {
+            width: 100px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .category-badge {
+            background: #eef2ff;
+            color: var(--accent-purple);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .stock-badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .stock-good { background: #d4edda; color: #155724; }
+        .stock-warning { background: #fff3cd; color: #856404; }
+
+        /* BUTTONS */
+        .save-btn, .delete-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 5px;
+            transition: 0.2s;
+        }
+
+        .save-btn { background: var(--success-green); color: white; }
+        .delete-btn { background: var(--danger-red); color: white; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; }
+        }
+    </style>
+</head>
+<body>
+
     <div class="sidebar">
-      <h2>W&A Inventory</h2>
-      <ul>
-        <a href="dashboard.html"
-          ><li><b>Dashboard</b></li></a
-        >
-        <a href="pos.html"><li>POS</li></a>
-        <a href="product_management.html"><li>Product Management</li></a>
-        <a href="stocks.html"><li>Stock</li></a>
-        <a href="reports.html"><li>Reports</li></a>
-
-        <li
-          id="logout-btn"
-          style="margin-top: auto; color: #e74c3c; font-weight: bold"
-        >
-          Logout
-        </li>
-      </ul>
+        <h2>W&A Inventory</h2>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="pos.html">POS</a></li>
+            <li class="active"><a href="product_management.html">Product Management</a></li>
+            <li><a href="stocks.html">Stock</a></li>
+            <li><a href="reports.html">Reports</a></li>
+            <li id="logout-btn"><a href="index.html" style="color: #ff7675;">Logout</a></li>
+        </ul>
     </div>
+
     <div class="main-content">
-      <header class="pm-header">
-        <h1>Product Management</h1>
-        <p>Manage and update your product inventory</p>
-      </header>
+        <header class="pm-header">
+            <h1>Product Management</h1>
+            <p>Manage and update your product inventory details</p>
+        </header>
 
-      <!-- CONTROL PANEL -->
-      <div class="control-panel">
-        <div class="search-box">
-          <input type="text" placeholder="🔍 Search products..." />
-        </div>
-        <button class="btn-add-product">+ Add New Product</button>
-      </div>
-
-      <!-- PRODUCT TABLE SECTION -->
-      <section class="product-table-section">
-        <div class="table-header">
-          <h3>Manage Products</h3>
-          <span class="total-products">Total: 6 Products</span>
+        <div class="control-panel">
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search products..." />
+            </div>
+            <button class="btn-add-product">+ Add New Product</button>
         </div>
 
-        <table class="product-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Product Name</th>
-              <th>Category</th>
-              <th>Price (₱)</th>
-              <th>Stock Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
+        <section class="product-table-section">
+            <div class="table-header">
+                <h3>Manage Products</h3>
+                <span class="total-products">Total: 6 Products</span>
+            </div>
 
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td><strong>Whole Dressed Chicken</strong></td>
-              <td><span class="category-badge">Frozen Products</span></td>
-              <td><input type="number" value="210" class="price-input" /></td>
-              <td>
-                <span class="stock-badge stock-good">✓ In Stock (21kg)</span>
-              </td>
-              <td>
-                <button class="save-btn">Save</button
-                ><button class="delete-btn">Delete</button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>2</td>
-              <td><strong>Chicken Feet</strong></td>
-              <td><span class="category-badge">Frozen Products</span></td>
-              <td><input type="number" value="140" class="price-input" /></td>
-              <td>
-                <span class="stock-badge stock-good">✓ In Stock (10kg)</span>
-              </td>
-              <td>
-                <button class="save-btn">Save</button
-                ><button class="delete-btn">Delete</button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>3</td>
-              <td><strong>Chicken Neck</strong></td>
-              <td><span class="category-badge">Frozen Products</span></td>
-              <td><input type="number" value="160" class="price-input" /></td>
-              <td>
-                <span class="stock-badge stock-good">✓ In Stock (8kg)</span>
-              </td>
-              <td>
-                <button class="save-btn">Save</button
-                ><button class="delete-btn">Delete</button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>4</td>
-              <td><strong>Chicken Head</strong></td>
-              <td><span class="category-badge">Frozen Products</span></td>
-              <td><input type="number" value="50" class="price-input" /></td>
-              <td>
-                <span class="stock-badge stock-warning">⚠ Low Stock (7kg)</span>
-              </td>
-              <td>
-                <button class="save-btn">Save</button
-                ><button class="delete-btn">Delete</button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>5</td>
-              <td><strong>BigShot Hotdog 1kg</strong></td>
-              <td><span class="category-badge">Frozen Products</span></td>
-              <td><input type="number" value="175" class="price-input" /></td>
-              <td>
-                <span class="stock-badge stock-good">✓ In Stock (21kg)</span>
-              </td>
-              <td>
-                <button class="save-btn">Save</button
-                ><button class="delete-btn">Delete</button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>6</td>
-              <td><strong>Sweet Ham</strong></td>
-              <td><span class="category-badge">Frozen Products</span></td>
-              <td><input type="number" value="140" class="price-input" /></td>
-              <td>
-                <span class="stock-badge stock-good">✓ In Stock (10kg)</span>
-              </td>
-              <td>
-                <button class="save-btn">Save</button
-                ><button class="delete-btn">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Price (₱)</th>
+                        <th>Stock Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>Whole Dressed Chicken</strong></td>
+                        <td><span class="category-badge">Frozen Products</span></td>
+                        <td><input type="number" value="210" class="price-input" /></td>
+                        <td><span class="stock-badge stock-good">✓ In Stock (21kg)</span></td>
+                        <td>
+                            <button class="save-btn">Save</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>Chicken Feet</strong></td>
+                        <td><span class="category-badge">Frozen Products</span></td>
+                        <td><input type="number" value="140" class="price-input" /></td>
+                        <td><span class="stock-badge stock-good">✓ In Stock (10kg)</span></td>
+                        <td>
+                            <button class="save-btn">Save</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </div>
-  </body>
+
+    <script src="script.js"></script>
+</body>
 </html>
