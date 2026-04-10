@@ -27,43 +27,121 @@
       </ul>
     </div>
     <div class="main-content">
-      <header>
+      <header class="pm-header">
         <h1>Product Management</h1>
+        <p>Manage and update your product inventory</p>
       </header>
 
-      <section class="product-table">
-        <h3>Manage Products</h3>
+      <!-- CONTROL PANEL -->
+      <div class="control-panel">
+        <div class="search-box">
+          <input type="text" placeholder="🔍 Search products..." />
+        </div>
+        <button class="btn-add-product">+ Add New Product</button>
+      </div>
 
-        <table>
+      <!-- PRODUCT TABLE SECTION -->
+      <section class="product-table-section">
+        <div class="table-header">
+          <h3>Manage Products</h3>
+          <span class="total-products">Total: 6 Products</span>
+        </div>
+
+        <table class="product-table">
           <thead>
             <tr>
+              <th>#</th>
               <th>Product Name</th>
               <th>Category</th>
               <th>Price (₱)</th>
-              <th>Action</th>
+              <th>Stock Status</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
           <tbody>
             <tr>
-              <td>Milk</td>
-              <td>Dairy</td>
-              <td><input type="number" value="50" /></td>
-              <td><button class="save-btn">Save</button></td>
+              <td>1</td>
+              <td><strong>Whole Dressed Chicken</strong></td>
+              <td><span class="category-badge">Frozen Products</span></td>
+              <td><input type="number" value="210" class="price-input" /></td>
+              <td>
+                <span class="stock-badge stock-good">✓ In Stock (21kg)</span>
+              </td>
+              <td>
+                <button class="save-btn">Save</button
+                ><button class="delete-btn">Delete</button>
+              </td>
             </tr>
 
             <tr>
-              <td>Bread</td>
-              <td>Bakery</td>
-              <td><input type="number" value="30" /></td>
-              <td><button class="save-btn">Save</button></td>
+              <td>2</td>
+              <td><strong>Chicken Feet</strong></td>
+              <td><span class="category-badge">Frozen Products</span></td>
+              <td><input type="number" value="140" class="price-input" /></td>
+              <td>
+                <span class="stock-badge stock-good">✓ In Stock (10kg)</span>
+              </td>
+              <td>
+                <button class="save-btn">Save</button
+                ><button class="delete-btn">Delete</button>
+              </td>
             </tr>
 
             <tr>
-              <td>Eggs</td>
-              <td>Poultry</td>
-              <td><input type="number" value="120" /></td>
-              <td><button class="save-btn">Save</button></td>
+              <td>3</td>
+              <td><strong>Chicken Neck</strong></td>
+              <td><span class="category-badge">Frozen Products</span></td>
+              <td><input type="number" value="160" class="price-input" /></td>
+              <td>
+                <span class="stock-badge stock-good">✓ In Stock (8kg)</span>
+              </td>
+              <td>
+                <button class="save-btn">Save</button
+                ><button class="delete-btn">Delete</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>4</td>
+              <td><strong>Chicken Head</strong></td>
+              <td><span class="category-badge">Frozen Products</span></td>
+              <td><input type="number" value="50" class="price-input" /></td>
+              <td>
+                <span class="stock-badge stock-warning">⚠ Low Stock (7kg)</span>
+              </td>
+              <td>
+                <button class="save-btn">Save</button
+                ><button class="delete-btn">Delete</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>5</td>
+              <td><strong>BigShot Hotdog 1kg</strong></td>
+              <td><span class="category-badge">Frozen Products</span></td>
+              <td><input type="number" value="175" class="price-input" /></td>
+              <td>
+                <span class="stock-badge stock-good">✓ In Stock (21kg)</span>
+              </td>
+              <td>
+                <button class="save-btn">Save</button
+                ><button class="delete-btn">Delete</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>6</td>
+              <td><strong>Sweet Ham</strong></td>
+              <td><span class="category-badge">Frozen Products</span></td>
+              <td><input type="number" value="140" class="price-input" /></td>
+              <td>
+                <span class="stock-badge stock-good">✓ In Stock (10kg)</span>
+              </td>
+              <td>
+                <button class="save-btn">Save</button
+                ><button class="delete-btn">Delete</button>
+              </td>
             </tr>
           </tbody>
         </table>
