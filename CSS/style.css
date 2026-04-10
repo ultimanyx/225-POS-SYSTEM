@@ -135,6 +135,9 @@ body:not(.login-body) {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
 .sidebar h2 {
@@ -167,6 +170,7 @@ body:not(.login-body) {
   flex: 1;
   padding: 30px;
   overflow-y: auto;
+  max-height: 100vh;
 }
 
 /* Cards */
@@ -225,6 +229,8 @@ table td {
   padding: 20px;
   gap: 30px;
   width: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
 }
 
 /* LEFT SIDE */
