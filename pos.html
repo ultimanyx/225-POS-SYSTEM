@@ -127,7 +127,7 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 25px;
         overflow-y: auto;
-        padding-bottom: 20px;
+        padding-bottom: 10px; /* Extra space for scrolling */
       }
 
       /* PRODUCT CARD */
@@ -140,8 +140,10 @@
         display: flex;
         flex-direction: column;
         border: 1px solid #edf2f7;
+        /* Removed fixed height to let content breathe */
+        height: auto;
+        min-height: 350px; /* Ensures uniformity */
       }
-
       .card:hover {
         transform: translateY(-8px);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -150,15 +152,15 @@
       .card img {
         width: 100%;
         height: 160px;
-        object-fit: cover;
-        background-color: #f8f9fa;
+        object-fit: contain; /* Changed to contain to avoid cropping product images */
+        padding: 10px;
+        background-color: #fff;
       }
-
       .card-body {
         padding: 18px;
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
+        flex: 1; /* This is the secret - it fills the empty space */
       }
 
       .card h3 {
@@ -166,7 +168,8 @@
         color: var(--text-dark);
         margin-bottom: 8px;
         font-weight: 600;
-        line-height: 1.4;
+        line-height: 1.3;
+        min-height: 2.6em; /* Keeps titles aligned across cards */
       }
 
       .card .price {
@@ -180,6 +183,7 @@
         font-size: 0.85rem;
         color: var(--text-muted);
         margin-bottom: 15px;
+        margin-top: auto; /* Pushes the button to the bottom */
       }
 
       .card button {
@@ -286,6 +290,33 @@
               <h3>Chicken Feet</h3>
               <p class="price">₱140.00</p>
               <p class="stock">Stock: 10kg</p>
+              <button>Add to Cart</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/Image/chicken neck.jpg" alt="Chicken Neck" />
+            <div class="card-body">
+              <h3>Chicken Neck</h3>
+              <p class="price">₱160.00</p>
+              <p class="stock">Stock: 15 packs</p>
+              <button>Add to Cart</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/Image/bigshot hotdog 1KG.jpg" alt="BigShot Hotdog" />
+            <div class="card-body">
+              <h3>BigShot Hotdog 1kg</h3>
+              <p class="price">₱175.00</p>
+              <p class="stock">Stock: 15 packs</p>
+              <button>Add to Cart</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/Image/bigshot hotdog 1KG.jpg" alt="BigShot Hotdog" />
+            <div class="card-body">
+              <h3>BigShot Hotdog 1kg</h3>
+              <p class="price">₱175.00</p>
+              <p class="stock">Stock: 15 packs</p>
               <button>Add to Cart</button>
             </div>
           </div>
