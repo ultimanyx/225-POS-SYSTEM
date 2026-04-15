@@ -128,14 +128,12 @@
         padding-left: 15px;
       }
 
-      /* STRICT 4 ITEMS PER ROW FIX */
       .grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr); 
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
       }
 
-      /* PRODUCT CARD */
       .card {
         background: var(--white);
         border-radius: 15px;
@@ -156,7 +154,6 @@
       .card .stock { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; margin-top: auto; }
       .card button { width: 100%; padding: 10px; border: none; background: var(--sidebar-gradient); color: white; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
-      /* CART AREA */
       .cart-area {
         flex: 1.2;
         background: var(--white);
@@ -174,183 +171,327 @@
       .total-row { display: flex; justify-content: space-between; margin-top: 15px; font-weight: 800; font-size: 1.4rem; }
       .checkout-btn { width: 100%; padding: 16px; margin-top: 20px; border: none; background: var(--success-green); color: white; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; }
 
-      /* RESPONSIVE: If screen is too small, drop to 2 columns */
-      @media (max-width: 1200px) {
-        .grid { grid-template-columns: repeat(2, 1fr); }
-      }
+      @media (max-width: 1200px) { .grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
   </head>
   <body>
+<div class="sidebar">
+  <h2>W&A Inventory</h2>
+  <ul>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li class="active"><a href="pos.html">POS</a></li>
+    <li><a href="product_management.html">Product Management</a></li>
+    <li><a href="stocks.html">Stock</a></li>
+    <li><a href="reports.html">Reports</a></li>
+    <li id="logout-btn">
+      <a href="index.html" style="color:#ff7675">Logout</a>
+    </li>
+  </ul>
+</div>
 
-    <div class="sidebar">
-      <h2>W&A Inventory</h2>
-      <ul>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li class="active"><a href="pos.html">POS</a></li>
-        <li><a href="product_management.html">Product Management</a></li>
-        <li><a href="stocks.html">Stock</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li id="logout-btn"><a href="index.html" style="color: #ff7675">Logout</a></li>
-      </ul>
+<div class="pos-container">
+
+  <div class="products-area">
+
+    <div class="category-nav">
+      <a href="#frozen" class="category-btn">❄️ Frozen & Processed</a>
+      <a href="#fresh" class="category-btn">🍎 Fresh Goods</a>
+      <a href="#spices" class="category-btn">🧂 Spices, Oil & Condiments</a>
     </div>
 
-    <div class="pos-container">
-      <div class="products-area">
-        
-        <div class="category-nav">
-          <a href="#frozen" class="category-btn">❄️ Frozen & Processed</a>
-          <a href="#fresh" class="category-btn">🍎 Fresh Goods</a>
-          <a href="#spices" class="category-btn">🧂 Spices, Oil and Condiments</a>
+    <div class="scroll-container">
+
+      <!-- Frozen -->
+      <h2 id="frozen">Frozen & Poultry</h2>
+      <div class="grid">
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Backbone / Soupack</h3>
+            <p class="price">₱160.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
         </div>
 
-        <div class="scroll-container">
-          
-          <h2 id="frozen">Frozen Products</h2>
-          <div class="grid">
-            <div class="card">
-              <img src="/Image/dressed chicken.jpg" alt="Chicken" />
-              <div class="card-body">
-                <h3>Whole Dressed Chicken</h3>
-                <p class="price">₱210.00</p>
-                <p class="stock">Stock: 21kg</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-            <div class="card">
-              <img src="/Image/chicken feet.jpg" alt="Feet" />
-              <div class="card-body">
-                <h3>Chicken Feet</h3>
-                <p class="price">₱140.00</p>
-                <p class="stock">Stock: 10kg</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-            <div class="card">
-              <img src="/Image/chicken neck.jpg" alt="Neck" />
-              <div class="card-body">
-                <h3>Chicken Neck</h3>
-                <p class="price">₱160.00</p>
-                <p class="stock">Stock: 15 packs</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-            <div class="card">
-              <img src="/Image/bigshot hotdog 1KG.jpg" alt="Hotdog" />
-              <div class="card-body">
-                <h3>BigShot Hotdog 1kg</h3>
-                <p class="price">₱175.00</p>
-                <p class="stock">Stock: 15 packs</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Liog (Neck)</h3>
+            <p class="price">₱160.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
           </div>
-
-          <h2 id="fresh">Fresh Goods</h2>
-          <div class="grid">
-            <div class="card">
-              <img src="/Image/eggs.jpg" alt="Eggs" />
-              <div class="card-body">
-                <h3>Fresh Eggs (Tray)</h3>
-                <p class="price">₱210.00</p>
-                <p class="stock">Stock: 12 trays</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-            <div class="card">
-              <img src="/Image/tomatoes.jpg" alt="Tomatoes" />
-              <div class="card-body">
-                <h3>Native Tomatoes</h3>
-                <p class="price">₱85.00</p>
-                <p class="stock">Stock: 10kg</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-            <div class="card">
-              <img src="/Image/onions.jpg" alt="Onions" />
-              <div class="card-body">
-                <h3>Red Onions</h3>
-                <p class="price">₱120.00</p>
-                <p class="stock">Stock: 25kg</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-            <div class="card">
-              <img src="/Image/garlic.jpg" alt="Garlic" />
-              <div class="card-body">
-                <h3>Fresh Garlic</h3>
-                <p class="price">₱95.00</p>
-                <p class="stock">Stock: 10kg</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-          </div>
-
-          <h2 id="spices">Spices & Seasoning</h2>
-          <div class="grid">
-            <div class="card">
-              <img src="/Image/magic_sarap.jpg" alt="Magic Sarap" />
-              <div class="card-body">
-                <h3>Magic Sarap (Pack of 12)</h3>
-                <p class="price">₱60.00</p>
-                <p class="stock">Stock: 50 packs</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-            <div class="card">
-              <img src="/Image/black_pepper.jpg" alt="Pepper" />
-              <div class="card-body">
-                <h3>Ground Black Pepper</h3>
-                <p class="price">₱15.00</p>
-                <p class="stock">Stock: 100 sachets</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-            <div class="card">
-              <img src="/Image/soy_sauce.jpg" alt="Soy Sauce" />
-              <div class="card-body">
-                <h3>Silver Swan Soy (1L)</h3>
-                <p class="price">₱45.00</p>
-                <p class="stock">Stock: 20 bottles</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-            <div class="card">
-              <img src="/Image/vinegar.jpg" alt="Vinegar" />
-              <div class="card-body">
-                <h3>Silver Swan Vinegar (1L)</h3>
-                <p class="price">₱38.00</p>
-                <p class="stock">Stock: 18 bottles</p>
-                <button>Add to Cart</button>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Whole Chicken</h3>
+            <p class="price">₱210.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Assorted Cut-ups</h3>
+            <p class="price">₱215.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Atay (Liver)</h3>
+            <p class="price">₱220.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Baticolon (Gizzard)</h3>
+            <p class="price">₱220.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Ulo (Head)</h3>
+            <p class="price">₱50.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Tiil (Feet)</h3>
+            <p class="price">₱140.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Tinae (Intestine)</h3>
+            <p class="price">₱130.00</p>
+            <p class="stock">Per Pack</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Marinated Meat</h3>
+            <p class="price">₱250.00</p>
+            <p class="stock">Per Pack</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
       </div>
 
-      <div class="cart-area">
-        <div class="cart-header">
-          <h3>🛒 Order Summary</h3>
-          <span id="item-count">1 Item</span>
-        </div>
-        <div class="cart-items">
-          <div style="display: flex; justify-content: space-between; padding: 10px; background: #f8fafc; border-radius: 8px; margin-bottom: 10px;">
-            <div>
-              <p style="font-weight: 600">Whole Dressed Chicken</p>
-              <small style="color: #7f8c8d">Qty: 1</small>
-            </div>
-            <div style="font-weight: 700; color: #667eea">₱210.00</div>
+      <!-- Fresh Goods -->
+      <h2 id="fresh">Fresh Goods</h2>
+      <div class="grid">
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Bell Pepper</h3>
+            <p class="price">₱200.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
           </div>
         </div>
-        <div class="cart-footer">
-          <div class="total-row">
-            <span>Total</span>
-            <span>₱210.00</span>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Garlic</h3>
+            <p class="price">₱180.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
           </div>
-          <button class="checkout-btn">Complete Transaction</button>
         </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Onion</h3>
+            <p class="price">₱180.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Potato</h3>
+            <p class="price">₱150.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Ginger</h3>
+            <p class="price">₱150.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Carrots</h3>
+            <p class="price">₱80.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Sayote</h3>
+            <p class="price">₱40.00</p>
+            <p class="stock">Per Kilo</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
       </div>
+
+      <!-- Spices -->
+      <h2 id="spices">Spices / Pantry / Condiments</h2>
+      <div class="grid">
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Cooking Oil</h3>
+            <p class="price">₱30.00</p>
+            <p class="stock">Per Pack</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Coco Mama</h3>
+            <p class="price">₱45.00</p>
+            <p class="stock">Per Pack</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Soy Sauce Big</h3>
+            <p class="price">₱15.00</p>
+            <p class="stock">Per Pack</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Soy Sauce Small</h3>
+            <p class="price">₱6.00</p>
+            <p class="stock">Per Pack</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Vinegar</h3>
+            <p class="price">₱15.00</p>
+            <p class="stock">Per Pack</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Magic Sarap</h3>
+            <p class="price">₱7.00</p>
+            <p class="stock">Per Pack</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Ginisa Mix</h3>
+            <p class="price">₱6.00</p>
+            <p class="stock">Per Pack</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="/Image/placeholder.jpg">
+          <div class="card-body">
+            <h3>Sinigang Mix</h3>
+            <p class="price">₱15.00</p>
+            <p class="stock">Per Pack</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cart-area">
+
+    <div class="cart-header">
+      <h3>🛒 Order Summary</h3>
+      <span id="item-count">0 Items</span>
     </div>
 
+    <div class="cart-items"></div>
+
+    <div class="cart-footer">
+      <div class="total-row">
+        <span>Total</span>
+        <span>₱0.00</span>
+      </div>
+
+      <button class="checkout-btn">Complete Transaction</button>
+    </div>
+
+  </div>
+
+</div>
   </body>
 </html>
