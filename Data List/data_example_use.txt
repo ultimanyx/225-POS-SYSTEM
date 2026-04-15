@@ -7,7 +7,7 @@
 | 4  | Assorted Cut-ups       | Frozen & Poultry      | ₱215.00  | 18 kg      |
 | 5  | Atay (Liver)           | Frozen & Poultry      | ₱220.00  | 14 kg      |
 | 6  | Baticolon (Gizzard)    | Frozen & Poultry      | ₱220.00  | 12 kg      |
-| 7  | Ulo (Head)             | Frozen & Poultry      | ₱50.00   | 10 kg      |
+| 7  | Ulo (Head)             | Frozen & Poultry      | ₱50.00   | 9  kg      |
 | 8  | Tiil (Feet)            | Frozen & Poultry      | ₱140.00  | 8 kg       |
 | 9  | Tinae (Intestine)      | Frozen & Poultry      | ₱130.00  | 20 packs   |
 | 10 | Marinated Meat         | Frozen & Poultry      | ₱250.00  | 15 packs   |
