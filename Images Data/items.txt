@@ -1,40 +1,70 @@
-ITEM                         | CLASSIFICATION | UNIT        | SIZE / TYPE     | PRICE (PHP) | FORMAT    | SIZE DETAILS
------------------------------|----------------|-------------|------------------|-------------|-----------|--------------
-Backbone / Soupack           | Fresh Meat     | Kilo        | Standard         | ₱160.00     | Per Kilo  | n/a
-Liog (Neck)                  | Fresh Meat     | Kilo        | Standard         | ₱160.00     | Per Kilo  | n/a
-Whole Chicken                | Poultry        | Kilo        | Standard         | ₱210.00     | Per Kilo  | n/a
-Assorted Cut-ups             | Poultry        | Kilo        | Standard         | ₱215.00     | Per Kilo  | n/a
-Atay (Liver)                 | Poultry        | Kilo/Pack   | Standard/Pack    | ₱220 (kg)   | Per Kilo  | n/a
-Baticolon (Gizzard)          | Poultry        | Kilo/Pack   | Standard/Pack    | ₱220 (kg)   | Per Kilo  | n/a
-Ulo (Head)                   | Poultry        | Kilo        | Standard         | ₱50.00      | Per Kilo  | n/a
-Tiil (Feet)                  | Poultry        | Kilo        | Standard         | ₱140.00     | Per Kilo  | n/a
-Tinae (Intestine) Hilaw      | Fresh Meat     | Pack        | Raw              | ₱130.00     | Per Pack  | Raw
-Marinated Meat               | Fresh Meat     | Pack        | Ready-to-cook    | ₱250.00     | Per Pack  | Ready-to-cook
-Hotdog Bigshot               | Frozen Meat    | Kilo        | Bulk             | ₱175.00     | Per Kilo  | n/a
-Hotdog Regular w/ Cheese     | Frozen Meat    | Kilo        | Bulk             | ₱165.00     | Per Kilo  | n/a
-Hotdog (Sunny/Fiesta/etc.)   | Frozen Meat    | Pack        | Small Pack       | ₱45.00      | Per Pack  | Small Pack
-Hotdog Virginia              | Frozen Meat    | Pack        | Standard Pack    | ₱70.00      | Per Pack  | Standard Pack
-Sweet Ham                    | Frozen Meat    | Pack        | Standard Pack    | ₱70.00      | Per Pack  | Standard Pack
-Cooked Ham                   | Frozen Meat    | Pack        | Standard Pack    | ₱70.00      | Per Pack  | Standard Pack
-Pork Tocino                  | Frozen Meat    | Pack        | Standard Pack    | ₱70.00      | Per Pack  | Standard Pack
-Chicken Roll                 | Frozen Meat    | Roll        | Standard         | ₱55.00      | Per Roll  | Standard
-Chicken Poppers              | Frozen Meat    | Pack        | Standard Pack    | ₱130.00     | Per Pack  | Standard Pack
-French Fries                 | Frozen Food    | Pack        | Standard Pack    | ₱150.00     | Per Pack  | Standard Pack
-Toyo (Soy Sauce) Small       | Condiments     | Pouch/Piece | Small            | ₱6.00       | Per Pack  | Small
-Toyo (Soy Sauce) Big         | Condiments     | Pouch/Piece | Medium/Big       | ₱15.00      | Per Pack  | Medium/Big
-Suka (Vinegar)               | Condiments     | Pouch/Piece | Standard         | ₱15.00      | Per Pack  | Standard
-Oyster Sauce                 | Condiments     | Sachet      | Small Sachet     | ₱12.00      | Per Pack  | Small Sachet
-Mafran (Ketchup)             | Condiments     | Pouch/Piece | Standard         | ₱15.00      | Per Pack  | Standard
-Curry Mix                    | Seasoning      | Sachet      | Standard         | ₱35.00      | Per Pack  | Standard
-Crispy Fry                   | Seasoning      | Sachet      | Standard         | ₱25.00      | Per Pack  | Standard
-Mushrooms                    | Grocery        | Can/Pack    | Standard         | ₱33.00      | Per Pack  | Standard
-Magic Sarap                  | Seasoning      | Sachet      | Small Sachet     | ₱7.00       | Per Pack  | Small Sachet
-Ginisa Mix                   | Seasoning      | Sachet      | Small Sachet     | ₱6.00       | Per Pack  | Small Sachet
-Vitsen                       | Seasoning      | Sachet      | Small Sachet     | ₱6.00       | Per Pack  | Small Sachet
-Cooking Oil                  | Grocery        | Pouch       | Standard         | ₱30.00      | Per Pack  | Standard
-Paminta (Pepper)             | Seasoning      | Sachet      | Small Sachet     | ₱5.00       | Per Pack  | Small Sachet
-Knorr Cubes                  | Seasoning      | Piece/Sachet| Small            | ₱10.00      | Per Pack  | Small
-Ginataang Gulay              | Seasoning      | Sachet      | Standard         | ₱35.00      | Per Pack  | Standard
-Sinigang Mix                 | Seasoning      | Sachet      | Small Sachet     | ₱15.00      | Per Pack  | Small Sachet
-Black Pepper Ground          | Seasoning      | Sachet      | Standard         | ₱10.00      | Per Pack  | Standard
-Coco Mama                    | Grocery        | Tetra Pack  | Standard         | ₱45.00      | Per Pack  | Standard
+================================================================================
+CHICKEN SHOP POS MASTER INVENTORY
+================================================================================
+
+FROZEN POULTRY
+--------------------------------------------------------------------------------
+ITEM                         | UNIT      | PRICE      | FORMAT
+--------------------------------------------------------------------------------
+Backbone / Soupack           | Kilo      | ₱160.00    | Per Kilo
+Liog (Neck)                  | Kilo      | ₱160.00    | Per Kilo
+Whole Chicken                | Kilo      | ₱210.00    | Per Kilo
+Assorted Cut-ups             | Kilo      | ₱215.00    | Per Kilo
+Atay (Liver)                 | Kilo/Pack | ₱220.00    | Per Kilo
+Baticolon (Gizzard)          | Kilo/Pack | ₱220.00    | Per Kilo
+Ulo (Head)                   | Kilo      | ₱50.00     | Per Kilo
+Tiil (Feet)                  | Kilo      | ₱140.00    | Per Kilo
+Tinae (Intestine) Hilaw      | Pack      | ₱130.00    | Per Pack
+Marinated Meat               | Pack      | ₱250.00    | Per Pack
+
+FROZEN PROCESSED
+--------------------------------------------------------------------------------
+Hotdog Bigshot               | Kilo      | ₱175.00    | Per Kilo
+Hotdog Regular w/ Cheese     | Kilo      | ₱165.00    | Per Kilo
+Hotdog (Sunny/Fiesta/etc.)   | Pack      | ₱45.00     | Per Pack
+Hotdog Virginia              | Pack      | ₱70.00     | Per Pack
+Sweet Ham                    | Pack      | ₱70.00     | Per Pack
+Cooked Ham                   | Pack      | ₱70.00     | Per Pack
+Pork Tocino                  | Pack      | ₱70.00     | Per Pack
+Chicken Roll                 | Roll      | ₱55.00     | Per Roll
+Chicken Poppers              | Pack      | ₱130.00    | Per Pack
+French Fries                 | Pack      | ₱150.00    | Per Pack
+
+FRESH PRODUCE
+--------------------------------------------------------------------------------
+Atsal (Bell Pepper)          | Kilo      | ₱200.00    | Per Kilo
+Ahos (Garlic)                | Kilo      | ₱180.00    | Per Kilo
+Bombay (Onion)               | Kilo      | ₱180.00    | Per Kilo
+Patatas (Potato)             | Kilo      | ₱150.00    | Per Kilo
+Luy-a (Ginger)               | Kilo      | ₱150.00    | Per Kilo
+Carrots                      | Kilo      | ₱80.00     | Per Kilo
+Sayote                       | Kilo      | ₱40.00     | Per Kilo
+
+PANTRY / GROCERY
+--------------------------------------------------------------------------------
+Cooking Oil                  | Pouch     | ₱30.00     | Per Pack
+Coco Mama                    | Tetra Pack| ₱45.00     | Per Pack
+Mushrooms                    | Can/Pack  | ₱33.00     | Per Pack
+
+CONDIMENTS
+--------------------------------------------------------------------------------
+Toyo (Soy Sauce) Big        | Pouch     | ₱15.00     | Per Pack
+Toyo (Soy Sauce) Small      | Pouch     | ₱6.00      | Per Pack
+Suka (Vinegar)              | Pouch     | ₱15.00     | Per Pack
+Oyster Sauce                | Sachet    | ₱12.00     | Per Pack
+Mafran (Ketchup)            | Pouch     | ₱15.00     | Per Pack
+
+SEASONINGS
+--------------------------------------------------------------------------------
+Curry Mix                   | Sachet    | ₱35.00     | Per Pack
+Ginataang Gulay             | Sachet    | ₱35.00     | Per Pack
+Crispy Fry                  | Sachet    | ₱25.00     | Per Pack
+Magic Sarap                 | Sachet    | ₱7.00      | Per Pack
+Ginisa Mix                  | Sachet    | ₱6.00      | Per Pack
+Vitsen                      | Sachet    | ₱6.00      | Per Pack
+Sinigang Mix                | Sachet    | ₱15.00     | Per Pack
+Knorr Cubes                 | Piece     | ₱10.00     | Per Piece
+Black Pepper Ground         | Sachet    | ₱10.00     | Per Pack
+Paminta (Pepper)            | Sachet    | ₱5.00      | Per Pack
+
+================================================================================
