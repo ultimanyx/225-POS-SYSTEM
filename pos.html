@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>POS - W&A Inventory</title>
     <style>
-      /* ================= GLOBAL RESET ================= */
       :root {
         --primary-color: #2c3e50;
         --accent-purple: #667eea;
@@ -24,7 +23,6 @@
         padding: 0;
         box-sizing: border-box;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        scroll-behavior: smooth;
       }
 
       body {
@@ -35,7 +33,7 @@
         overflow: hidden;
       }
 
-      /* ================= SIDEBAR ================= */
+      /* Sidebar */
       .sidebar {
         width: 260px;
         background-color: var(--primary-color);
@@ -56,15 +54,13 @@
       }
 
       .sidebar ul { list-style: none; }
-      .sidebar ul li { margin-bottom: 8px; border-radius: 10px; transition: 0.3s; }
+      .sidebar ul li { margin-bottom: 8px; border-radius: 10px; }
       .sidebar ul li a { display: block; padding: 15px 20px; color: white; text-decoration: none; font-weight: 500; }
-      .sidebar ul li:hover { background: var(--sidebar-gradient); transform: translateX(8px); }
-      .sidebar ul li.active { background: var(--sidebar-gradient); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+      .sidebar ul li.active { background: var(--sidebar-gradient); }
 
-      #logout-btn { margin-top: auto; background-color: rgba(231, 76, 60, 0.1); }
-      #logout-btn:hover { background: var(--danger-color); transform: none; }
+      #logout-btn { margin-top: auto; }
 
-      /* ================= MAIN POS LAYOUT ================= */
+      /* Main Layout */
       .pos-container {
         display: flex;
         flex: 1;
@@ -89,29 +85,18 @@
         border-radius: 15px;
         margin-bottom: 20px;
         box-shadow: var(--shadow);
-        position: sticky;
-        top: 0;
-        z-index: 10;
       }
 
       .category-btn {
         padding: 10px 20px;
-        border: none;
         background: #f1f5f9;
         border-radius: 10px;
-        cursor: pointer;
         font-weight: 600;
         color: var(--primary-color);
-        transition: 0.3s;
         text-decoration: none;
         display: flex;
         align-items: center;
         gap: 8px;
-      }
-
-      .category-btn:hover {
-        background: var(--accent-purple);
-        color: white;
       }
 
       .scroll-container {
@@ -139,20 +124,31 @@
         border-radius: 15px;
         overflow: hidden;
         box-shadow: var(--shadow);
-        transition: 0.3s;
         display: flex;
         flex-direction: column;
         border: 1px solid #edf2f7;
         min-height: 340px;
       }
 
-      .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
       .card img { width: 100%; height: 140px; object-fit: contain; padding: 10px; background: #fff; }
       .card-body { padding: 15px; display: flex; flex-direction: column; flex: 1; }
-      .card h3 { font-size: 0.95rem; margin-bottom: 5px; min-height: 2.4em; color: var(--text-dark); }
+      .card h3 { font-size: 0.95rem; margin-bottom: 5px; min-height: 2.4em; }
       .card .price { font-size: 1.15rem; font-weight: 700; color: var(--accent-purple); margin-bottom: 5px; }
       .card .stock { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; margin-top: auto; }
-      .card button { width: 100%; padding: 10px; border: none; background: var(--sidebar-gradient); color: white; border-radius: 8px; cursor: pointer; font-weight: 600; }
+      
+      /* Simple checkbox button */
+      .card input[type="checkbox"] { display: none; }
+      .card label {
+        width: 100%;
+        padding: 10px;
+        background: var(--sidebar-gradient);
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        display: block;
+        text-align: center;
+      }
 
       .cart-area {
         flex: 1.2;
@@ -167,14 +163,125 @@
 
       .cart-header { padding: 25px; background: var(--sidebar-gradient); color: white; border-radius: 20px 20px 0 0; display: flex; justify-content: space-between; }
       .cart-items { flex: 1; padding: 20px; overflow-y: auto; }
-      .cart-footer { padding: 25px; background: #f8fafc; border-radius: 0 0 20px 20px; border-top: 1px solid #e2e8f0; }
-      .total-row { display: flex; justify-content: space-between; margin-top: 15px; font-weight: 800; font-size: 1.4rem; }
-      .checkout-btn { width: 100%; padding: 16px; margin-top: 20px; border: none; background: var(--success-green); color: white; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; }
+      
+      .cart-item {
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .cart-item-info { display: flex; flex-direction: column; }
+      .cart-item-name { font-weight: 600; font-size: 0.95rem; }
+      .cart-item-price { color: var(--accent-purple); font-weight: 600; }
+
+      .cart-footer {
+        padding: 25px;
+        background: #f8fafc;
+        border-radius: 0 0 20px 20px;
+        border-top: 1px solid #e2e8f0;
+      }
+      .total-row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        font-weight: 800;
+        font-size: 1.4rem;
+      }
+      
+      .checkout-link {
+        width: 100%;
+        padding: 16px;
+        margin-top: 20px;
+        background: var(--success-green);
+        color: white;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      /* Modal */
+      .modal-overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.6);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+      .modal-overlay:target { display: flex; }
+      
+      .receipt-modal {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 400px;
+        width: 90%;
+      }
+      .receipt-header {
+        text-align: center;
+        border-bottom: 2px dashed #ccc;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+      }
+      .receipt-header h2 { color: var(--primary-color); }
+      .receipt-total {
+        font-size: 1.5rem;
+        font-weight: 800;
+        text-align: right;
+        padding-top: 15px;
+        border-top: 2px solid #333;
+      }
+      .receipt-footer { display: flex; gap: 10px; margin-top: 25px; }
+      .receipt-footer a {
+        flex: 1;
+        padding: 12px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+      }
+      .btn-close { background: #f1f5f9; color: var(--text-dark); }
+      .btn-new { background: var(--sidebar-gradient); color: white; }
+
+      /* Cart Visibility */
+      body:has(#btn-backbone:checked) #cart-backbone,
+      body:has(#btn-liog:checked) #cart-liog,
+      body:has(#btn-whole:checked) #cart-whole,
+      body:has(#btn-cutups:checked) #cart-cutups,
+      body:has(#btn-liver:checked) #cart-liver,
+      body:has(#btn-gizzard:checked) #cart-gizzard,
+      body:has(#btn-head:checked) #cart-head,
+      body:has(#btn-feet:checked) #cart-feet,
+      body:has(#btn-intestine:checked) #cart-intestine,
+      body:has(#btn-marinated:checked) #cart-marinated,
+      body:has(#btn-bellpepper:checked) #cart-bellpepper,
+      body:has(#btn-garlic:checked) #cart-garlic,
+      body:has(#btn-onion:checked) #cart-onion,
+      body:has(#btn-potato:checked) #cart-potato,
+      body:has(#btn-ginger:checked) #cart-ginger,
+      body:has(#btn-carrots:checked) #cart-carrots,
+      body:has(#btn-sayote:checked) #cart-sayote,
+      body:has(#btn-oil:checked) #cart-oil,
+      body:has(#btn-cocomama:checked) #cart-cocomama,
+      body:has(#btn-soybig:checked) #cart-soybig,
+      body:has(#btn-soysmall:checked) #cart-soysmall,
+      body:has(#btn-vinegar:checked) #cart-vinegar,
+      body:has(#btn-magic:checked) #cart-magic,
+      body:has(#btn-ginisa:checked) #cart-ginisa,
+      body:has(#btn-sinigang:checked) #cart-sinigang {
+        display: flex;
+      }
 
       @media (max-width: 1200px) { .grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
   </head>
   <body>
+
 <div class="sidebar">
   <h2>W&A Inventory</h2>
   <ul>
@@ -183,15 +290,12 @@
     <li><a href="product_management.html">Product Management</a></li>
     <li><a href="stocks.html">Stock</a></li>
     <li><a href="reports.html">Reports</a></li>
-    <li id="logout-btn">
-      <a href="index.html" style="color:#ff7675">Logout</a>
-    </li>
+    <li id="logout-btn"><a href="index.html" style="color:#ff7675">Logout</a></li>
   </ul>
 </div>
+
 <div class="pos-container">
-
   <div class="products-area">
-
     <div class="category-nav">
       <a href="#frozen" class="category-btn">❄️ Frozen & Processed</a>
       <a href="#fresh" class="category-btn">🍎 Fresh Goods</a>
@@ -199,298 +303,210 @@
     </div>
 
     <div class="scroll-container">
-
-      <!-- Frozen -->
       <h2 id="frozen">Frozen & Poultry</h2>
       <div class="grid">
-
         <div class="card">
-          <img src="/Image/backbone.jpg">
+          <img src="/Image/backbone.jpg" alt="Backbone">
           <div class="card-body">
             <h3>Backbone / Soupack</h3>
             <p class="price">₱160.00</p>
             <p class="stock">Stock: 12 kg</p>
-            <button>Add to Cart</button>
+            <input type="checkbox" id="btn-backbone"><label for="btn-backbone">Add to Cart</label>
           </div>
         </div>
-
         <div class="card">
-          <img src="/Image/chicken neck.jpg">
+          <img src="/Image/chicken neck.jpg" alt="Liog">
           <div class="card-body">
             <h3>Liog (Neck)</h3>
             <p class="price">₱160.00</p>
             <p class="stock">Stock: 10 kg</p>
-            <button>Add to Cart</button>
+            <input type="checkbox" id="btn-liog"><label for="btn-liog">Add to Cart</label>
           </div>
         </div>
-
         <div class="card">
-          <img src="/Image/dressed chicken.jpg">
+          <img src="/Image/dressed chicken.jpg" alt="Whole Chicken">
           <div class="card-body">
             <h3>Whole Chicken</h3>
             <p class="price">₱210.00</p>
             <p class="stock">Stock: 30 kg</p>
-            <button>Add to Cart</button>
+            <input type="checkbox" id="btn-whole"><label for="btn-whole">Add to Cart</label>
           </div>
         </div>
-
         <div class="card">
-          <img src="/Image/assorted cut ups.jpg">
+          <img src="/Image/assorted cut ups.jpg" alt="Assorted Cut-ups">
           <div class="card-body">
             <h3>Assorted Cut-ups</h3>
             <p class="price">₱215.00</p>
             <p class="stock">Stock: 18 kg</p>
-            <button>Add to Cart</button>
+            <input type="checkbox" id="btn-cutups"><label for="btn-cutups">Add to Cart</label>
           </div>
         </div>
-
-        <div class="card">
-          <img src="/Image/chicken liver.jpg">
-          <div class="card-body">
-            <h3>Atay (Liver)</h3>
-            <p class="price">₱220.00</p>
-            <p class="stock">Stock: 14 kg</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/chicken gizzard.jpg">
-          <div class="card-body">
-            <h3>Baticolon (Gizzard)</h3>
-            <p class="price">₱220.00</p>
-            <p class="stock">Stock: 12 kg</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/chicken head.jpg">
-          <div class="card-body">
-            <h3>Ulo (Head)</h3>
-            <p class="price">₱50.00</p>
-            <p class="stock">Stock: 9 kg</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/chicken feet.jpg">
-          <div class="card-body">
-            <h3>Tiil (Feet)</h3>
-            <p class="price">₱140.00</p>
-            <p class="stock">Stock: 8 kg</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/chicken intestine.jpg">
-          <div class="card-body">
-            <h3>Tinae (Intestine)</h3>
-            <p class="price">₱130.00</p>
-            <p class="stock">Stock: 20 packs</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/marinated chicken.png">
-          <div class="card-body">
-            <h3>Marinated Chicken</h3>
-            <p class="price">₱250.00</p>
-            <p class="stock">Stock: 15 packs</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Fresh Goods -->
       <h2 id="fresh">Fresh Goods</h2>
       <div class="grid">
-
         <div class="card">
-          <img src="/Image/bell pepper.jpg">
+          <img src="/Image/bell pepper.jpg" alt="Bell Pepper">
           <div class="card-body">
             <h3>Bell Pepper</h3>
             <p class="price">₱200.00</p>
             <p class="stock">Stock: 10 kg</p>
-            <button>Add to Cart</button>
+            <input type="checkbox" id="btn-bellpepper"><label for="btn-bellpepper">Add to Cart</label>
           </div>
         </div>
-
         <div class="card">
-          <img src="/Image/garlic.jpg">
+          <img src="/Image/garlic.jpg" alt="Garlic">
           <div class="card-body">
             <h3>Garlic</h3>
             <p class="price">₱180.00</p>
             <p class="stock">Stock: 14 kg</p>
-            <button>Add to Cart</button>
+            <input type="checkbox" id="btn-garlic"><label for="btn-garlic">Add to Cart</label>
           </div>
         </div>
-
         <div class="card">
-          <img src="/Image/onion.jpg">
+          <img src="/Image/onion.jpg" alt="Onion">
           <div class="card-body">
             <h3>Onion</h3>
             <p class="price">₱180.00</p>
             <p class="stock">Stock: 22 kg</p>
-            <button>Add to Cart</button>
+            <input type="checkbox" id="btn-onion"><label for="btn-onion">Add to Cart</label>
           </div>
         </div>
-
-        <div class="card">
-          <img src="/Image/potato.jpg">
-          <div class="card-body">
-            <h3>Potato</h3>
-            <p class="price">₱150.00</p>
-            <p class="stock">Stock: 28 kg</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/ginger.jpg">
-          <div class="card-body">
-            <h3>Ginger</h3>
-            <p class="price">₱150.00</p>
-            <p class="stock">Stock: 12 kg</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/carrots.jpg">
-          <div class="card-body">
-            <h3>Carrots</h3>
-            <p class="price">₱80.00</p>
-            <p class="stock">Stock: 16 kg</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/sayote.jpg">
-          <div class="card-body">
-            <h3>Sayote</h3>
-            <p class="price">₱40.00</p>
-            <p class="stock">Stock: 9 kg</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Spices -->
       <h2 id="spices">Spices / Pantry / Condiments</h2>
       <div class="grid">
-
         <div class="card">
-          <img src="/Image/oil.jpg">
+          <img src="/Image/oil.jpg" alt="Cooking Oil">
           <div class="card-body">
             <h3>Cooking Oil</h3>
             <p class="price">₱30.00</p>
             <p class="stock">Stock: 25 packs</p>
-            <button>Add to Cart</button>
+            <input type="checkbox" id="btn-oil"><label for="btn-oil">Add to Cart</label>
           </div>
         </div>
-
         <div class="card">
-          <img src="/Image/coco mama.jpg">
+          <img src="/Image/coco mama.jpg" alt="Coco Mama">
           <div class="card-body">
             <h3>Coco Mama</h3>
             <p class="price">₱45.00</p>
             <p class="stock">Stock: 20 packs</p>
-            <button>Add to Cart</button>
+            <input type="checkbox" id="btn-cocomama"><label for="btn-cocomama">Add to Cart</label>
           </div>
         </div>
-
         <div class="card">
-          <img src="/Image/silver swan big.jpg">
+          <img src="/Image/silver swan big.jpg" alt="Soy Sauce Big">
           <div class="card-body">
             <h3>Soy Sauce Big</h3>
             <p class="price">₱15.00</p>
             <p class="stock">Stock: 30 packs</p>
-            <button>Add to Cart</button>
+            <input type="checkbox" id="btn-soybig"><label for="btn-soybig">Add to Cart</label>
           </div>
         </div>
-
-        <div class="card">
-          <img src="/Image/silver swan small.jpg">
-          <div class="card-body">
-            <h3>Soy Sauce Small</h3>
-            <p class="price">₱6.00</p>
-            <p class="stock">Stock: 18 packs</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/silver swan suka.jpg">
-          <div class="card-body">
-            <h3>Vinegar</h3>
-            <p class="price">₱15.00</p>
-            <p class="stock">Stock: 22 packs</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/magic sarap.png">
-          <div class="card-body">
-            <h3>Magic Sarap</h3>
-            <p class="price">₱7.00</p>
-            <p class="stock">Stock: 28 packs</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/ginisa mix.jpg">
-          <div class="card-body">
-            <h3>Ginisa Mix</h3>
-            <p class="price">₱6.00</p>
-            <p class="stock">Stock: 24 packs</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="/Image/sinigang mix.jpg">
-          <div class="card-body">
-            <h3>Sinigang Mix</h3>
-            <p class="price">₱15.00</p>
-            <p class="stock">Stock: 26 packs</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-
       </div>
-
     </div>
   </div>
 
   <div class="cart-area">
-
     <div class="cart-header">
       <h3>🛒 Order Summary</h3>
-      <span id="item-count">0 Items</span>
+      <span id="item-count">Items</span>
     </div>
 
-    <div class="cart-items"></div>
+    <div class="cart-items">
+      <div class="cart-item" id="cart-backbone">
+        <div class="cart-item-info">
+          <span class="cart-item-name">Backbone / Soupack</span>
+          <span class="cart-item-price">₱160.00</span>
+        </div>
+      </div>
+      <div class="cart-item" id="cart-liog">
+        <div class="cart-item-info">
+          <span class="cart-item-name">Liog (Neck)</span>
+          <span class="cart-item-price">₱160.00</span>
+        </div>
+      </div>
+      <div class="cart-item" id="cart-whole">
+        <div class="cart-item-info">
+          <span class="cart-item-name">Whole Chicken</span>
+          <span class="cart-item-price">₱210.00</span>
+        </div>
+      </div>
+      <div class="cart-item" id="cart-cutups">
+        <div class="cart-item-info">
+          <span class="cart-item-name">Assorted Cut-ups</span>
+          <span class="cart-item-price">₱215.00</span>
+        </div>
+      </div>
+      <div class="cart-item" id="cart-bellpepper">
+        <div class="cart-item-info">
+          <span class="cart-item-name">Bell Pepper</span>
+          <span class="cart-item-price">₱200.00</span>
+        </div>
+      </div>
+      <div class="cart-item" id="cart-garlic">
+        <div class="cart-item-info">
+          <span class="cart-item-name">Garlic</span>
+          <span class="cart-item-price">₱180.00</span>
+        </div>
+      </div>
+      <div class="cart-item" id="cart-onion">
+        <div class="cart-item-info">
+          <span class="cart-item-name">Onion</span>
+          <span class="cart-item-price">₱180.00</span>
+        </div>
+      </div>
+      <div class="cart-item" id="cart-oil">
+        <div class="cart-item-info">
+          <span class="cart-item-name">Cooking Oil</span>
+          <span class="cart-item-price">₱30.00</span>
+        </div>
+      </div>
+      <div class="cart-item" id="cart-cocomama">
+        <div class="cart-item-info">
+          <span class="cart-item-name">Coco Mama</span>
+          <span class="cart-item-price">₱45.00</span>
+        </div>
+      </div>
+      <div class="cart-item" id="cart-soybig">
+        <div class="cart-item-info">
+          <span class="cart-item-name">Soy Sauce Big</span>
+          <span class="cart-item-price">₱15.00</span>
+        </div>
+      </div>
+    </div>
 
     <div class="cart-footer">
       <div class="total-row">
         <span>Total</span>
         <span>₱0.00</span>
       </div>
-
-      <button class="checkout-btn">Complete Transaction</button>
+      <a href="#receipt-modal" class="checkout-link">Complete Transaction</a>
     </div>
-
   </div>
-
 </div>
+
+<!-- Receipt Modal -->
+<div class="modal-overlay" id="receipt-modal">
+  <div class="receipt-modal">
+    <div class="receipt-header">
+      <h2>🧾 W&A Inventory</h2>
+      <p>Order Receipt</p>
+      <small>Simulation Mode</small>
+    </div>
+    <div class="receipt-items">
+      <p style="text-align: center; color: var(--text-muted);">Selected items would appear here</p>
+      <p style="text-align: center; margin-top: 10px;">Transaction Complete ✓</p>
+    </div>
+    <div class="receipt-total">
+      Total: ₱0.00
+    </div>
+    <div class="receipt-footer">
+      <a href="#" class="btn-close">Close</a>
+      <a href="#" class="btn-new">New Sale</a>
+    </div>
+  </div>
+</div>
+
   </body>
 </html>
