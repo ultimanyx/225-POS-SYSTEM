@@ -52,7 +52,7 @@
             text-align: center;
             padding-bottom: 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 25px;
+            margin-bottom: 25px; /* Matched to Dashboard/POS */
             letter-spacing: 1px;
         }
 
@@ -80,6 +80,7 @@
             transform: translateX(8px);
         }
 
+        /* Active Page Highlight */
         .sidebar ul li.active {
             background: var(--sidebar-gradient);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -103,7 +104,7 @@
         }
 
         .pm-header {
-            margin-bottom: 35px;
+            margin-bottom: 35px; /* Matched Dashboard header spacing */
             background: var(--sidebar-gradient);
             padding: 30px;
             border-radius: 15px;
@@ -114,6 +115,7 @@
         .pm-header h1 { font-size: 1.8rem; margin-bottom: 5px; }
         .pm-header p { opacity: 0.9; font-size: 0.95rem; }
 
+        /* CONTROL PANEL */
         .control-panel {
             display: flex;
             justify-content: space-between;
@@ -148,6 +150,7 @@
 
         .btn-add-product:hover { transform: translateY(-2px); }
 
+        /* TABLE SECTION */
         .product-table-section {
             background: var(--white);
             border-radius: 15px;
@@ -193,6 +196,7 @@
             vertical-align: middle;
         }
 
+        /* INPUTS & BADGES */
         .price-input {
             width: 100px;
             padding: 8px;
@@ -218,8 +222,9 @@
         }
 
         .stock-good { background: #d4edda; color: #155724; }
-        .stock-low { background: #fff3cd; color: #856404; }
+        .stock-warning { background: #fff3cd; color: #856404; }
 
+        /* BUTTONS */
         .save-btn, .delete-btn {
             padding: 8px 16px;
             border: none;
@@ -269,7 +274,7 @@
         <section class="product-table-section">
             <div class="table-header">
                 <h3>Manage Products</h3>
-                <span class="total-products">Total: 25 Products</span>
+                <span class="total-products">Total: 6 Products</span>
             </div>
 
             <table class="product-table">
@@ -286,203 +291,25 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td><strong>Backbone / Soupack</strong></td>
+                        <td><strong>Whole Dressed Chicken</strong></td>
                         <td><span class="category-badge">Frozen Products</span></td>
-                        <td><input type="number" value="160" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (12 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
+                        <td><input type="number" value="210" class="price-input" /></td>
+                        <td><span class="stock-badge stock-good">✓ In Stock (21kg)</span></td>
+                        <td>
+                            <button class="save-btn">Save</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><strong>Liog (Neck)</strong></td>
-                        <td><span class="category-badge">Frozen Products</span></td>
-                        <td><input type="number" value="160" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (10 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><strong>Whole Chicken</strong></td>
-                        <td><span class="category-badge">Frozen Products</span></td>
-                        <td><input type="number" value="210" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (30 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><strong>Assorted Cut-ups</strong></td>
-                        <td><span class="category-badge">Frozen Products</span></td>
-                        <td><input type="number" value="215" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (18 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><strong>Atay (Liver)</strong></td>
-                        <td><span class="category-badge">Frozen Products</span></td>
-                        <td><input type="number" value="220" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (14 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td><strong>Baticolon (Gizzard)</strong></td>
-                        <td><span class="category-badge">Frozen Products</span></td>
-                        <td><input type="number" value="220" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (12 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td><strong>Ulo (Head)</strong></td>
-                        <td><span class="category-badge">Frozen Products</span></td>
-                        <td><input type="number" value="50" class="price-input" /></td>
-                        <td><span class="stock-badge stock-low">Low Stock (9 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td><strong>Tiil (Feet)</strong></td>
+                        <td><strong>Chicken Feet</strong></td>
                         <td><span class="category-badge">Frozen Products</span></td>
                         <td><input type="number" value="140" class="price-input" /></td>
-                        <td><span class="stock-badge stock-low">Low Stock (8 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td><strong>Tinae (Intestine)</strong></td>
-                        <td><span class="category-badge">Frozen Products</span></td>
-                        <td><input type="number" value="130" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (20 packs)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td><strong>Marinated Chicken</strong></td>
-                        <td><span class="category-badge">Frozen Products</span></td>
-                        <td><input type="number" value="250" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (15 packs)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td><strong>Bell Pepper</strong></td>
-                        <td><span class="category-badge">Fresh Goods</span></td>
-                        <td><input type="number" value="200" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (10 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td><strong>Garlic</strong></td>
-                        <td><span class="category-badge">Fresh Goods</span></td>
-                        <td><input type="number" value="180" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (14 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>13</td>
-                        <td><strong>Onion</strong></td>
-                        <td><span class="category-badge">Fresh Goods</span></td>
-                        <td><input type="number" value="180" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (22 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>14</td>
-                        <td><strong>Potato</strong></td>
-                        <td><span class="category-badge">Fresh Goods</span></td>
-                        <td><input type="number" value="150" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (28 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>15</td>
-                        <td><strong>Ginger</strong></td>
-                        <td><span class="category-badge">Fresh Goods</span></td>
-                        <td><input type="number" value="150" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (12 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>16</td>
-                        <td><strong>Carrots</strong></td>
-                        <td><span class="category-badge">Fresh Goods</span></td>
-                        <td><input type="number" value="80" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (16 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>17</td>
-                        <td><strong>Sayote</strong></td>
-                        <td><span class="category-badge">Fresh Goods</span></td>
-                        <td><input type="number" value="40" class="price-input" /></td>
-                        <td><span class="stock-badge stock-low">Low Stock (9 kg)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>18</td>
-                        <td><strong>Cooking Oil</strong></td>
-                        <td><span class="category-badge">Spices / Pantry</span></td>
-                        <td><input type="number" value="30" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (25 packs)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>19</td>
-                        <td><strong>Coco Mama</strong></td>
-                        <td><span class="category-badge">Spices / Pantry</span></td>
-                        <td><input type="number" value="45" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (20 packs)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>20</td>
-                        <td><strong>Soy Sauce Big</strong></td>
-                        <td><span class="category-badge">Spices / Pantry</span></td>
-                        <td><input type="number" value="15" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (30 packs)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>21</td>
-                        <td><strong>Soy Sauce Small</strong></td>
-                        <td><span class="category-badge">Spices / Pantry</span></td>
-                        <td><input type="number" value="6" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (18 packs)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>22</td>
-                        <td><strong>Vinegar</strong></td>
-                        <td><span class="category-badge">Spices / Pantry</span></td>
-                        <td><input type="number" value="15" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (22 packs)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>23</td>
-                        <td><strong>Magic Sarap</strong></td>
-                        <td><span class="category-badge">Spices / Pantry</span></td>
-                        <td><input type="number" value="7" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (28 packs)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>24</td>
-                        <td><strong>Ginisa Mix</strong></td>
-                        <td><span class="category-badge">Spices / Pantry</span></td>
-                        <td><input type="number" value="6" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (24 packs)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>25</td>
-                        <td><strong>Sinigang Mix</strong></td>
-                        <td><span class="category-badge">Spices / Pantry</span></td>
-                        <td><input type="number" value="15" class="price-input" /></td>
-                        <td><span class="stock-badge stock-good">✓ In Stock (26 packs)</span></td>
-                        <td><button class="save-btn">Save</button><button class="delete-btn">Delete</button></td>
+                        <td><span class="stock-badge stock-good">✓ In Stock (10kg)</span></td>
+                        <td>
+                            <button class="save-btn">Save</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -19,34 +19,18 @@
             --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: "Segoe UI", sans-serif; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", sans-serif; }
 
-        body { 
-            display: flex; 
-            background-color: var(--bg-light); 
-            min-height: 100vh; 
-        }
+        body { display: flex; background-color: var(--bg-light); min-height: 100vh; }
 
         /* ================= SIDEBAR (STRICT CONSISTENCY) ================= */
         .sidebar {
-            width: 260px; 
-            background-color: var(--primary-color); 
-            color: var(--white);
-            padding: 25px; 
-            display: flex; 
-            flex-direction: column;
-            position: sticky; 
-            top: 0; 
-            height: 100vh; 
-            flex-shrink: 0;
+            width: 260px; background-color: var(--primary-color); color: var(--white);
+            padding: 25px; display: flex; flex-direction: column;
+            position: sticky; top: 0; height: 100vh; flex-shrink: 0;
         }
 
-        .sidebar h2 {
+       .sidebar h2 {
             font-size: 1.4rem;
             text-align: center;
             padding-bottom: 20px;
@@ -68,12 +52,8 @@
         .main-content { flex: 1; padding: 40px; overflow-y: auto; }
 
         .header-banner {
-            margin-bottom: 35px; 
-            background: var(--sidebar-gradient);
-            padding: 30px; 
-            border-radius: 15px; 
-            color: white; 
-            box-shadow: var(--shadow);
+            margin-bottom: 35px; background: var(--sidebar-gradient);
+            padding: 30px; border-radius: 15px; color: white; box-shadow: var(--shadow);
         }
 
         /* STOCK CARDS */
@@ -109,29 +89,18 @@
         }
 
         .table-header {
-            padding: 20px 25px; 
-            background: #fafafa;
-            border-bottom: 1px solid #eee; 
-            display: flex;
-            justify-content: space-between; 
-            align-items: center;
+            padding: 20px 25px; background: #fafafa;
+            border-bottom: 1px solid #eee; display: flex;
+            justify-content: space-between; align-items: center;
         }
 
         .stock-table { width: 100%; border-collapse: collapse; }
         .stock-table th {
-            text-align: left; 
-            padding: 18px; 
-            background: #f8f9fa;
-            color: var(--primary-color); 
-            font-weight: 600; 
-            border-bottom: 2px solid #eee;
+            text-align: left; padding: 18px; background: #f8f9fa;
+            color: var(--primary-color); font-weight: 600; border-bottom: 2px solid #eee;
         }
 
-        .stock-table td { 
-            padding: 18px; 
-            border-bottom: 1px solid #f1f1f1; 
-            vertical-align: middle; 
-        }
+        .stock-table td { padding: 18px; border-bottom: 1px solid #f1f1f1; vertical-align: middle; }
 
         /* BADGES & INPUTS */
         .badge { padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -140,23 +109,14 @@
         .badge-danger { background: #f8d7da; color: #721c24; }
 
         .qty-input {
-            width: 80px; 
-            padding: 8px; 
-            border: 1px solid #ddd;
-            border-radius: 6px; 
-            outline: none; 
-            text-align: center;
+            width: 80px; padding: 8px; border: 1px solid #ddd;
+            border-radius: 6px; outline: none; text-align: center;
         }
 
         .update-btn {
-            background: var(--success-green); 
-            color: white; 
-            border: none;
-            padding: 8px 15px; 
-            border-radius: 6px; 
-            cursor: pointer;
-            font-weight: 600; 
-            transition: 0.2s;
+            background: var(--success-green); color: white; border: none;
+            padding: 8px 15px; border-radius: 6px; cursor: pointer;
+            font-weight: 600; transition: 0.2s;
         }
 
         .update-btn:hover { background: #219150; transform: scale(1.05); }
@@ -185,8 +145,8 @@
 
         <div class="stock-cards">
             <div class="card total-stock">
-                <small>Total Unique Items</small>
-                <h2>25 <span style="font-size: 1rem;">Products</span></h2>
+                <small>Total Items in Stock</small>
+                <h2>145.5 <span style="font-size: 1rem;">kg</span></h2>
             </div>
             <div class="card low-stock">
                 <small>Low Stock Alerts</small>
@@ -220,202 +180,26 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Backbone / Soupack</strong></td>
-                        <td>12 kg</td>
+                        <td><strong>Whole Dressed Chicken</strong></td>
+                        <td>21.0 kg</td>
                         <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
+                        <td><small>Mar 10, 2026</small></td>
                         <td><input type="number" placeholder="0" class="qty-input"></td>
                         <td><button class="update-btn">Update</button></td>
                     </tr>
                     <tr>
-                        <td><strong>Liog (Neck)</strong></td>
-                        <td>10 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Whole Chicken</strong></td>
-                        <td>30 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Assorted Cut-ups</strong></td>
-                        <td>18 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Atay (Liver)</strong></td>
-                        <td>14 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Baticolon (Gizzard)</strong></td>
-                        <td>12 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ulo (Head)</strong></td>
-                        <td>9 kg</td>
+                        <td><strong>Chicken Head</strong></td>
+                        <td>7.0 kg</td>
                         <td><span class="badge badge-warning">Low Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
+                        <td><small>Mar 08, 2026</small></td>
                         <td><input type="number" placeholder="0" class="qty-input"></td>
                         <td><button class="update-btn">Update</button></td>
                     </tr>
                     <tr>
-                        <td><strong>Tiil (Feet)</strong></td>
-                        <td>8 kg</td>
-                        <td><span class="badge badge-warning">Low Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Tinae (Intestine)</strong></td>
-                        <td>20 packs</td>
+                        <td><strong>BigShot Hotdog 1kg</strong></td>
+                        <td>15.0 pcs</td>
                         <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Marinated Chicken</strong></td>
-                        <td>15 packs</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Bell Pepper</strong></td>
-                        <td>10 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Garlic</strong></td>
-                        <td>14 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Onion</strong></td>
-                        <td>22 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Potato</strong></td>
-                        <td>28 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ginger</strong></td>
-                        <td>12 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Carrots</strong></td>
-                        <td>16 kg</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Sayote</strong></td>
-                        <td>9 kg</td>
-                        <td><span class="badge badge-warning">Low Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Cooking Oil</strong></td>
-                        <td>25 packs</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Coco Mama</strong></td>
-                        <td>20 packs</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Soy Sauce Big</strong></td>
-                        <td>30 packs</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Soy Sauce Small</strong></td>
-                        <td>18 packs</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Vinegar</strong></td>
-                        <td>22 packs</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Magic Sarap</strong></td>
-                        <td>28 packs</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ginisa Mix</strong></td>
-                        <td>24 packs</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
-                        <td><input type="number" placeholder="0" class="qty-input"></td>
-                        <td><button class="update-btn">Update</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Sinigang Mix</strong></td>
-                        <td>26 packs</td>
-                        <td><span class="badge badge-success">Good Stock</span></td>
-                        <td><small>Apr 19, 2026</small></td>
+                        <td><small>Mar 12, 2026</small></td>
                         <td><input type="number" placeholder="0" class="qty-input"></td>
                         <td><button class="update-btn">Update</button></td>
                     </tr>
@@ -423,5 +207,6 @@
             </table>
         </div>
     </div>
+
 </body>
 </html>
