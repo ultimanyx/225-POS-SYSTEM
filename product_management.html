@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Management - W&A Inventory</title>
     <style>
-        /* ================= GLOBAL STYLES (MATCHED) ================= */
         :root {
             --primary-color: #2c3e50;
             --accent-purple: #667eea;
             --sidebar-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --success-green: #27ae60;
             --danger-red: #e74c3c;
-            --warning-orange: #f39c12;
             --bg-light: #f4f7f6;
             --white: #ffffff;
             --text-dark: #333;
+            --text-muted: #7f8c8d;
             --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
@@ -33,7 +32,7 @@
             color: var(--text-dark);
         }
 
-        /* ================= SIDEBAR (STRICT CONSISTENCY) ================= */
+        /* Sidebar */
         .sidebar {
             width: 260px;
             background-color: var(--primary-color);
@@ -52,195 +51,166 @@
             text-align: center;
             padding-bottom: 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 25px; /* Matched to Dashboard/POS */
+            margin-bottom: 25px;
             letter-spacing: 1px;
         }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar ul li { margin-bottom: 8px; border-radius: 10px; }
+        .sidebar ul li a { display: block; padding: 15px 20px; color: white; text-decoration: none; font-weight: 500; }
+        .sidebar ul li.active { background: var(--sidebar-gradient); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        #logout-btn { margin-top: auto; background-color: rgba(231, 76, 60, 0.1); }
 
-        .sidebar ul li {
-            margin-bottom: 8px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar ul li a {
-            display: block;
-            padding: 15px 20px;
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .sidebar ul li:hover {
-            background: var(--sidebar-gradient);
-            transform: translateX(8px);
-        }
-
-        /* Active Page Highlight */
-        .sidebar ul li.active {
-            background: var(--sidebar-gradient);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        #logout-btn {
-            margin-top: auto;
-            background-color: rgba(231, 76, 60, 0.1);
-        }
-
-        #logout-btn:hover {
-            background: var(--danger-red);
-            transform: none;
-        }
-
-        /* ================= MAIN CONTENT ================= */
-        .main-content {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
-
-        .pm-header {
-            margin-bottom: 35px; /* Matched Dashboard header spacing */
-            background: var(--sidebar-gradient);
-            padding: 30px;
-            border-radius: 15px;
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
+        /* Main Content */
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; }
+        .pm-header { margin-bottom: 35px; background: var(--sidebar-gradient); padding: 30px; border-radius: 15px; color: white; box-shadow: var(--shadow); }
         .pm-header h1 { font-size: 1.8rem; margin-bottom: 5px; }
         .pm-header p { opacity: 0.9; font-size: 0.95rem; }
 
-        /* CONTROL PANEL */
-        .control-panel {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            gap: 20px;
-        }
-
+        /* Control Panel */
+        .control-panel { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; gap: 20px; }
         .search-box { flex: 1; max-width: 400px; }
-        .search-box input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
+        .search-box input { width: 100%; padding: 12px 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; outline: none; }
         .search-box input:focus { border-color: var(--accent-purple); }
 
-        .btn-add-product {
+        /* Consistent Button Base */
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.5;
+            min-width: 70px;
+        }
+
+        .btn-add {
             padding: 12px 25px;
             background: var(--sidebar-gradient);
             color: white;
             border: none;
             border-radius: 10px;
             font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
-            transition: transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .btn-add-product:hover { transform: translateY(-2px); }
+        /* Table Section */
+        .product-table-section { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); }
+        .table-header { padding: 20px 25px; background: #fafafa; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .total-products { background: var(--accent-purple); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        
+        .product-table { width: 100%; border-collapse: collapse; }
+        .product-table th { text-align: left; padding: 18px; background: #f8f9fa; color: var(--primary-color); font-weight: 600; border-bottom: 2px solid #eee; }
+        .product-table td { padding: 18px; border-bottom: 1px solid #f1f1f1; vertical-align: middle; }
 
-        /* TABLE SECTION */
-        .product-table-section {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .table-header {
-            padding: 20px 25px;
-            background: #fafafa;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .total-products {
-            background: var(--accent-purple);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .product-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .product-table th {
-            text-align: left;
-            padding: 18px;
-            background: #f8f9fa;
-            color: var(--primary-color);
-            font-weight: 600;
-            border-bottom: 2px solid #eee;
-        }
-
-        .product-table td {
-            padding: 18px;
-            border-bottom: 1px solid #f1f1f1;
-            vertical-align: middle;
-        }
-
-        /* INPUTS & BADGES */
-        .price-input {
-            width: 100px;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            outline: none;
-        }
-
-        .category-badge {
-            background: #eef2ff;
-            color: var(--accent-purple);
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .stock-badge {
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
+        .price-input { width: 100px; padding: 8px; border: 1px solid #ddd; border-radius: 6px; outline: none; }
+        .category-badge { background: #eef2ff; color: var(--accent-purple); padding: 5px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; }
+        .stock-badge { padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; }
         .stock-good { background: #d4edda; color: #155724; }
         .stock-warning { background: #fff3cd; color: #856404; }
 
-        /* BUTTONS */
-        .save-btn, .delete-btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
+        /* Action Buttons */
+        .btn-save {
+            background: var(--success-green);
+            color: white;
             margin-right: 5px;
-            transition: 0.2s;
         }
 
-        .save-btn { background: var(--success-green); color: white; }
-        .delete-btn { background: var(--danger-red); color: white; }
+        .btn-delete {
+            background: var(--danger-red);
+            color: white;
+        }
+
+        /* Modal Overlay - Pure CSS */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-overlay:target { display: flex; }
+
+        .modal {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        .modal h2 { margin-bottom: 20px; color: var(--primary-color); font-size: 1.5rem; }
+
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: var(--text-dark); font-size: 0.9rem; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; outline: none; }
+        .form-group input:focus, .form-group select:focus { border-color: var(--accent-purple); }
+
+        .form-row { display: flex; gap: 15px; }
+        .form-row .form-group { flex: 1; }
+
+        .modal-actions { display: flex; gap: 12px; margin-top: 25px; }
+        
+        .btn-cancel {
+            flex: 1;
+            padding: 14px;
+            background: #f1f5f9;
+            color: var(--text-dark);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn-submit {
+            flex: 1;
+            padding: 14px;
+            background: var(--sidebar-gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-delete-confirm {
+            flex: 1;
+            padding: 14px;
+            background: var(--danger-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        /* Delete Modal */
+        .modal-small { max-width: 400px; text-align: center; }
+        .modal-small p { margin-bottom: 25px; color: var(--text-muted); }
+        .warning-text { color: var(--danger-red); font-weight: 600; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: relative; }
+            .form-row { flex-direction: column; gap: 0; }
         }
     </style>
 </head>
@@ -268,7 +238,7 @@
             <div class="search-box">
                 <input type="text" placeholder="🔍 Search products..." />
             </div>
-            <button class="btn-add-product">+ Add New Product</button>
+            <a href="#addProductModal" class="btn-add">+ Add New Product</a>
         </div>
 
         <section class="product-table-section">
@@ -296,8 +266,8 @@
                         <td><input type="number" value="210" class="price-input" /></td>
                         <td><span class="stock-badge stock-good">✓ In Stock (21kg)</span></td>
                         <td>
-                            <button class="save-btn">Save</button>
-                            <button class="delete-btn">Delete</button>
+                            <button class="btn btn-save">Save</button>
+                            <a href="#deleteModal1" class="btn btn-delete">Delete</a>
                         </td>
                     </tr>
                     <tr>
@@ -307,8 +277,52 @@
                         <td><input type="number" value="140" class="price-input" /></td>
                         <td><span class="stock-badge stock-good">✓ In Stock (10kg)</span></td>
                         <td>
-                            <button class="save-btn">Save</button>
-                            <button class="delete-btn">Delete</button>
+                            <button class="btn btn-save">Save</button>
+                            <a href="#deleteModal2" class="btn btn-delete">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>Backbone / Soupack</strong></td>
+                        <td><span class="category-badge">Frozen Products</span></td>
+                        <td><input type="number" value="160" class="price-input" /></td>
+                        <td><span class="stock-badge stock-good">✓ In Stock (12kg)</span></td>
+                        <td>
+                            <button class="btn btn-save">Save</button>
+                            <a href="#deleteModal3" class="btn btn-delete">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><strong>Assorted Cut-ups</strong></td>
+                        <td><span class="category-badge">Frozen Products</span></td>
+                        <td><input type="number" value="215" class="price-input" /></td>
+                        <td><span class="stock-badge stock-good">✓ In Stock (18kg)</span></td>
+                        <td>
+                            <button class="btn btn-save">Save</button>
+                            <a href="#deleteModal4" class="btn btn-delete">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><strong>Atay (Liver)</strong></td>
+                        <td><span class="category-badge">Frozen Products</span></td>
+                        <td><input type="number" value="220" class="price-input" /></td>
+                        <td><span class="stock-badge stock-good">✓ In Stock (14kg)</span></td>
+                        <td>
+                            <button class="btn btn-save">Save</button>
+                            <a href="#deleteModal5" class="btn btn-delete">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><strong>Baticolon (Gizzard)</strong></td>
+                        <td><span class="category-badge">Frozen Products</span></td>
+                        <td><input type="number" value="220" class="price-input" /></td>
+                        <td><span class="stock-badge stock-good">✓ In Stock (12kg)</span></td>
+                        <td>
+                            <button class="btn btn-save">Save</button>
+                            <a href="#deleteModal6" class="btn btn-delete">Delete</a>
                         </td>
                     </tr>
                 </tbody>
@@ -316,6 +330,122 @@
         </section>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Add Product Modal -->
+    <div class="modal-overlay" id="addProductModal">
+        <div class="modal">
+            <h2>➕ Add New Product</h2>
+            <form method="get" action="#">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" placeholder="e.g., Chicken Wings" required />
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select required>
+                        <option value="">Select Category</option>
+                        <option value="Frozen">❄️ Frozen Products</option>
+                        <option value="Fresh">🍎 Fresh Goods</option>
+                        <option value="Spices">🧂 Spices & Condiments</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price (₱)</label>
+                        <input type="number" placeholder="0.00" min="0" step="0.01" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Stock</label>
+                        <input type="number" placeholder="0" min="0" step="0.25" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Unit Type</label>
+                    <select required>
+                        <option value="kg">Kilogram (kg)</option>
+                        <option value="pack">Pack</option>
+                        <option value="piece">Piece</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <a href="#" class="btn-cancel">Cancel</a>
+                    <button type="submit" class="btn-submit">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modals -->
+    <div class="modal-overlay" id="deleteModal1">
+        <div class="modal modal-small">
+            <h2>⚠️ Confirm Delete</h2>
+            <p>Are you sure you want to delete <strong>Whole Dressed Chicken</strong>?</p>
+            <p class="warning-text">This action cannot be undone.</p>
+            <div class="modal-actions">
+                <a href="#" class="btn-cancel">Cancel</a>
+                <a href="#" class="btn-delete-confirm">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="deleteModal2">
+        <div class="modal modal-small">
+            <h2>⚠️ Confirm Delete</h2>
+            <p>Are you sure you want to delete <strong>Chicken Feet</strong>?</p>
+            <p class="warning-text">This action cannot be undone.</p>
+            <div class="modal-actions">
+                <a href="#" class="btn-cancel">Cancel</a>
+                <a href="#" class="btn-delete-confirm">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="deleteModal3">
+        <div class="modal modal-small">
+            <h2>⚠️ Confirm Delete</h2>
+            <p>Are you sure you want to delete <strong>Backbone / Soupack</strong>?</p>
+            <p class="warning-text">This action cannot be undone.</p>
+            <div class="modal-actions">
+                <a href="#" class="btn-cancel">Cancel</a>
+                <a href="#" class="btn-delete-confirm">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="deleteModal4">
+        <div class="modal modal-small">
+            <h2>⚠️ Confirm Delete</h2>
+            <p>Are you sure you want to delete <strong>Assorted Cut-ups</strong>?</p>
+            <p class="warning-text">This action cannot be undone.</p>
+            <div class="modal-actions">
+                <a href="#" class="btn-cancel">Cancel</a>
+                <a href="#" class="btn-delete-confirm">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="deleteModal5">
+        <div class="modal modal-small">
+            <h2>⚠️ Confirm Delete</h2>
+            <p>Are you sure you want to delete <strong>Atay (Liver)</strong>?</p>
+            <p class="warning-text">This action cannot be undone.</p>
+            <div class="modal-actions">
+                <a href="#" class="btn-cancel">Cancel</a>
+                <a href="#" class="btn-delete-confirm">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="deleteModal6">
+        <div class="modal modal-small">
+            <h2>⚠️ Confirm Delete</h2>
+            <p>Are you sure you want to delete <strong>Baticolon (Gizzard)</strong>?</p>
+            <p class="warning-text">This action cannot be undone.</p>
+            <div class="modal-actions">
+                <a href="#" class="btn-cancel">Cancel</a>
+                <a href="#" class="btn-delete-confirm">Delete</a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
