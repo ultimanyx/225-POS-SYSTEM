@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>W&A Inventory · Staff Management</title>
+    <!-- minimal grid only for layout – clean and lightweight -->
+    <link rel="stylesheet" href="Bootstrap4/css/bootstrap-grid.min.css" />
+    <style>
+      /* ================= GLOBAL RESET ================= */
+      :root {
+        --primary-color: #2c3e50;
+        --accent-color: #27ae60;
+        --warning-color: #f39c12;
+        --danger-color: #e74c3c;
+        --bg-light: #f4f7f6;
+        --white: #ffffff;
+        --text-dark: #333;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --sidebar-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        display: flex;
+        background-color: var(--bg-light);
+        min-height: 100vh;
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      /* ================= SIDEBAR (CLEAN, NO EXTRA STYLES) ================= */
+      .sidebar {
+        width: 260px;
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        flex-shrink: 0;
+      }
+
+      .sidebar h2 {
+        font-size: 1.4rem;
+        text-align: center;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .sidebar ul li {
+        margin-bottom: 8px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar ul li a {
+        display: block;
+        padding: 15px 20px;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .sidebar ul li:hover {
+        background: var(--sidebar-gradient);
+        transform: translateX(8px);
+      }
+
+      .sidebar ul li.active {
+        background: var(--sidebar-gradient);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      #logout-btn {
+        margin-top: auto;
+        background-color: rgba(231, 76, 60, 0.1);
+      }
+
+      #logout-btn:hover {
+        background: var(--danger-color);
+        transform: none;
+      }
+
+      /* ================= MAIN CONTENT ================= */
+      .main-content {
+        flex: 1;
+        padding: 40px;
+        overflow-y: auto;
+        max-height: 100vh;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 35px;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+        color: var(--primary-color);
+      }
+
+      .user-info {
+        font-weight: 600;
+        color: #764ba2;
+        background: var(--white);
+        padding: 8px 20px;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      /* ================= STAFF CARDS (CLEAN, NO EXCESS) ================= */
+      .staff-card {
+        background: var(--white);
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        padding: 25px 20px;
+        transition: transform 0.2s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .staff-card span {
+        font-size: 2.8rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .staff-card p {
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        margin: 0;
+      }
+
+      /* ================= STAFF TABLE ================= */
+      .staff-table-wrapper {
+        background: var(--white);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 24px 20px;
+        margin-top: 20px;
+      }
+
+      .table-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .table-header h3 {
+        font-size: 1.3rem;
+        color: var(--primary-color);
+        border-left: 4px solid var(--accent-color);
+        padding-left: 12px;
+        margin: 0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+
+      table th {
+        text-align: left;
+        padding: 16px 12px;
+        background-color: #f8f9fc;
+        color: var(--text-dark);
+        font-weight: 600;
+        border-bottom: 2px solid #e9ecef;
+      }
+
+      table td {
+        padding: 16px 12px;
+        border-bottom: 1px solid #f1f3f5;
+        vertical-align: middle;
+      }
+
+      table tbody tr:hover {
+        background-color: #fafbfc;
+      }
+
+      /* status badges — clean and only needed ones */
+      .badge {
+        display: inline-block;
+        padding: 6px 14px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+
+      .badge-danger {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+
+      .badge-warning {
+        background: #fff3cd;
+        color: #856404;
+      }
+
+      .badge-success {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      /* optional small spacer — no unused margins */
+      .row.mb-gap {
+        margin-bottom: 25px;
+      }
+
+      /* keep everything tight */
+      .container-fluid {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      /* no extra decoration */
+      a,
+      button {
+        -webkit-tap-highlight-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SIDEBAR — identical structure, only relevant links -->
+    <div class="sidebar">
+      <h2>W&A Inventory</h2>
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="pos.html">POS</a></li>
+        <li><a href="product_management.html">Product Management</a></li>
+        <li><a href="stocks.html">Stock</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li class="active">
+          <a href="staff_management.html">Staff Management</a>
+        </li>
+        <li id="logout-btn">
+          <a href="index.html" style="color: #ffb3b3">Logout</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- MAIN CONTENT: only staff-related components -->
+    <div class="main-content">
+      <div class="container-fluid">
+        <!-- 3 STAT CARDS — exactly as needed, no unused grid classes -->
+        <div class="row mb-gap">
+          <div class="col-md-4 mb-4">
+            <div class="staff-card" style="background: #3e40bf; color: white">
+              <span>3</span>
+              <p>Total Staff</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="staff-card" style="background: #3ec860; color: white">
+              <span>1</span>
+              <p>Active Staff</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="staff-card" style="background: #c54040; color: white">
+              <span>2</span>
+              <p>Inactive Staff</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAFF LIST TABLE — clean, only staff data, no inventory leftovers -->
+        <div class="staff-table-wrapper">
+          <div class="table-header">
+            <h3>Current staff members</h3>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Password</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Samso Park</strong></td>
+                  <td>Samson_cashier</td>
+                  <td>Samson01</td>
+                  <td><span class="badge badge-danger">Pending</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Marlo Sanki</strong></td>
+                  <td>53425532</td>
+                  <td>15 May 2015</td>
+                  <td><span class="badge badge-warning">In progress</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Dave</strong></td>
+                  <td>53275535</td>
+                  <td>20 May 2017</td>
+                  <td><span class="badge badge-warning">In progress</span></td>
+                </tr>
+                <!-- You can easily add more rows if needed -->
+              </tbody>
+            </table>
+          </div>
+          <!-- subtle note: table shows staff status, no extra bloat -->
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
