@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>POS - W&A Inventory</title>
+    <link
+      rel="stylesheet"
+      href="bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
     <style>
       :root {
         --primary-color: #2c3e50;
@@ -28,9 +32,8 @@
       body {
         display: flex;
         background-color: var(--bg-light);
-        height: 100vh;
+        min-height: 100vh;
         color: var(--text-dark);
-        overflow: hidden;
       }
 
       /* Sidebar */
@@ -41,6 +44,8 @@
         padding: 25px;
         display: flex;
         flex-direction: column;
+        position: sticky;
+        top: 0;
         height: 100vh;
         flex-shrink: 0;
       }
@@ -56,11 +61,16 @@
 
       .sidebar ul {
         list-style: none;
+        padding: 0;
+        margin: 0;
       }
+
       .sidebar ul li {
         margin-bottom: 8px;
         border-radius: 10px;
+        transition: all 0.3s ease;
       }
+
       .sidebar ul li a {
         display: block;
         padding: 15px 20px;
@@ -68,12 +78,25 @@
         text-decoration: none;
         font-weight: 500;
       }
+
+      .sidebar ul li:hover {
+        background: var(--sidebar-gradient);
+        transform: translateX(8px);
+      }
+
       .sidebar ul li.active {
         background: var(--sidebar-gradient);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       }
 
       #logout-btn {
         margin-top: auto;
+        background-color: rgba(231, 76, 60, 0.1);
+      }
+
+      #logout-btn:hover {
+        background: var(--danger-color);
+        transform: none;
       }
 
       /* Main Layout */
@@ -115,6 +138,12 @@
         gap: 8px;
       }
 
+      .category-btn:hover {
+        background: var(--sidebar-gradient);
+        color: white;
+        text-decoration: none;
+      }
+
       .scroll-container {
         overflow-y: auto;
         padding-right: 10px;
@@ -129,67 +158,60 @@
         padding-left: 15px;
       }
 
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-      }
-
-      .card {
-        background: var(--white);
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        display: flex;
-        flex-direction: column;
+      /* Product Card Styles */
+      .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         border: 1px solid #edf2f7;
         min-height: 400px;
       }
 
-      .card img {
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-card .card-img-top {
         width: 100%;
         height: 140px;
         object-fit: contain;
         padding: 10px;
         background: #fff;
       }
-      .card-body {
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-      }
-      .card h3 {
-        font-size: 0.95rem;
+
+      .product-card .card-title {
+        font-size: 1.2rem;
         margin-bottom: 5px;
         min-height: 2.4em;
-      }
-      .card .price {
-        font-size: 1.15rem;
-        font-weight: 700;
         color: var(--accent-purple);
-        margin-bottom: 5px;
-      }
-      .card .stock {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        margin-bottom: 8px;
-        margin-top: auto;
       }
 
-      /* Quantity input */
+      .product-card .price {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 5px;
+      }
+
+      .product-card .stock {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 5px;
+      }
+
       .qty-selector {
-        margin-bottom: 10px;
+        margin: 5px 0px 5px ;
         background: #f8fafc;
         padding: 10px;
         border-radius: 8px;
       }
+
       .qty-label {
         font-size: 0.85rem;
         color: var(--text-muted);
         margin-bottom: 5px;
         display: block;
       }
+
       .qty-selector input {
         width: 100%;
         padding: 10px;
@@ -199,6 +221,7 @@
         font-weight: 500;
         font-size: 1rem;
       }
+
       .qty-hint {
         font-size: 0.7rem;
         color: var(--text-muted);
@@ -206,11 +229,8 @@
         display: block;
       }
 
-      /* Hidden checkbox for cart toggle */
-      .card input[type="checkbox"] {
-        display: none;
-      }
-      .card .add-btn {
+      /* Add to Cart Button */
+      .add-btn {
         width: 100%;
         padding: 10px;
         background: var(--sidebar-gradient);
@@ -220,8 +240,17 @@
         display: block;
         text-align: center;
         cursor: pointer;
+        border: none;
+        transition: opacity 0.3s ease;
       }
 
+      .add-btn:hover {
+        opacity: 0.9;
+      }
+
+
+
+      /* Cart Area */
       .cart-area {
         flex: 1.2;
         background: var(--white);
@@ -241,6 +270,7 @@
         display: flex;
         justify-content: space-between;
       }
+
       .cart-items {
         flex: 1;
         padding: 20px;
@@ -252,34 +282,35 @@
         padding: 12px 0;
         border-bottom: 1px solid #e2e8f0;
       }
+
       .cart-item-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
-      .cart-item-info {
-        display: flex;
-        flex-direction: column;
-      }
+
       .cart-item-name {
         font-weight: 600;
         font-size: 0.95rem;
       }
+
       .cart-item-detail {
         font-size: 0.85rem;
         color: var(--text-muted);
       }
+
       .cart-item-price {
         color: var(--accent-purple);
         font-weight: 600;
       }
 
       .cart-footer {
-        padding: 25px;
+        padding: 10px;
         background: #f8fafc;
         border-radius: 0 0 20px 20px;
         border-top: 1px solid #e2e8f0;
       }
+
       .total-row {
         display: flex;
         justify-content: space-between;
@@ -288,7 +319,7 @@
         font-size: 1.4rem;
       }
 
-      .checkout-link {
+      .checkout-btn {
         width: 100%;
         padding: 16px;
         margin-top: 20px;
@@ -300,6 +331,15 @@
         display: block;
         text-align: center;
         text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+      }
+
+      .checkout-btn:hover {
+        opacity: 0.9;
+        text-decoration: none;
+        color: white;
       }
 
       /* Modal */
@@ -315,10 +355,12 @@
         justify-content: center;
         z-index: 1000;
       }
+
       .modal-overlay:target {
         display: flex;
       }
 
+      /* Receipt Modal */
       .receipt-modal {
         background: white;
         border-radius: 20px;
@@ -326,15 +368,14 @@
         max-width: 400px;
         width: 90%;
       }
+
       .receipt-header {
         text-align: center;
         border-bottom: 2px dashed #ccc;
         padding-bottom: 20px;
         margin-bottom: 20px;
       }
-      .receipt-header h2 {
-        color: var(--primary-color);
-      }
+
       .receipt-total {
         font-size: 1.5rem;
         font-weight: 800;
@@ -342,26 +383,16 @@
         padding-top: 15px;
         border-top: 2px solid #333;
       }
+
       .receipt-footer {
         display: flex;
         gap: 10px;
         margin-top: 25px;
       }
-      .receipt-footer a {
-        flex: 1;
-        padding: 12px;
-        text-align: center;
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: 600;
-      }
-      .btn-close {
-        background: #f1f5f9;
-        color: var(--text-dark);
-      }
-      .btn-new {
-        background: var(--sidebar-gradient);
-        color: white;
+
+      /* Hidden checkbox for cart toggle */
+      .card input[type="checkbox"] {
+        display: none;
       }
 
       /* Cart Visibility based on checkbox */
@@ -398,6 +429,25 @@
           grid-template-columns: repeat(2, 1fr);
         }
       }
+
+      @media (max-width: 768px) {
+        body {
+          flex-direction: column;
+        }
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          padding: 15px;
+        }
+        .pos-container {
+          flex-direction: column;
+          padding: 20px;
+        }
+        .cart-area {
+          min-width: 100%;
+        }
+      }
     </style>
   </head>
   <body>
@@ -406,10 +456,11 @@
       <ul>
         <li><a href="dashboard.html">Dashboard</a></li>
         <li class="active"><a href="pos.html">POS</a></li>
-        <li><a href="product_management.html">Product Management</a></li>
-        <li><a href="stocks.html">Stock</a></li>
         <li><a href="reports.html">Reports</a></li>
-        <li><a href="staff_management.html">Staff Management</a></li>
+        <li><a href="product_management.html">Product Management</a></li>
+        <li>
+          <a href="staff_management.html">Staff Management</a>
+        </li>
         <li id="logout-btn">
           <a href="index.html" style="color: #ff7675">Logout</a>
         </li>
@@ -419,314 +470,368 @@
     <div class="pos-container">
       <div class="products-area">
         <div class="category-nav">
-          <a href="#frozen" class="category-btn">❄️ Frozen & Processed</a>
-          <a href="#fresh" class="category-btn">🍎 Fresh Goods</a>
-          <a href="#spices" class="category-btn">🧂 Spices, Oil & Condiments</a>
+          <a href="#frozen" class="category-btn">Frozen & Processed</a>
+          <a href="#fresh" class="category-btn">Fresh Goods</a>
+          <a href="#spices" class="category-btn">Spices, Oil & Condiments</a>
         </div>
 
         <div class="scroll-container">
           <h2 id="frozen">Frozen & Poultry</h2>
-          <div class="grid">
-            <div class="card">
-              <img src="/Image/backbone.jpg" alt="Backbone" />
-              <div class="card-body">
-                <h3>Backbone / Soupack</h3>
-                <p class="price">₱160.00 / kg</p>
-                <p class="stock">Stock: 12 kg</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (kg):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter kg"
-                    min="0.25"
-                    step="0.25"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+              <div class="card product-card">
+                <img src="/Image/backbone.jpg" class="card-img-top" alt="Backbone" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Backbone / Soupack</h5>
+                  <p class="price mb-1">₱160.00 / kg</p>
+                  <p class="stock text-muted mb-2">Stock: 12 kg</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (kg):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter kg"
+                      min="0.25"
+                      step="0.25"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+                  </div>
+                  <input type="checkbox" id="btn-backbone" />
+                  <label for="btn-backbone" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-backbone" />
-                <label for="btn-backbone" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/chicken neck.jpg" alt="Liog" />
-              <div class="card-body">
-                <h3>Liog (Neck)</h3>
-                <p class="price">₱160.00 / kg</p>
-                <p class="stock">Stock: 10 kg</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (kg):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter kg"
-                    min="0.25"
-                    step="0.25"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/chicken neck.jpg" class="card-img-top" alt="Liog" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Liog (Neck)</h5>
+                  <p class="price mb-1">₱160.00 / kg</p>
+                  <p class="stock text-muted mb-2">Stock: 10 kg</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (kg):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter kg"
+                      min="0.25"
+                      step="0.25"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+                  </div>
+                  <input type="checkbox" id="btn-liog" />
+                  <label for="btn-liog" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-liog" />
-                <label for="btn-liog" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/dressed chicken.jpg" alt="Whole Chicken" />
-              <div class="card-body">
-                <h3>Whole Chicken</h3>
-                <p class="price">₱210.00 / kg</p>
-                <p class="stock">Stock: 30 kg</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (kg):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter kg"
-                    min="0.25"
-                    step="0.25"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/dressed chicken.jpg" class="card-img-top" alt="Whole Chicken" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Whole Chicken</h5>
+                  <p class="price mb-1">₱210.00 / kg</p>
+                  <p class="stock text-muted mb-2">Stock: 30 kg</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (kg):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter kg"
+                      min="0.25"
+                      step="0.25"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+                  </div>
+                  <input type="checkbox" id="btn-whole" />
+                  <label for="btn-whole" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-whole" />
-                <label for="btn-whole" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/assorted cut ups.jpg" alt="Assorted Cut-ups" />
-              <div class="card-body">
-                <h3>Assorted Cut-ups</h3>
-                <p class="price">₱215.00 / kg</p>
-                <p class="stock">Stock: 18 kg</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (kg):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter kg"
-                    min="0.25"
-                    step="0.25"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/assorted cut ups.jpg" class="card-img-top" alt="Assorted Cut-ups" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Assorted Cut-ups</h5>
+                  <p class="price mb-1">₱215.00 / kg</p>
+                  <p class="stock text-muted mb-2">Stock: 18 kg</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (kg):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter kg"
+                      min="0.25"
+                      step="0.25"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+                  </div>
+                  <input type="checkbox" id="btn-cutups" />
+                  <label for="btn-cutups" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-cutups" />
-                <label for="btn-cutups" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/chicken liver.jpg" alt="Liver" />
-              <div class="card-body">
-                <h3>Atay (Liver)</h3>
-                <p class="price">₱220.00 / kg</p>
-                <p class="stock">Stock: 14 kg</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (kg):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter kg"
-                    min="0.25"
-                    step="0.25"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/chicken liver.jpg" class="card-img-top" alt="Liver" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Atay (Liver)</h5>
+                  <p class="price mb-1">₱220.00 / kg</p>
+                  <p class="stock text-muted mb-2">Stock: 14 kg</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (kg):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter kg"
+                      min="0.25"
+                      step="0.25"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+                  </div>
+                  <input type="checkbox" id="btn-liver" />
+                  <label for="btn-liver" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-liver" />
-                <label for="btn-liver" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/chicken gizzard.jpg" alt="Gizzard" />
-              <div class="card-body">
-                <h3>Baticolon (Gizzard)</h3>
-                <p class="price">₱220.00 / kg</p>
-                <p class="stock">Stock: 12 kg</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (kg):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter kg"
-                    min="0.25"
-                    step="0.25"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/chicken gizzard.jpg" class="card-img-top" alt="Gizzard" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Baticolon (Gizzard)</h5>
+                  <p class="price mb-1">₱220.00 / kg</p>
+                  <p class="stock text-muted mb-2">Stock: 12 kg</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (kg):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter kg"
+                      min="0.25"
+                      step="0.25"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+                  </div>
+                  <input type="checkbox" id="btn-gizzard" />
+                  <label for="btn-gizzard" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-gizzard" />
-                <label for="btn-gizzard" class="add-btn">Add to Cart</label>
               </div>
             </div>
           </div>
 
           <h2 id="fresh">Fresh Goods</h2>
-          <div class="grid">
-            <div class="card">
-              <img src="/Image/bell pepper.jpg" alt="Bell Pepper" />
-              <div class="card-body">
-                <h3>Bell Pepper</h3>
-                <p class="price">₱200.00 / kg</p>
-                <p class="stock">Stock: 10 kg</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (kg):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter kg"
-                    min="0.1"
-                    step="0.1"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 0.5 kg)</span>
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/bell pepper.jpg" class="card-img-top" alt="Bell Pepper" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Bell Pepper</h5>
+                  <p class="price mb-1">₱200.00 / kg</p>
+                  <p class="stock text-muted mb-2">Stock: 10 kg</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (kg):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter kg"
+                      min="0.1"
+                      step="0.1"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 0.5 kg)</span>
+                  </div>
+                  <input type="checkbox" id="btn-bellpepper" />
+                  <label for="btn-bellpepper" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-bellpepper" />
-                <label for="btn-bellpepper" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/garlic.jpg" alt="Garlic" />
-              <div class="card-body">
-                <h3>Garlic</h3>
-                <p class="price">₱180.00 / kg</p>
-                <p class="stock">Stock: 14 kg</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (kg):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter kg"
-                    min="0.1"
-                    step="0.1"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 0.5 kg)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/garlic.jpg" class="card-img-top" alt="Garlic" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Garlic</h5>
+                  <p class="price mb-1">₱180.00 / kg</p>
+                  <p class="stock text-muted mb-2">Stock: 14 kg</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (kg):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter kg"
+                      min="0.1"
+                      step="0.1"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 0.5 kg)</span>
+                  </div>
+                  <input type="checkbox" id="btn-garlic" />
+                  <label for="btn-garlic" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-garlic" />
-                <label for="btn-garlic" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/onion.jpg" alt="Onion" />
-              <div class="card-body">
-                <h3>Onion</h3>
-                <p class="price">₱180.00 / kg</p>
-                <p class="stock">Stock: 22 kg</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (kg):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter kg"
-                    min="0.25"
-                    step="0.25"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/onion.jpg" class="card-img-top" alt="Onion" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Onion</h5>
+                  <p class="price mb-1">₱180.00 / kg</p>
+                  <p class="stock text-muted mb-2">Stock: 22 kg</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (kg):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter kg"
+                      min="0.25"
+                      step="0.25"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+                  </div>
+                  <input type="checkbox" id="btn-onion" />
+                  <label for="btn-onion" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-onion" />
-                <label for="btn-onion" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/potato.jpg" alt="Potato" />
-              <div class="card-body">
-                <h3>Potato</h3>
-                <p class="price">₱150.00 / kg</p>
-                <p class="stock">Stock: 28 kg</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (kg):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter kg"
-                    min="0.5"
-                    step="0.5"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/potato.jpg" class="card-img-top" alt="Potato" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Potato</h5>
+                  <p class="price mb-1">₱150.00 / kg</p>
+                  <p class="stock text-muted mb-2">Stock: 28 kg</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (kg):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter kg"
+                      min="0.5"
+                      step="0.5"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 1.5 kg)</span>
+                  </div>
+                  <input type="checkbox" id="btn-potato" />
+                  <label for="btn-potato" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-potato" />
-                <label for="btn-potato" class="add-btn">Add to Cart</label>
               </div>
             </div>
           </div>
 
           <h2 id="spices">Spices / Pantry / Condiments</h2>
-          <div class="grid">
-            <div class="card">
-              <img src="/Image/oil.jpg" alt="Cooking Oil" />
-              <div class="card-body">
-                <h3>Cooking Oil (Pack)</h3>
-                <p class="price">₱30.00 / pack</p>
-                <p class="stock">Stock: 25 packs</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (packs):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter quantity"
-                    min="1"
-                    step="1"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 3 packs)</span>
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/oil.jpg" class="card-img-top" alt="Cooking Oil" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Cooking Oil (Pack)</h5>
+                  <p class="price mb-1">₱30.00 / pack</p>
+                  <p class="stock text-muted mb-2">Stock: 25 packs</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (packs):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter quantity"
+                      min="1"
+                      step="1"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 3 packs)</span>
+                  </div>
+                  <input type="checkbox" id="btn-oil" />
+                  <label for="btn-oil" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-oil" />
-                <label for="btn-oil" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/coco mama.jpg" alt="Coco Mama" />
-              <div class="card-body">
-                <h3>Coco Mama</h3>
-                <p class="price">₱45.00 / pack</p>
-                <p class="stock">Stock: 20 packs</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (packs):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter quantity"
-                    min="1"
-                    step="1"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 3 packs)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/coco mama.jpg" class="card-img-top" alt="Coco Mama" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Coco Mama</h5>
+                  <p class="price mb-1">₱45.00 / pack</p>
+                  <p class="stock text-muted mb-2">Stock: 20 packs</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (packs):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter quantity"
+                      min="1"
+                      step="1"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 3 packs)</span>
+                  </div>
+                  <input type="checkbox" id="btn-cocomama" />
+                  <label for="btn-cocomama" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-cocomama" />
-                <label for="btn-cocomama" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/silver swan big.jpg" alt="Soy Sauce Big" />
-              <div class="card-body">
-                <h3>Soy Sauce Big</h3>
-                <p class="price">₱15.00 / pack</p>
-                <p class="stock">Stock: 30 packs</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (packs):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter quantity"
-                    min="1"
-                    step="1"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 3 packs)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/silver swan big.jpg" class="card-img-top" alt="Soy Sauce Big" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Soy Sauce Big</h5>
+                  <p class="price mb-1">₱15.00 / pack</p>
+                  <p class="stock text-muted mb-2">Stock: 30 packs</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (packs):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter quantity"
+                      min="1"
+                      step="1"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 3 packs)</span>
+                  </div>
+                  <input type="checkbox" id="btn-soybig" />
+                  <label for="btn-soybig" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-soybig" />
-                <label for="btn-soybig" class="add-btn">Add to Cart</label>
               </div>
             </div>
-            <div class="card">
-              <img src="/Image/silver swan small.jpg" alt="Soy Sauce Small" />
-              <div class="card-body">
-                <h3>Soy Sauce Small</h3>
-                <p class="price">₱6.00 / pack</p>
-                <p class="stock">Stock: 18 packs</p>
-                <div class="qty-selector">
-                  <span class="qty-label">Quantity (packs):</span>
-                  <input
-                    type="number"
-                    placeholder="Enter quantity"
-                    min="1"
-                    step="1"
-                    value="1"
-                  />
-                  <span class="qty-hint">Type amount (e.g., 5 packs)</span>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card product-card">
+                <img src="/Image/silver swan small.jpg" class="card-img-top" alt="Soy Sauce Small" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Soy Sauce Small</h5>
+                  <p class="price mb-1">₱6.00 / pack</p>
+                  <p class="stock text-muted mb-2">Stock: 18 packs</p>
+                  <div class="qty-selector mt-auto">
+                    <span class="qty-label">Quantity (packs):</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter quantity"
+                      min="1"
+                      step="1"
+                      value="1"
+                    />
+                    <span class="qty-hint">Type amount (e.g., 5 packs)</span>
+                  </div>
+                  <input type="checkbox" id="btn-soysmall" />
+                  <label for="btn-soysmall" class="add-btn mt-2">Add to Cart</label>
                 </div>
-                <input type="checkbox" id="btn-soysmall" />
-                <label for="btn-soysmall" class="add-btn">Add to Cart</label>
               </div>
             </div>
           </div>
@@ -735,8 +840,7 @@
 
       <div class="cart-area">
         <div class="cart-header">
-          <h3>🛒 Order Summary</h3>
-          <span id="item-count">Cart</span>
+          <h3>Order Summary</h3>
         </div>
 
         <div class="cart-items">
@@ -878,9 +982,7 @@
             <span>Total</span>
             <span>₱0.00</span>
           </div>
-          <a href="#receipt-modal" class="checkout-link"
-            >Complete Transaction</a
-          >
+          <a href="#receipt-modal" class="checkout-btn">Complete Transaction</a>
         </div>
       </div>
     </div>
@@ -903,10 +1005,11 @@
         </div>
         <div class="receipt-total">Total: ₱0.00</div>
         <div class="receipt-footer">
-          <a href="#" class="btn-close">Close</a>
-          <a href="#" class="btn-new">New Sale</a>
+          <a href="#" class="btn btn-secondary flex-fill">Close</a>
+          <a href="#" class="btn btn-primary flex-fill" style="background: var(--sidebar-gradient); border: none;">New Sale</a>
         </div>
       </div>
     </div>
+
   </body>
 </html>

@@ -4,8 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reports - W&A Inventory</title>
+    <!-- Bootstrap 4 CSS -->
+    <link
+      rel="stylesheet"
+      href="bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
     <style>
-      /* ================= GLOBAL STYLES (MATCHED TO STOCKS) ================= */
       :root {
         --primary-color: #2c3e50;
         --accent-purple: #667eea;
@@ -23,15 +27,17 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Segoe UI", sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
+
       body {
         display: flex;
         background-color: var(--bg-light);
         min-height: 100vh;
+        color: var(--text-dark);
       }
 
-      /* ================= SIDEBAR (STRICT STOCKS COPY) ================= */
+      /* Sidebar */
       .sidebar {
         width: 260px;
         background-color: var(--primary-color);
@@ -53,25 +59,38 @@
         margin-bottom: 25px;
         letter-spacing: 1px;
       }
+
       .sidebar ul {
         list-style: none;
+        padding: 0;
+        margin: 0;
       }
+
       .sidebar ul li {
         margin-bottom: 8px;
         border-radius: 10px;
-        transition: 0.3s;
+        transition: all 0.3s ease;
       }
+
       .sidebar ul li a {
         display: block;
         padding: 15px 20px;
         color: white;
         text-decoration: none;
         font-weight: 500;
+        border-radius: 10px;
       }
+
+      .sidebar ul li a:hover {
+        text-decoration: none;
+        color: white;
+      }
+
       .sidebar ul li:hover {
         background: var(--sidebar-gradient);
         transform: translateX(8px);
       }
+
       .sidebar ul li.active {
         background: var(--sidebar-gradient);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -81,20 +100,21 @@
         margin-top: auto;
         background-color: rgba(231, 76, 60, 0.1);
       }
+
       #logout-btn:hover {
         background: var(--danger-red);
         transform: none;
       }
 
-      /* ================= MAIN CONTENT (EXACT SPACING) ================= */
+      /* Main Content */
       .main-content {
         flex: 1;
-        padding: 40px; /* EXACT MATCH TO STOCKS */
+        padding: 40px;
         overflow-y: auto;
       }
 
       .header-banner {
-        margin-bottom: 35px; /* EXACT MATCH TO STOCKS HEADER */
+        margin-bottom: 35px;
         background: var(--sidebar-gradient);
         padding: 30px;
         border-radius: 15px;
@@ -102,35 +122,46 @@
         box-shadow: var(--shadow);
       }
 
-      /* SUMMARY CARDS (EXACT STOCKS DESIGN) */
+      .header-banner h1 {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+      }
+
+      .header-banner p {
+        opacity: 0.9;
+        font-size: 0.95rem;
+        margin: 0;
+      }
+
+      /* Summary Cards */
       .report-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px; /* EXACT MATCH TO STOCKS GAP */
         margin-bottom: 30px;
       }
 
-      .card {
+      .report-card {
         background: var(--white);
         padding: 20px;
         border-radius: 15px;
         box-shadow: var(--shadow);
-        border-top: 5px solid var(--accent-purple); /* EXACT MATCH TO STOCKS TOP-BORDER */
+        border-top: 5px solid var(--accent-purple);
+        height: 100%;
       }
 
-      .card small {
+      .report-card small {
         color: #777;
         font-weight: 600;
         text-transform: uppercase;
         font-size: 0.75rem;
       }
-      .card h2 {
+
+      .report-card h2 {
         font-size: 1.8rem;
         margin-top: 5px;
+        margin-bottom: 0;
         color: var(--primary-color);
       }
 
-      /* TABLE CONTAINER (EXACT STOCKS DESIGN) */
+      /* Table Container */
       .table-container {
         background: var(--white);
         border-radius: 15px;
@@ -142,16 +173,13 @@
         padding: 20px 25px;
         background: #fafafa;
         border-bottom: 1px solid #eee;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
       }
 
-      .report-table {
-        width: 100%;
-        border-collapse: collapse;
+      .table-header h3 {
+        margin: 0;
       }
-      .report-table th {
+
+      .table th {
         text-align: left;
         padding: 18px;
         background: #f8f9fa;
@@ -159,95 +187,161 @@
         border-bottom: 2px solid #eee;
         color: var(--primary-color);
       }
-      .report-table td {
+
+      .table td {
         padding: 18px;
         border-bottom: 1px solid #f1f1f1;
         vertical-align: middle;
       }
 
-      /* BUTTON (MATCHED STYLE) */
-      .btn-update {
+      .table tbody tr:hover {
+        background-color: #fafafa;
+      }
+
+      /* Buttons */
+      .btn-view {
         background: var(--success-green);
         color: white;
         border: none;
         padding: 8px 15px;
         border-radius: 6px;
-        cursor: pointer;
         font-weight: 600;
-        transition: 0.2s;
+        transition: all 0.2s ease;
+        font-size: 0.85rem;
       }
-      .btn-update:hover {
+
+      .btn-view:hover {
         background: #219150;
         transform: scale(1.05);
+        color: white;
+      }
+
+      /* Date Input */
+      .date-input {
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        font-size: 0.9rem;
+      }
+
+      .date-input:focus {
+        outline: none;
+        border-color: var(--accent-purple);
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+      }
+
+      @media (max-width: 768px) {
+        body {
+          flex-direction: column;
+        }
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+        .main-content {
+          padding: 20px;
+        }
       }
     </style>
   </head>
   <body>
+    <!-- Sidebar -->
     <div class="sidebar">
       <h2>W&A Inventory</h2>
       <ul>
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="pos.html">POS</a></li>
-        <li><a href="product_management.html">Product Management</a></li>
-        <li><a href="stocks.html">Stock</a></li>
         <li class="active"><a href="reports.html">Reports</a></li>
-        <li><a href="staff_management.html">Staff Management</a></li>
+        <li><a href="product_management.html">Product Management</a></li>
+        <li>
+          <a href="staff_management.html">Staff Management</a>
+        </li>
         <li id="logout-btn">
           <a href="index.html" style="color: #ff7675">Logout</a>
         </li>
       </ul>
     </div>
 
+    <!-- Main Content -->
     <div class="main-content">
       <header class="header-banner">
         <h1>Business Reports</h1>
         <p>Track your sales performance and daily summaries</p>
       </header>
 
+      <!-- Summary Cards -->
       <div class="report-cards">
-        <div class="card">
-          <small>Today's Sales</small>
-          <h2>₱ 4,250</h2>
-        </div>
-        <div class="card" style="border-top-color: var(--success-green)">
-          <small>Orders Done</small>
-          <h2>28</h2>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="report-card">
+              <small>Today's Sales</small>
+              <h2>₱ 4,250</h2>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="report-card" style="border-top-color: var(--success-green);">
+              <small>Orders Done</small>
+              <h2>28</h2>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- Transactions Table -->
       <div class="table-container">
-        <div class="table-header">
+        <div class="table-header d-flex justify-content-between align-items-center">
           <h3>Recent Transactions</h3>
           <input
             type="date"
+            class="date-input"
             value="2026-04-10"
-            style="padding: 8px; border-radius: 6px; border: 1px solid #ddd"
           />
         </div>
-        <table class="report-table">
-          <thead>
-            <tr>
-              <th>Ref No.</th>
-              <th>Date & Time</th>
-              <th>Amount</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>#WA-9920</td>
-              <td>Apr 10 | 02:30 PM</td>
-              <td><strong>₱ 770.00</strong></td>
-              <td><button class="btn-update">View</button></td>
-            </tr>
-            <tr>
-              <td>#WA-9919</td>
-              <td>Apr 10 | 01:15 PM</td>
-              <td><strong>₱ 1,050.00</strong></td>
-              <td><button class="btn-update">View</button></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th>Ref No.</th>
+                <th>Date & Time</th>
+                <th>Amount</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#WA-9920</td>
+                <td>Apr 10 | 02:30 PM</td>
+                <td><strong>₱ 770.00</strong></td>
+                <td><button class="btn btn-view">View</button></td>
+              </tr>
+              <tr>
+                <td>#WA-9919</td>
+                <td>Apr 10 | 01:15 PM</td>
+                <td><strong>₱ 1,050.00</strong></td>
+                <td><button class="btn btn-view">View</button></td>
+              </tr>
+              <tr>
+                <td>#WA-9918</td>
+                <td>Apr 09 | 05:45 PM</td>
+                <td><strong>₱ 540.00</strong></td>
+                <td><button class="btn btn-view">View</button></td>
+              </tr>
+              <tr>
+                <td>#WA-9917</td>
+                <td>Apr 09 | 03:20 PM</td>
+                <td><strong>₱ 890.00</strong></td>
+                <td><button class="btn btn-view">View</button></td>
+              </tr>
+              <tr>
+                <td>#WA-9916</td>
+                <td>Apr 09 | 11:00 AM</td>
+                <td><strong>₱ 1,200.00</strong></td>
+                <td><button class="btn btn-view">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </body>
