@@ -3,22 +3,20 @@
 +----+------------------------+-----------------------+----------+------------+
 | 1  | Backbone / Soupack     | Frozen & Poultry      | ₱160.00  | 12 kg      |
 | 2  | Liog (Neck)            | Frozen & Poultry      | ₱160.00  | 10 kg      |
-| 3  | Whole Chicken          | Frozen & Poultry      | ₱210.00  | 30 kg      |
-| 4  | Assorted Cut-ups       | Frozen & Poultry      | ₱215.00  | 18 kg      |
+| 3  | Whole Chicken          | Frozen & Poultry      | ₱210.00  | 5 kg       |
+| 4  | Assorted Cut-ups       | Frozen & Poultry      | ₱215.00  | 9 kg       |
 | 5  | Atay (Liver)           | Frozen & Poultry      | ₱220.00  | 14 kg      |
-| 6  | Baticolon (Gizzard)    | Frozen & Poultry      | ₱220.00  | 12 kg      |
-| 7  | Ulo (Head)             | Frozen & Poultry      | ₱50.00   | 9  kg      |
-| 8  | Tiil (Feet)            | Frozen & Poultry      | ₱140.00  | 8 kg       |
-| 9  | Tinae (Intestine)      | Frozen & Poultry      | ₱130.00  | 20 packs   |
-| 10 | Marinated Meat         | Frozen & Poultry      | ₱250.00  | 15 packs   |
-| 11 | Bell Pepper            | Fresh Goods           | ₱200.00  | 10 kg      |
-| 12 | Garlic                 | Fresh Goods           | ₱180.00  | 14 kg      |
-| 13 | Onion                  | Fresh Goods           | ₱180.00  | 22 kg      |
-| 14 | Potato                 | Fresh Goods           | ₱150.00  | 28 kg      |
-| 15 | Ginger                 | Fresh Goods           | ₱150.00  | 12 kg      |
-| 16 | Carrots                | Fresh Goods           | ₱80.00   | 16 kg      |
-| 17 | Sayote                 | Fresh Goods           | ₱40.00   | 9 kg       |
-| 18 | Cooking Oil            | Spices & Condiments   | ₱30.00   | 25 packs   |
-| 19 | Coco Mama              | Spices & Condiments   | ₱45.00   | 20 packs   |
-| 20 | Soy Sauce Big          | Spices & Condiments   | ₱15.00   | 30 packs   |
+| 6  | Baticolon (Gizzard)    | Frozen & Poultry      | ₱220.00  | 13 kg      |
+| 7  | Bell Pepper            | Fresh Goods           | ₱200.00  | 4 kg       |
+| 8  | Garlic                 | Fresh Goods           | ₱180.00  | 6 kg       |
+| 9  | Onion                  | Fresh Goods           | ₱180.00  | 9 kg       |
+| 10 | Potato                 | Fresh Goods           | ₱150.00  | 9 kg       |
+| 11 | Cooking Oil (Kilo)     | Spices & Condiments   | ₱80.00   | 10 kg      |
+| 12 | Coco Mama              | Spices & Condiments   | ₱45.00   | 12 packs   |
+| 13 | Soy Sauce Big          | Spices & Condiments   | ₱15.00   | 15 packs   |
+| 14 | Soy Sauce Small         | Spices & Condiments   | ₱6.00    | 12 packs   |
 +----+------------------------+-----------------------+----------+------------+
+
+6kg < Product = High Stock = Green 
+6kg > Product = Low Stock = Warning Yellow
+0 kg = No Stock = Danger = Red

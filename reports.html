@@ -5,32 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reports - W&A Inventory</title>
     <!-- Bootstrap 4 CSS -->
-    <link
-      rel="stylesheet"
-      href="bootstrap-4.6.2-dist/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <style>
       :root {
-        --brand-magenta: #E91E8C;
-        --brand-magenta-light: #F74FA8;
-        --brand-magenta-dark: #C9177A;
-        --brand-green: #22C55E;
-        --brand-green-light: #4ADE80;
-        --brand-green-dark: #16A34A;
-        --brand-red: #E63946;
-        --brand-red-light: #F15D68;
-        --brand-red-dark: #C92A35;
-        --brand-blue: #5DADE2;
-        --brand-blue-light: #7EC0E8;
-        --brand-blue-dark: #3D93C9;
+        --brand-magenta: #e91e8c;
+        --brand-magenta-light: #f74fa8;
+        --brand-magenta-dark: #c9177a;
+        --brand-green: #22c55e;
+        --brand-green-light: #4ade80;
+        --brand-green-dark: #16a34a;
+        --brand-red: #e63946;
+        --brand-red-light: #f15d68;
+        --brand-red-dark: #c92a35;
+        --brand-blue: #5dade2;
+        --brand-blue-light: #7ec0e8;
+        --brand-blue-dark: #3d93c9;
         --primary-color: #212121;
         --accent-purple: var(--brand-magenta);
-        --sidebar-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-magenta-dark) 100%);
+        --sidebar-gradient: linear-gradient(
+          135deg,
+          var(--brand-magenta) 0%,
+          var(--brand-magenta-dark) 100%
+        );
         --success-green: var(--brand-green);
         --danger-red: var(--brand-red);
-        --warning-orange: #CDDC39;
-        --bg-light: #F5F5F5;
-        --white: #FFFFFF;
+        --warning-orange: #cddc39;
+        --bg-light: #f5f5f5;
+        --white: #ffffff;
         --text-dark: #212121;
         --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       }
@@ -183,7 +184,7 @@
 
       .table-header {
         padding: 20px 25px;
-        background: #F5F5F5;
+        background: #f5f5f5;
         border-bottom: 1px solid var(--brand-blue-light);
       }
 
@@ -194,7 +195,7 @@
       .table th {
         text-align: left;
         padding: 18px;
-        background: #F5F5F5;
+        background: #f5f5f5;
         font-weight: 600;
         border-bottom: 2px solid var(--brand-blue-light);
         color: var(--primary-color);
@@ -207,7 +208,7 @@
       }
 
       .table tbody tr:hover {
-        background-color: #F5F5F5;
+        background-color: #f5f5f5;
       }
 
       /* Buttons */
@@ -225,6 +226,120 @@
       .btn-view:hover {
         background: var(--brand-green-dark);
         transform: scale(1.05);
+        color: white;
+      }
+
+      .btn-delete {
+        background: var(--danger-red);
+        border: none;
+        color: white;
+      }
+
+      .btn-delete:hover {
+        background: var(--brand-red-dark);
+        color: white;
+      }
+      
+        /* Modal Overlay */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .modal-overlay:target {
+        display: flex;
+      }
+
+      .modal-content {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        border: none;
+      }
+
+      .modal-content h2 {
+        margin-bottom: 20px;
+        color: var(--primary-color);
+        font-size: 1.5rem;
+      }
+      
+      .form-group {
+        margin-bottom: 18px;
+      }
+      
+      /* Delete Modal */
+      .modal-small {
+        max-width: 400px;
+        text-align: center;
+      }
+
+      .modal-small p {
+        margin-bottom: 25px;
+        color: var(--text-muted);
+      }
+
+      .warning-text {
+        color: var(--danger-red);
+        font-weight: 600;
+      }
+
+      .product-name-display {
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+      
+      
+      .btn-cancel {
+        flex: 1;
+        padding: 14px;
+        background: #F5F5F5;
+        color: var(--text-dark);
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: background 0.3s ease;
+      }
+
+      .btn-cancel:hover {
+        background: var(--brand-blue-light);
+        text-decoration: none;
+        color: var(--text-dark);
+      }
+
+      .btn-delete-confirm {
+        flex: 1;
+        padding: 14px;
+        background: var(--danger-red);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.3s ease;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .btn-delete-confirm:hover {
+        background: var(--brand-red-dark);
+        text-decoration: none;
         color: white;
       }
 
@@ -292,7 +407,10 @@
             </div>
           </div>
           <div class="col-md-6 mb-4">
-            <div class="report-card" style="border-top-color: var(--success-green);">
+            <div
+              class="report-card"
+              style="border-top-color: var(--success-green)"
+            >
               <small>Orders Done</small>
               <h2>28</h2>
             </div>
@@ -302,13 +420,11 @@
 
       <!-- Transactions Table -->
       <div class="table-container">
-        <div class="table-header d-flex justify-content-between align-items-center">
+        <div
+          class="table-header d-flex justify-content-between align-items-center"
+        >
           <h3>Recent Transactions</h3>
-          <input
-            type="date"
-            class="date-input"
-            value="2026-04-10"
-          />
+          <input type="date" class="date-input" value="2026-04-10" />
         </div>
         <div class="table-responsive">
           <table class="table mb-0">
@@ -316,6 +432,7 @@
               <tr>
                 <th>Ref No.</th>
                 <th>Date & Time</th>
+                <th>Product Sold</th>
                 <th>Amount</th>
                 <th>Action</th>
               </tr>
@@ -324,35 +441,52 @@
               <tr>
                 <td>#WA-9920</td>
                 <td>Apr 10 | 02:30 PM</td>
-                <td><strong>₱ 770.00</strong></td>
-                <td><button class="btn btn-view">View</button></td>
+                <td>1 kg Whole Chicken</td>
+                <td><strong>₱ 210.00</strong></td>
+                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
               </tr>
               <tr>
                 <td>#WA-9919</td>
                 <td>Apr 10 | 01:15 PM</td>
-                <td><strong>₱ 1,050.00</strong></td>
-                <td><button class="btn btn-view">View</button></td>
+                <td>2 kg Garlic, 1 kg Onion</td>
+                <td><strong>₱ 540.00</strong></td>
+                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
               </tr>
               <tr>
                 <td>#WA-9918</td>
                 <td>Apr 09 | 05:45 PM</td>
-                <td><strong>₱ 540.00</strong></td>
-                <td><button class="btn btn-view">View</button></td>
+                <td>3 kg Potato, 1/2 kg Cooking Oil</td>
+                <td><strong>₱ 490.00</strong></td>
+                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
               </tr>
               <tr>
                 <td>#WA-9917</td>
                 <td>Apr 09 | 03:20 PM</td>
-                <td><strong>₱ 890.00</strong></td>
-                <td><button class="btn btn-view">View</button></td>
+                <td>1 kg Atay, 1 kg Baticolon, 1 piece Soy Sauce Big</td>
+                <td><strong>₱ 455.00</strong></td>
+                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
               </tr>
               <tr>
                 <td>#WA-9916</td>
                 <td>Apr 09 | 11:00 AM</td>
-                <td><strong>₱ 1,200.00</strong></td>
-                <td><button class="btn btn-view">View</button></td>
+                <td>5 kg Whole Chicken, 3 Soupack</td>
+                <td><strong>₱ 1,530.00</strong></td>
+                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+    <!-- Single Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+      <div class="modal-content modal-small">
+        <h2>Confirm Delete</h2>
+        <p>Are you sure you want to delete this product?</p>
+        <p class="warning-text">This action <b>cannot be undone</b>.</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-cancel">Cancel</a>
+          <a href="#" class="btn-delete-confirm">Delete</a>
         </div>
       </div>
     </div>
