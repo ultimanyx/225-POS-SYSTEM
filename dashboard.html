@@ -11,15 +11,27 @@
     />
     <style>
       :root {
-        --primary-color: #2c3e50;
-        --accent-color: #27ae60;
+        --brand-magenta: #E91E8C;
+        --brand-magenta-light: #F74FA8;
+        --brand-magenta-dark: #C9177A;
+        --brand-green: #22C55E;
+        --brand-green-light: #4ADE80;
+        --brand-green-dark: #16A34A;
+        --brand-red: #E63946;
+        --brand-red-light: #F15D68;
+        --brand-red-dark: #C92A35;
+        --brand-blue: #5DADE2;
+        --brand-blue-light: #7EC0E8;
+        --brand-blue-dark: #3D93C9;
+        --primary-color: #212121;
+        --accent-color: var(--brand-green);
         --warning-color: #f39c12;
-        --danger-color: #e74c3c;
-        --bg-light: #f4f7f6;
-        --white: #ffffff;
-        --text-dark: #333;
+        --danger-color: var(--brand-red);
+        --bg-light: #F5F5F5;
+        --white: #FFFFFF;
+        --text-dark: #212121;
         --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        --sidebar-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --sidebar-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-magenta-dark) 100%);
       }
 
       * {
@@ -91,7 +103,7 @@
 
       #logout-btn {
         margin-top: auto;
-        background-color: rgba(231, 76, 60, 0.1);
+        background-color: rgba(230, 57, 70, 0.1);
       }
 
       #logout-btn:hover {
@@ -121,7 +133,7 @@
 
       .user-info {
         font-weight: 600;
-        color: #764ba2;
+        color: var(--brand-magenta-dark);
         background: var(--white);
         padding: 8px 20px;
         border-radius: 20px;
@@ -191,29 +203,30 @@
       table th {
         text-align: left;
         padding: 15px;
-        background-color: #f8f9fa;
+        background-color: #F5F5F5;
         color: var(--text-dark);
         font-weight: 600;
-        border-bottom: 2px solid #eee;
+        border-bottom: 2px solid var(--brand-blue-light);
       }
 
       table td {
         padding: 15px;
-        border-bottom: 1px solid #f1f1f1;
+        border-bottom: 1px solid var(--brand-blue-light);
         font-size: 0.95rem;
       }
 
       table tbody tr:hover {
-        background-color: #fafafa;
+        background-color: #F5F5F5;
       }
 
-      /* Status Badges */
+      /* Status Badges - Matching Staff Management visible style */
       .status-badge {
-        padding: 6px 12px;
-        border-radius: 20px;
+        padding: 6px 14px;
+        border-radius: 30px;
         font-size: 0.8rem;
         font-weight: 600;
         text-transform: uppercase;
+        letter-spacing: 0.3px;
         display: inline-block;
       }
 
@@ -223,8 +236,8 @@
       }
 
       .status-low {
-        background: #f8d7da;
-        color: #721c24;
+        background: #fee2e2;
+        color: #b91c1c;
       }
 
       .status-warning {
@@ -268,7 +281,7 @@
           <a href="staff_management.html">Staff Management</a>
         </li>
         <li id="logout-btn">
-          <a href="index.html" style="color: #ff7675">Logout</a>
+          <a href="index.html" style="color: var(--brand-red-light)">Logout</a>
         </li>
       </ul>
     </div>
@@ -338,6 +351,5 @@
       </section>
     </div>
 
-    <script src="script.js"></script>
   </body>
 </html>

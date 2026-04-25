@@ -4,24 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - W&A Inventory</title>
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <style>
-        /* ================= GLOBAL STYLES ================= */
         :root {
-            --primary-green: #27ae60;
-            --dark-green: #1e8449;
-            --text-main: #2c3e50;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
+            --brand-magenta: #E91E8C;
+            --brand-magenta-light: #F74FA8;
+            --brand-magenta-dark: #C9177A;
+            --brand-green: #22C55E;
+            --brand-green-light: #4ADE80;
+            --brand-green-dark: #16A34A;
+            --brand-red: #E63946;
+            --brand-red-light: #F15D68;
+            --brand-red-dark: #C92A35;
+            --brand-blue: #5DADE2;
+            --brand-blue-light: #7EC0E8;
+            --brand-blue-dark: #3D93C9;
+            --primary-green: var(--brand-green);
+            --dark-green: var(--brand-green-dark);
+            --text-main: #212121;
+            --text-muted: #616161;
+            --border-color: var(--brand-blue-light);
+            --bg-light: #F5F5F5;
+            --white: #FFFFFF;
             --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         }
 
         * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
@@ -34,20 +44,22 @@
 
         /* ================= LAYOUT WRAPPER ================= */
         .login-wrapper {
-            display: flex;
             width: 90%;
             max-width: 1000px;
-            height: 600px;
             background: var(--white);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
         }
 
+        .login-wrapper .row {
+            margin: 0;
+            min-height: 600px;
+        }
+
         /* LEFT SIDE: BRANDING */
         .login-left {
-            flex: 1;
-            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            background: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-magenta-dark) 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -79,8 +91,6 @@
 
         /* RIGHT SIDE: FORM */
         .login-right {
-            flex: 1.2;
-            background-color: var(--white);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -94,6 +104,9 @@
 
         .card-header {
             margin-bottom: 35px;
+            background: transparent;
+            border-bottom: none;
+            padding: 0;
         }
 
         .login-card h2 {
@@ -109,61 +122,52 @@
         }
 
         /* ================= FORM ELEMENTS ================= */
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
+        .form-group label {
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--text-main);
             margin-bottom: 8px;
         }
 
-        .input-group input {
-            width: 100%;
+        .form-control {
             padding: 14px 16px;
             border: 1.5px solid var(--border-color);
             border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s ease;
             background-color: #fcfcfc;
+            height: auto;
         }
 
-        .input-group input:focus {
+        .form-control:focus {
             outline: none;
             border-color: var(--primary-green);
             background-color: var(--white);
-            box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1);
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
         }
 
-        /* REMEMBER ME & FORGOT PASS */
-        .form-options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            font-size: 0.85rem;
-        }
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
+        .custom-checkbox .custom-control-label {
             color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
         }
 
+        .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+            background-color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+
+        /* FORGOT PASS */
         .forgot-pass {
             color: var(--primary-green);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.85rem;
         }
 
         .forgot-pass:hover {
             text-decoration: underline;
+            color: var(--dark-green);
         }
 
         /* BUTTON */
@@ -178,13 +182,14 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
         }
 
         .btn-login:hover {
             background-color: var(--dark-green);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
+            box-shadow: 0 6px 15px rgba(34, 197, 94, 0.3);
+            color: white;
         }
 
         /* FOOTER */
@@ -201,6 +206,10 @@
             font-weight: 700;
         }
 
+        .footer-text a:hover {
+            color: var(--dark-green);
+        }
+
         #message {
             margin-top: 15px;
             text-align: center;
@@ -211,88 +220,70 @@
 
         /* ================= RESPONSIVE ================= */
         @media (max-width: 768px) {
-            .login-wrapper { flex-direction: column; height: auto; max-width: 450px; }
-            .login-left { padding: 50px 20px; }
-            .login-right { padding: 40px 30px; }
+            .login-wrapper .row {
+                min-height: auto;
+            }
+            .login-left {
+                padding: 50px 20px;
+            }
+            .login-right {
+                padding: 40px 30px;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="login-wrapper">
-        <div class="login-left">
-            <div class="brand-content">
-                <img src="/Image/Logo.png" alt="Logo" class="logo" />
-                <h1>W&A</h1>
-                <p>Fresh and Frozen Products Inventory</p>
+        <div class="row w-100">
+            <!-- LEFT SIDE: BRANDING -->
+            <div class="col-md-5 login-left">
+                <div class="brand-content">
+                    <img src="/Image/Logo.png" alt="Logo" class="logo" />
+                    <h1>W&A</h1>
+                    <p>Fresh and Frozen Products Inventory</p>
+                </div>
             </div>
-        </div>
 
-        <div class="login-right">
-            <div class="login-card">
-                <div class="card-header">
-                    <h2>Welcome Back</h2>
-                    <p class="subtitle">Log in to manage your inventory</p>
+            <!-- RIGHT SIDE: FORM -->
+            <div class="col-md-7 login-right">
+                <div class="login-card">
+                    <div class="card-header">
+                        <h2>Welcome Back</h2>
+                        <p class="subtitle">Log in to manage your inventory and POS system efficiently.</p>
+                    </div>
+
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" required placeholder="e.g. admin_wa" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" required placeholder="••••••••" />
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="rememberMe">
+                                <label class="custom-control-label" for="rememberMe">Remember me</label>
+                            </div>
+                            <a href="#" class="forgot-pass">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-login">Sign In</button>
+                    </form>
+
+                    <div class="footer-text">
+                        <p>New here? <a href="CreateAcc.html">Create Account</a></p>
+                    </div>
+                    
+                    <p id="message"></p>
                 </div>
-
-                <form id="loginForm">
-                    <div class="input-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" required placeholder="e.g. admin_wa" />
-                    </div>
-
-                    <div class="input-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" required placeholder="••••••••" />
-                    </div>
-
-                    <div class="form-options">
-                        <label class="remember-me">
-                            <input type="checkbox"> <span>Remember me</span>
-                        </label>
-                        <a href="#" class="forgot-pass">Forgot password?</a>
-                    </div>
-
-                    <button type="submit" class="btn-login">Sign In</button>
-                </form>
-
-                <div class="footer-text">
-                    <p>New here? <a href="CreateAcc.html">Create Account</a></p>
-                </div>
-                
-                <p id="message"></p>
             </div>
         </div>
     </div>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Pugngan ang page reload
-
-            // 1. Kuhaon ang data gikan sa form
-            const inputUser = document.getElementById('username').value;
-            const inputPass = document.getElementById('password').value;
-            const message = document.getElementById('message');
-
-            // 2. Kuhaon ang data nga gi-save gikan sa CreateAcc.html
-            const storedUser = localStorage.getItem('savedUsername');
-            const storedPass = localStorage.getItem('savedPassword');
-
-            // 3. I-check kung ni-match (O kung ang default admin/admin)
-            if ((inputUser === storedUser && inputPass === storedPass) || (inputUser === "admin" && inputPass === "admin")) {
-                message.style.color = "#27ae60";
-                message.textContent = "Login Successful! Redirecting...";
-                
-                // Balhin sa dashboard human ang 1 second
-                setTimeout(() => {
-                    window.location.href = "dashboard.html"; 
-                }, 1000);
-            } else {
-                // Kung sayop
-                message.style.color = "#e74c3c";
-                message.textContent = "Invalid Username or Password!";
-            }
-        });
-    </script>
 </body>
 </html>

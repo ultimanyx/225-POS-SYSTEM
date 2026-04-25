@@ -8,19 +8,31 @@
     <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <style>
       :root {
-        --primary-color: #2c3e50;
-        --accent-color: #27ae60;
-        --accent-purple: #667eea;
+        --brand-magenta: #E91E8C;
+        --brand-magenta-light: #F74FA8;
+        --brand-magenta-dark: #C9177A;
+        --brand-green: #22C55E;
+        --brand-green-light: #4ADE80;
+        --brand-green-dark: #16A34A;
+        --brand-red: #E63946;
+        --brand-red-light: #F15D68;
+        --brand-red-dark: #C92A35;
+        --brand-blue: #5DADE2;
+        --brand-blue-light: #7EC0E8;
+        --brand-blue-dark: #3D93C9;
+        --primary-color: #212121;
+        --accent-color: var(--brand-green);
+        --accent-purple: var(--brand-magenta);
         --warning-color: #f39c12;
-        --danger-color: #e74c3c;
-        --danger-red: #e74c3c;
-        --success-green: #27ae60;
-        --bg-light: #f4f7f6;
-        --white: #ffffff;
-        --text-dark: #333;
-        --text-muted: #7f8c8d;
+        --danger-color: var(--brand-red);
+        --danger-red: var(--brand-red);
+        --success-green: var(--brand-green);
+        --bg-light: #F5F5F5;
+        --white: #FFFFFF;
+        --text-dark: #212121;
+        --text-muted: #616161;
         --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        --sidebar-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --sidebar-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-magenta-dark) 100%);
       }
 
       * {
@@ -98,7 +110,7 @@
 
       #logout-btn {
         margin-top: auto;
-        background-color: rgba(231, 76, 60, 0.1);
+        background-color: rgba(230, 57, 70, 0.1);
       }
 
       #logout-btn:hover {
@@ -198,8 +210,8 @@
 
       .table-header {
         padding: 20px 25px;
-        background: #fafafa;
-        border-bottom: 1px solid #eee;
+        background: #F5F5F5;
+        border-bottom: 1px solid var(--brand-blue-light);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -225,20 +237,20 @@
       .table th {
         text-align: left;
         padding: 18px;
-        background: #f8f9fa;
+        background: #F5F5F5;
         color: var(--text-dark);
         font-weight: 600;
-        border-bottom: 2px solid #eee;
+        border-bottom: 2px solid var(--brand-blue-light);
       }
 
       .table td {
         padding: 18px;
-        border-bottom: 1px solid #f1f1f1;
+        border-bottom: 1px solid var(--brand-blue-light);
         vertical-align: middle;
       }
 
       .table tbody tr:hover {
-        background-color: #fafafa;
+        background-color: #F5F5F5;
       }
 
       /* Status Badges */
@@ -269,7 +281,7 @@
 
       /* Action Buttons */
       .btn-edit {
-        background: #3498db;
+        background: var(--brand-blue);
         border: none;
         color: white;
         padding: 6px 14px;
@@ -283,7 +295,7 @@
       }
 
       .btn-edit:hover {
-        background: #2980b9;
+        background: var(--brand-blue-dark);
         color: white;
         text-decoration: none;
       }
@@ -303,7 +315,7 @@
       }
 
       .btn-delete:hover {
-        background: #c0392b;
+        background: var(--brand-red-dark);
         color: white;
         text-decoration: none;
       }
@@ -371,7 +383,7 @@
         width: 100%;
         height: 48px;
         padding: 12px;
-        border: 2px solid #e2e8f0;
+        border: 2px solid var(--brand-blue-light);
         border-radius: 8px;
         font-size: 1rem;
       }
@@ -399,7 +411,7 @@
       .btn-cancel {
         flex: 1;
         padding: 14px;
-        background: #f1f5f9;
+        background: #F5F5F5;
         color: var(--text-dark);
         border: none;
         border-radius: 8px;
@@ -412,7 +424,7 @@
       }
 
       .btn-cancel:hover {
-        background: #e2e8f0;
+        background: var(--brand-blue-light);
         text-decoration: none;
         color: var(--text-dark);
       }
@@ -451,7 +463,7 @@
       }
 
       .btn-delete-confirm:hover {
-        background: #c0392b;
+        background: var(--brand-red-dark);
         text-decoration: none;
         color: white;
       }
@@ -504,7 +516,7 @@
           <a href="staff_management.html">Staff Management</a>
         </li>
         <li id="logout-btn">
-          <a href="index.html" style="color: #ff7675">Logout</a>
+          <a href="index.html" style="color: var(--brand-red-light)">Logout</a>
         </li>
       </ul>
     </div>
@@ -520,19 +532,19 @@
       <!-- Staff Stats Cards -->
       <div class="row mb-4">
         <div class="col-md-4 mb-4">
-          <div class="staff-card" style="background: #3e40bf; color: white">
+          <div class="staff-card" style="background: var(--brand-magenta-dark); color: white">
             <span>3</span>
             <p>Total Staff</p>
           </div>
         </div>
         <div class="col-md-4 mb-4">
-          <div class="staff-card" style="background: #3ec860; color: white">
+          <div class="staff-card" style="background: var(--brand-green); color: white">
             <span>1</span>
             <p>Active Staff</p>
           </div>
         </div>
         <div class="col-md-4 mb-4">
-          <div class="staff-card" style="background: #c54040; color: white">
+          <div class="staff-card" style="background: var(--brand-red); color: white">
             <span>2</span>
             <p>Inactive Staff</p>
           </div>
@@ -565,8 +577,8 @@
               <tr>
                 <td>1</td>
                 <td><strong>Samso Park</strong></td>
-                <td>Samson_cashier</td>
-                <td>Samson01</td>
+                <td>Owner</td>
+                <td>0987 632 1452</td>
                 <td><span class="badge badge-danger">Pending</span></td>
                 <td>
                   <a href="#editStaffModal" class="btn-edit mr-1">Edit</a>
@@ -576,8 +588,8 @@
               <tr>
                 <td>2</td>
                 <td><strong>Marlo Sanki</strong></td>
-                <td>53425532</td>
-                <td>15 May 2015</td>
+                <td>Cashier</td>
+                <td>0912 345 6789</td>
                 <td><span class="badge badge-warning">In Progress</span></td>
                 <td>
                   <a href="#editStaffModal" class="btn-edit mr-1">Edit</a>
@@ -587,8 +599,8 @@
               <tr>
                 <td>3</td>
                 <td><strong>Dave</strong></td>
-                <td>53275535</td>
-                <td>20 May 2017</td>
+                <td>Staff</td>
+                <td>0987 654 3210</td>
                 <td><span class="badge badge-warning">In Progress</span></td>
                 <td>
                   <a href="#editStaffModal" class="btn-edit mr-1">Edit</a>

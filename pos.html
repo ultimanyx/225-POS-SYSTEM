@@ -10,16 +10,28 @@
     />
     <style>
       :root {
-        --primary-color: #2c3e50;
-        --accent-purple: #667eea;
-        --sidebar-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        --success-green: #27ae60;
-        --bg-light: #f4f7f6;
-        --white: #ffffff;
-        --text-dark: #333;
-        --text-muted: #7f8c8d;
+        --brand-magenta: #E91E8C;
+        --brand-magenta-light: #F74FA8;
+        --brand-magenta-dark: #C9177A;
+        --brand-green: #22C55E;
+        --brand-green-light: #4ADE80;
+        --brand-green-dark: #16A34A;
+        --brand-red: #E63946;
+        --brand-red-light: #F15D68;
+        --brand-red-dark: #C92A35;
+        --brand-blue: #5DADE2;
+        --brand-blue-light: #7EC0E8;
+        --brand-blue-dark: #3D93C9;
+        --primary-color: #212121;
+        --accent-purple: var(--brand-magenta);
+        --sidebar-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-magenta-dark) 100%);
+        --success-green: var(--brand-green);
+        --bg-light: #F5F5F5;
+        --white: #FFFFFF;
+        --text-dark: #212121;
+        --text-muted: #616161;
         --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        --danger-color: #e74c3c;
+        --danger-color: var(--brand-red);
       }
 
       * {
@@ -91,7 +103,7 @@
 
       #logout-btn {
         margin-top: auto;
-        background-color: rgba(231, 76, 60, 0.1);
+        background-color: rgba(230, 57, 70, 0.1);
       }
 
       #logout-btn:hover {
@@ -128,7 +140,7 @@
 
       .category-btn {
         padding: 10px 20px;
-        background: #f1f5f9;
+        background: #F5F5F5;
         border-radius: 10px;
         font-weight: 600;
         color: var(--primary-color);
@@ -161,7 +173,7 @@
       /* Product Card Styles */
       .product-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid #edf2f7;
+        border: 1px solid var(--brand-blue-light);
         min-height: 400px;
       }
 
@@ -200,7 +212,7 @@
 
       .qty-selector {
         margin: 5px 0px 5px ;
-        background: #f8fafc;
+        background: #F5F5F5;
         padding: 10px;
         border-radius: 8px;
       }
@@ -215,7 +227,7 @@
       .qty-selector input {
         width: 100%;
         padding: 10px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--brand-blue-light);
         border-radius: 6px;
         background: white;
         font-weight: 500;
@@ -280,7 +292,7 @@
       .cart-item {
         display: none;
         padding: 12px 0;
-        border-bottom: 1px solid #e2e8f0;
+        border-bottom: 1px solid var(--brand-blue-light);
       }
 
       .cart-item-row {
@@ -306,9 +318,9 @@
 
       .cart-footer {
         padding: 10px;
-        background: #f8fafc;
+        background: #F5F5F5;
         border-radius: 0 0 20px 20px;
-        border-top: 1px solid #e2e8f0;
+        border-top: 1px solid var(--brand-blue-light);
       }
 
       .total-row {
@@ -371,7 +383,7 @@
 
       .receipt-header {
         text-align: center;
-        border-bottom: 2px dashed #ccc;
+        border-bottom: 2px dashed var(--brand-blue-light);
         padding-bottom: 20px;
         margin-bottom: 20px;
       }
@@ -381,7 +393,7 @@
         font-weight: 800;
         text-align: right;
         padding-top: 15px;
-        border-top: 2px solid #333;
+        border-top: 2px solid #212121;
       }
 
       .receipt-footer {
@@ -462,7 +474,7 @@
           <a href="staff_management.html">Staff Management</a>
         </li>
         <li id="logout-btn">
-          <a href="index.html" style="color: #ff7675">Logout</a>
+          <a href="index.html" style="color: var(--brand-red-light)">Logout</a>
         </li>
       </ul>
     </div>
