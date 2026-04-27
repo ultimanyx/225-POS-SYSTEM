@@ -245,69 +245,7 @@
         color: #856404;
       }
 
-      /* Modal Overlay */
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-      }
-
-      .modal-overlay:target {
-        display: flex;
-      }
-
-      .modal-content {
-        background: white;
-        border-radius: 15px;
-        padding: 30px;
-        width: 90%;
-        max-width: 500px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        border: none;
-      }
-
-      .modal-content h2 {
-        margin-bottom: 20px;
-        color: var(--primary-color);
-        font-size: 1.5rem;
-      }
-
-      .modal-actions {
-        display: flex;
-        gap: 12px;
-        margin-top: 25px;
-      }
-      
-      /* Delete Modal */
-      .modal-small {
-        max-width: 400px;
-        text-align: center;
-      }
-
-      .modal-small p {
-        margin-bottom: 25px;
-        color: var(--text-muted);
-      }
-
-      .warning-text {
-        color: var(--danger-red);
-        font-weight: 600;
-      }
-
-      .product-name-display {
-        font-weight: 700;
-        color: var(--primary-color);
-      }
-      
-      
-      .btn-cancel {
+       .btn-cancel {
         flex: 1;
         padding: 14px;
         background: #F5F5F5;
@@ -346,9 +284,68 @@
 
 .btn-delete-confirm:hover {
     background: var(--brand-red-dark, #b02a37);
-    text-decoration: none;
     color: white;
 }
+
+          .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .modal-overlay:target {
+        display: flex;
+      }
+
+      .modal-content {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        border: none;
+      }
+
+      .modal-content h2 {
+        margin-bottom: 20px;
+        color: var(--primary-color);
+        font-size: 1.5rem;
+      }
+      
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+           /* Delete Modal */
+      .modal-small {
+        max-width: 400px;
+        text-align: center;
+      }
+
+      .modal-small p {
+        margin-bottom: 25px;
+        color: var(--text-muted);
+      }
+
+      .warning-text {
+        color: var(--danger-red);
+        font-weight: 600;
+      }
+
+
+      .product-name-display {
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
 
       /* Mobile */
       @media (max-width: 768px) {
@@ -378,12 +375,10 @@
     <div class="sidebar">
       <h2>W&A Inventory</h2>
       <ul>
-        <li class="active"><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="pos.html">POS</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li><a href="product_management.html">Product Management</a></li>
+        <li class="active"><a href="Staff_Dashboard.html">Dashboard</a></li>
+        <li><a href="Staff_pos.html">POS</a></li>
+        <li><a href="Staff_Reports.html">Reports</a></li>
         <li>
-          <a href="staff_management.html">Staff Management</a>
         </li>
         <li id="logout-btn">
           <a href="#LogOutModal" style="color: var(--brand-red-light)">Logout</a>
@@ -455,7 +450,7 @@
         </table>
       </section>
     </div>
-
+    <!-- Single Delete Confirmation Modal -->
     <div class="modal-overlay" id="LogOutModal">
       <div class="modal-content modal-small">
         <h2> Confirm Delete</h2>
@@ -467,6 +462,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>
