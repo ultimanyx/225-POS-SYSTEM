@@ -9,17 +9,13 @@
     <style>
       :root {
         --brand-magenta: #e91e8c;
-        --brand-magenta-light: #f74fa8;
         --brand-magenta-dark: #c9177a;
         --brand-green: #22c55e;
-        --brand-green-light: #4ade80;
         --brand-green-dark: #16a34a;
         --brand-red: #e63946;
-        --brand-red-light: #f15d68;
         --brand-red-dark: #c92a35;
         --brand-blue: #5dade2;
         --brand-blue-light: #7ec0e8;
-        --brand-blue-dark: #3d93c9;
         --primary-color: #212121;
         --accent-purple: var(--brand-magenta);
         --sidebar-gradient: linear-gradient(
@@ -29,7 +25,6 @@
         );
         --success-green: var(--brand-green);
         --danger-red: var(--brand-red);
-        --warning-orange: #cddc39;
         --bg-light: #f5f5f5;
         --white: #ffffff;
         --text-dark: #212121;
@@ -117,6 +112,10 @@
       #logout-btn:hover {
         background: var(--danger-red);
         transform: none;
+      }
+
+      #logout-btn a {
+        color: #f15d68;
       }
 
       /* Main Content */
@@ -211,24 +210,21 @@
         background-color: #f5f5f5;
       }
 
-      /* Buttons */
-      .btn-view {
-        background: var(--success-green);
-        color: white;
-        border: none;
-        padding: 8px 15px;
+      /* Date Input */
+      .date-input {
+        padding: 8px 12px;
         border-radius: 6px;
-        font-weight: 600;
-        transition: all 0.2s ease;
-        font-size: 0.85rem;
+        border: 1px solid var(--brand-blue-light);
+        font-size: 0.9rem;
       }
 
-      .btn-view:hover {
-        background: var(--brand-green-dark);
-        transform: scale(1.05);
-        color: white;
+      .date-input:focus {
+        outline: none;
+        border-color: var(--accent-purple);
+        box-shadow: 0 0 0 0.2rem rgba(233, 30, 140, 0.25);
       }
 
+      /* Buttons */
       .btn-delete {
         background: var(--danger-red);
         border: none;
@@ -239,8 +235,8 @@
         background: var(--brand-red-dark);
         color: white;
       }
-      
-        /* Modal Overlay */
+
+      /* Modal Overlay */
       .modal-overlay {
         position: fixed;
         top: 0;
@@ -273,12 +269,7 @@
         color: var(--primary-color);
         font-size: 1.5rem;
       }
-      
-      .form-group {
-        margin-bottom: 18px;
-      }
-      
-      /* Delete Modal */
+
       .modal-small {
         max-width: 400px;
         text-align: center;
@@ -286,7 +277,7 @@
 
       .modal-small p {
         margin-bottom: 25px;
-        color: var(--text-muted);
+        color: #616161;
       }
 
       .warning-text {
@@ -294,16 +285,16 @@
         font-weight: 600;
       }
 
-      .product-name-display {
-        font-weight: 700;
-        color: var(--primary-color);
+      .modal-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
       }
-      
-      
+
       .btn-cancel {
         flex: 1;
         padding: 14px;
-        background: #F5F5F5;
+        background: #f5f5f5;
         color: var(--text-dark);
         border: none;
         border-radius: 8px;
@@ -343,73 +334,6 @@
         color: white;
       }
 
-      /* Date Input */
-      .date-input {
-        padding: 8px 12px;
-        border-radius: 6px;
-        border: 1px solid var(--brand-blue-light);
-        font-size: 0.9rem;
-      }
-
-      .date-input:focus {
-        outline: none;
-        border-color: var(--accent-purple);
-        box-shadow: 0 0 0 0.2rem rgba(233, 30, 140, 0.25);
-      }
-
-        .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-      }
-
-      .modal-overlay:target {
-        display: flex;
-      }
-
-      .modal-content {
-        background: white;
-        border-radius: 15px;
-        padding: 30px;
-        width: 90%;
-        max-width: 500px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        border: none;
-      }
-
-      .modal-content h2 {
-        margin-bottom: 20px;
-        color: var(--primary-color);
-        font-size: 1.5rem;
-      }
-      
-      .form-group {
-        margin-bottom: 18px;
-      }
-
-           /* Delete Modal */
-      .modal-small {
-        max-width: 400px;
-        text-align: center;
-      }
-
-      .modal-small p {
-        margin-bottom: 25px;
-        color: var(--text-muted);
-      }
-
-      .warning-text {
-        color: var(--danger-red);
-        font-weight: 600;
-      }
-
       @media (max-width: 768px) {
         body {
           flex-direction: column;
@@ -433,10 +357,8 @@
         <li><a href="Staff_Dashboard.html">Dashboard</a></li>
         <li><a href="Staff_pos.html">POS</a></li>
         <li class="active"><a href="Staff_Reports.html">Reports</a></li>
-        <li>
-        </li>
         <li id="logout-btn">
-          <a href="#LogOutModal" style="color: var(--brand-red-light)">Logout</a>
+          <a href="#LogOutModal">Logout</a>
         </li>
       </ul>
     </div>
@@ -494,35 +416,55 @@
                 <td>Apr 10 | 02:30 PM</td>
                 <td>1 kg Whole Chicken</td>
                 <td><strong>₱ 210.00</strong></td>
-                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
+                <td>
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Delete</a
+                  >
+                </td>
               </tr>
               <tr>
                 <td>#WA-9919</td>
                 <td>Apr 10 | 01:15 PM</td>
                 <td>2 kg Garlic, 1 kg Onion</td>
                 <td><strong>₱ 540.00</strong></td>
-                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
+                <td>
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Delete</a
+                  >
+                </td>
               </tr>
               <tr>
                 <td>#WA-9918</td>
                 <td>Apr 09 | 05:45 PM</td>
                 <td>3 kg Potato, 1/2 kg Cooking Oil</td>
                 <td><strong>₱ 490.00</strong></td>
-                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
+                <td>
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Delete</a
+                  >
+                </td>
               </tr>
               <tr>
                 <td>#WA-9917</td>
                 <td>Apr 09 | 03:20 PM</td>
                 <td>1 kg Atay, 1 kg Baticolon, 1 piece Soy Sauce Big</td>
                 <td><strong>₱ 455.00</strong></td>
-                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
+                <td>
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Delete</a
+                  >
+                </td>
               </tr>
               <tr>
                 <td>#WA-9916</td>
                 <td>Apr 09 | 11:00 AM</td>
                 <td>5 kg Whole Chicken, 3 Soupack</td>
                 <td><strong>₱ 1,530.00</strong></td>
-                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
+                <td>
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Delete</a
+                  >
+                </td>
               </tr>
             </tbody>
           </table>
@@ -530,11 +472,12 @@
       </div>
     </div>
 
-    <div class="modal-overlay" id="LogOutModal">
+    <!-- Delete Modal -->
+    <div class="modal-overlay" id="deleteModal">
       <div class="modal-content modal-small">
-        <h2> Confirm Delete</h2>
-        <p>Are you sure you want to <b>Log Out?</b></p>
-        <p class="warning-text">Any unsaved action <b>cannot be undone</b>.</p>
+        <h2>Confirm Delete</h2>
+        <p>Are you sure you want to <b>Remove?</b></p>
+        <p class="warning-text">This action <b>cannot be undone</b>.</p>
         <div class="modal-actions">
           <a href="#" class="btn-cancel">Yes</a>
           <a href="#" class="btn-delete-confirm">No</a>
@@ -542,5 +485,17 @@
       </div>
     </div>
 
+    <!-- Logout Modal -->
+    <div class="modal-overlay" id="LogOutModal">
+      <div class="modal-content modal-small">
+        <h2>Confirm Logout</h2>
+        <p>Are you sure you want to <b>Log Out?</b></p>
+        <p class="warning-text">Any unsaved action <b>cannot be undone</b>.</p>
+        <div class="modal-actions">
+          <a href="staff_login.html" class="btn-cancel">Yes</a>
+          <a href="#" class="btn-delete-confirm">No</a>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

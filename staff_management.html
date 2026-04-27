@@ -333,7 +333,7 @@
         margin: 0.4rem 0;
       }
 
-      /* Modal Overlay */
+            /* Modal Overlay */
       .modal-overlay {
         position: fixed;
         top: 0;
@@ -365,6 +365,12 @@
         margin-bottom: 20px;
         color: var(--primary-color);
         font-size: 1.5rem;
+      }
+
+      .modal-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
       }
 
       .form-group {
@@ -402,12 +408,7 @@
         flex: 1;
       }
 
-      .modal-actions {
-        display: flex;
-        gap: 12px;
-        margin-top: 25px;
-      }
-
+      /* Yes Button sa Log Out */
       .btn-cancel {
         flex: 1;
         padding: 14px;
@@ -754,12 +755,12 @@
 
      <div class="modal-overlay" id="LogOutModal">
       <div class="modal-content modal-small">
-        <h2> Confirm Delete</h2>
-        <p>Are you sure you want to delete this product?</p>
+        <h2> Confirm Log Out</h2>
+        <p>Are you sure you want to <b>Log Out?</b></p>
         <p class="warning-text">This action <b>cannot be undone</b>.</p>
         <div class="modal-actions">
-          <a href="#" class="btn-cancel">Cancel</a>
-          <a href="#" class="btn-delete-confirm">Delete</a>
+          <a href="staff_login.html" class="btn-cancel">Yes</a>
+          <a href="#" class="btn-delete-confirm">No</a>
         </div>
       </div>
     </div>
