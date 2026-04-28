@@ -384,7 +384,7 @@
         <li class="active"><a href="reports.html">Reports</a></li>
         <li><a href="product_management.html">Product Management</a></li>
         <li>
-          <a href="staff_management.html">Staff Management</a>
+          <a href="manage_staff.html">Staff Management</a>
         </li>
         <li id="logout-btn">
           <a href="#LogOutModal" style="color: var(--brand-red-light)">Logout</a>
@@ -445,42 +445,57 @@
                 <td>Apr 10 | 02:30 PM</td>
                 <td>1 kg Whole Chicken</td>
                 <td><strong>₱ 210.00</strong></td>
-                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
+                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Remove</a></td>
               </tr>
               <tr>
                 <td>#WA-9919</td>
                 <td>Apr 10 | 01:15 PM</td>
                 <td>2 kg Garlic, 1 kg Onion</td>
                 <td><strong>₱ 540.00</strong></td>
-                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
+                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Remove</a></td>
               </tr>
               <tr>
                 <td>#WA-9918</td>
                 <td>Apr 09 | 05:45 PM</td>
                 <td>3 kg Potato, 1/2 kg Cooking Oil</td>
                 <td><strong>₱ 490.00</strong></td>
-                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
+                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Remove</a></td>
               </tr>
               <tr>
                 <td>#WA-9917</td>
                 <td>Apr 09 | 03:20 PM</td>
                 <td>1 kg Atay, 1 kg Baticolon, 1 piece Soy Sauce Big</td>
                 <td><strong>₱ 455.00</strong></td>
-                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
+                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Remove</a></td>
               </tr>
               <tr>
                 <td>#WA-9916</td>
                 <td>Apr 09 | 11:00 AM</td>
                 <td>5 kg Whole Chicken, 3 Soupack</td>
                 <td><strong>₱ 1,530.00</strong></td>
-                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a></td>
+                <td><a href="#deleteModal" class="btn btn-sm btn-delete">Remove</a></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
+
     <!-- Single Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+      <div class="modal-content modal-small">
+        <h2>Confirm Remove</h2>
+        <p>
+          Are you sure you want to
+          <b>Remove <span class="product-name-display">this product</span>?</b>
+        </p>
+        <p>This action <b>cannot be undone</b>.</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-cancel">Cancel</a>
+          <a href="#" class="btn-delete-confirm">Remove</a>
+        </div>
+      </div>
+    </div>
    
 
     <!-- Single Delete Confirmation Modal -->

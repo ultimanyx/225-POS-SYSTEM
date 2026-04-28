@@ -8,25 +8,29 @@
     <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <style>
       :root {
-        --brand-magenta: #E91E8C;
-        --brand-magenta-light: #F74FA8;
-        --brand-magenta-dark: #C9177A;
-        --brand-green: #22C55E;
-        --brand-green-light: #4ADE80;
-        --brand-green-dark: #16A34A;
-        --brand-red: #E63946;
-        --brand-red-light: #F15D68;
-        --brand-red-dark: #C92A35;
-        --brand-blue: #5DADE2;
-        --brand-blue-light: #7EC0E8;
-        --brand-blue-dark: #3D93C9;
+        --brand-magenta: #e91e8c;
+        --brand-magenta-light: #f74fa8;
+        --brand-magenta-dark: #c9177a;
+        --brand-green: #22c55e;
+        --brand-green-light: #4ade80;
+        --brand-green-dark: #16a34a;
+        --brand-red: #e63946;
+        --brand-red-light: #f15d68;
+        --brand-red-dark: #c92a35;
+        --brand-blue: #5dade2;
+        --brand-blue-light: #7ec0e8;
+        --brand-blue-dark: #3d93c9;
         --primary-color: #212121;
         --accent-purple: var(--brand-magenta);
-        --sidebar-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-magenta-dark) 100%);
+        --sidebar-gradient: linear-gradient(
+          135deg,
+          var(--brand-magenta) 0%,
+          var(--brand-magenta-dark) 100%
+        );
         --success-green: var(--brand-green);
         --danger-red: var(--brand-red);
-        --bg-light: #F5F5F5;
-        --white: #FFFFFF;
+        --bg-light: #f5f5f5;
+        --white: #ffffff;
         --text-dark: #212121;
         --text-muted: #616161;
         --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -199,60 +203,95 @@
 
       .table-header {
         padding: 20px 25px;
-        background: #F5F5F5;
+        background: #f5f5f5;
         border-bottom: 1px solid var(--brand-blue-light);
       }
 
       .table-header h3 {
         margin: 0;
+        color: var(--primary-color);
+        font-size: 1.3rem;
+        font-weight: 700;
       }
 
       .total-products {
         background: var(--accent-purple);
         color: white;
-        padding: 5px 15px;
+        padding: 8px 18px;
         border-radius: 20px;
         font-size: 0.85rem;
         font-weight: 600;
       }
 
+      .table {
+        margin-bottom: 0;
+      }
+
       .table th {
         text-align: left;
-        padding: 18px;
-        background: #F5F5F5;
+        padding: 16px 18px;
+        background: #fafafa;
         color: var(--primary-color);
-        font-weight: 600;
-        border-bottom: 2px solid var(--brand-blue-light);
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid var(--accent-purple);
+        white-space: nowrap;
       }
 
       .table td {
-        padding: 18px;
-        border-bottom: 1px solid var(--brand-blue-light);
+        padding: 16px 10px;
+        border-bottom: 1px solid #e0e0e0;
         vertical-align: middle;
+        font-size: 0.9rem;
+      }
+
+      .table tbody tr {
+        transition: background-color 0.2s ease;
       }
 
       .table tbody tr:hover {
-        background-color: #F5F5F5;
+        background-color: #fff0f5;
+      }
+
+      /* Supplier Info */
+      .supplier-info {
+        line-height: 1.4;
+      }
+
+      .supplier-info strong {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--primary-color);
+      }
+
+      .supplier-info small {
+        font-size: 0.8rem;
+        color: var(--text-muted);
       }
 
       /* Badges */
       .category-badge {
-        background: #FCE4EC;
+        display: inline-block;
+        background: #fce4ec;
         color: var(--accent-purple);
-        padding: 5px 12px;
-        border-radius: 6px;
-        font-size: 0.85rem;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
         font-weight: 600;
+        white-space: nowrap;
       }
 
       .stock-badge {
         padding: 6px 14px;
-        border-radius: 30px;
+        border-radius: 20px;
         font-size: 0.8rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.3px;
         display: inline-block;
+        white-space: nowrap;
       }
 
       .stock-good {
@@ -260,19 +299,14 @@
         color: #155724;
       }
 
-      .stock-low {
-        background: #fee2e2;
-        color: #b91c1c;
-      }
-
       .stock-warning {
         background: #fff3cd;
         color: #856404;
       }
 
-      .stock-out {
-        background: #fee2e2;
-        color: #b91c1c;
+      .stock-danger {
+        background: #f8d7da;
+        color: #721c24;
       }
 
       /* Action Buttons */
@@ -280,34 +314,64 @@
         background: var(--brand-blue);
         border: none;
         color: white;
+        padding: 6px 16px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: all 0.2s ease;
       }
 
       .btn-edit:hover {
         background: var(--brand-blue-dark);
         color: white;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
       .btn-update {
         background: var(--success-green);
         border: none;
         color: white;
+        padding: 6px 16px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: all 0.2s ease;
       }
 
       .btn-update:hover {
         background: var(--brand-green-dark);
         color: white;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
       .btn-delete {
         background: var(--danger-red);
         border: none;
         color: white;
+        padding: 6px 16px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: all 0.2s ease;
       }
 
       .btn-delete:hover {
         background: var(--brand-red-dark);
         color: white;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
+
+      /* Add Image Upload */
+      label {
+        display: block;
+        font:
+          1rem "Fira Sans",
+          sans-serif;
+      }
+
 
       /* Modal Overlay */
       .modal-overlay {
@@ -342,22 +406,11 @@
         color: var(--primary-color);
         font-size: 1.5rem;
       }
+
       
+
       .form-group {
         margin-bottom: 18px;
-      }
-      
-      /* Add Image Upload */
-      label {
-        display: block;
-        font:
-          1rem "Fira Sans",
-          sans-serif;
-      }
-
-      input,
-      label {
-        margin: 0.4rem 0;
       }
 
       .form-group label {
@@ -380,6 +433,7 @@
       .form-group .form-control:focus {
         border-color: var(--accent-purple);
         box-shadow: none;
+        outline: none;
       }
 
       .form-row {
@@ -400,7 +454,7 @@
       .btn-cancel {
         flex: 1;
         padding: 14px;
-        background: #F5F5F5;
+        background: #f5f5f5;
         color: var(--text-dark);
         border: none;
         border-radius: 8px;
@@ -413,7 +467,7 @@
       }
 
       .btn-cancel:hover {
-        background: var(--brand-blue-light);
+        background: #e0e0e0;
         text-decoration: none;
         color: var(--text-dark);
       }
@@ -482,7 +536,6 @@
 
       .modal-small p {
         margin-bottom: 25px;
-        color: var(--text-muted);
       }
 
       .warning-text {
@@ -511,6 +564,11 @@
         .main-content {
           padding: 20px;
         }
+        .table th,
+        .table td {
+          padding: 12px 10px;
+          font-size: 0.85rem;
+        }
       }
     </style>
   </head>
@@ -522,12 +580,16 @@
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="pos.html">POS</a></li>
         <li><a href="reports.html">Reports</a></li>
-        <li class="active"><a href="product_management.html">Product Management</a></li>
+        <li class="active">
+          <a href="product_management.html">Product Management</a>
+        </li>
         <li>
-          <a href="staff_management.html">Staff Management</a>
+          <a href="manage_staff.html">Staff Management</a>
         </li>
         <li id="logout-btn">
-          <a href="#LogOutModal" style="color: var(--brand-red-light)">Logout</a>
+          <a href="#LogOutModal" style="color: var(--brand-red-light)"
+            >Logout</a
+          >
         </li>
       </ul>
     </div>
@@ -567,6 +629,7 @@
                 <th>Category</th>
                 <th>Price (₱)</th>
                 <th>Stock Status</th>
+                <th>Supplier</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -581,9 +644,19 @@
                   <span class="stock-badge stock-good">In Stock (12 kg)</span>
                 </td>
                 <td>
+                  <div class="supplier-info">
+                    <strong>Fresh Chicken Co.</strong>
+                    <small>0912-345-6789</small>
+                  </div>
+                </td>
+                <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -592,12 +665,22 @@
                 <td><span class="category-badge">Frozen & Poultry</span></td>
                 <td>₱160.00 / kg</td>
                 <td>
-                  <span class="stock-badge stock-good">In Stock (10 kg)</span>
+                  <span class="stock-badge stock-danger">No Stock</span>
+                </td>
+                <td>
+                  <div class="supplier-info">
+                    <strong>Fresh Chicken Co.</strong>
+                    <small>0912-345-6789</small>
+                  </div>
                 </td>
                 <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -606,12 +689,24 @@
                 <td><span class="category-badge">Frozen & Poultry</span></td>
                 <td>₱210.00 / kg</td>
                 <td>
-                  <span class="stock-badge stock-warning">Low Stock (5 kg)</span>
+                  <span class="stock-badge stock-warning"
+                    >Low Stock (5 kg)</span
+                  >
+                </td>
+                <td>
+                  <div class="supplier-info">
+                    <strong>Fresh Chicken Co.</strong>
+                    <small>0912-345-6789</small>
+                  </div>
                 </td>
                 <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -623,9 +718,19 @@
                   <span class="stock-badge stock-good">In Stock (9 kg)</span>
                 </td>
                 <td>
+                  <div class="supplier-info">
+                    <strong>Fresh Chicken Co.</strong>
+                    <small>0912-345-6789</small>
+                  </div>
+                </td>
+                <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -637,9 +742,19 @@
                   <span class="stock-badge stock-good">In Stock (14 kg)</span>
                 </td>
                 <td>
+                  <div class="supplier-info">
+                    <strong>Fresh Chicken Co.</strong>
+                    <small>0912-345-6789</small>
+                  </div>
+                </td>
+                <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -651,9 +766,19 @@
                   <span class="stock-badge stock-good">In Stock (13 kg)</span>
                 </td>
                 <td>
+                  <div class="supplier-info">
+                    <strong>Fresh Chicken Co.</strong>
+                    <small>0912-345-6789</small>
+                  </div>
+                </td>
+                <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
 
@@ -664,12 +789,24 @@
                 <td><span class="category-badge">Fresh Goods</span></td>
                 <td>₱200.00 / kg</td>
                 <td>
-                  <span class="stock-badge stock-warning">Low Stock (4 kg)</span>
+                  <span class="stock-badge stock-warning"
+                    >Low Stock (4 kg)</span
+                  >
+                </td>
+                <td>
+                  <div class="supplier-info">
+                    <strong>Green Valley Farms</strong>
+                    <small>0923-456-7890</small>
+                  </div>
                 </td>
                 <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -678,12 +815,24 @@
                 <td><span class="category-badge">Fresh Goods</span></td>
                 <td>₱180.00 / kg</td>
                 <td>
-                  <span class="stock-badge stock-warning">Low Stock (6 kg)</span>
+                  <span class="stock-badge stock-warning"
+                    >Low Stock (6 kg)</span
+                  >
+                </td>
+                <td>
+                  <div class="supplier-info">
+                    <strong>Green Valley Farms</strong>
+                    <small>0923-456-7890</small>
+                  </div>
                 </td>
                 <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -695,9 +844,19 @@
                   <span class="stock-badge stock-good">In Stock (9 kg)</span>
                 </td>
                 <td>
+                  <div class="supplier-info">
+                    <strong>Green Valley Farms</strong>
+                    <small>0923-456-7890</small>
+                  </div>
+                </td>
+                <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -709,9 +868,19 @@
                   <span class="stock-badge stock-good">In Stock (9 kg)</span>
                 </td>
                 <td>
+                  <div class="supplier-info">
+                    <strong>Green Valley Farms</strong>
+                    <small>0923-456-7890</small>
+                  </div>
+                </td>
+                <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
 
@@ -725,9 +894,19 @@
                   <span class="stock-badge stock-good">In Stock (10 kg)</span>
                 </td>
                 <td>
+                  <div class="supplier-info">
+                    <strong>Metro Wholesale Inc.</strong>
+                    <small>0934-567-8901</small>
+                  </div>
+                </td>
+                <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -736,12 +915,24 @@
                 <td><span class="category-badge">Spices & Condiments</span></td>
                 <td>₱45.00 / pack</td>
                 <td>
-                  <span class="stock-badge stock-good">In Stock (12 packs)</span>
+                  <span class="stock-badge stock-good"
+                    >In Stock (12 packs)</span
+                  >
+                </td>
+                <td>
+                  <div class="supplier-info">
+                    <strong>Metro Wholesale Inc.</strong>
+                    <small>0934-567-8901</small>
+                  </div>
                 </td>
                 <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -750,12 +941,24 @@
                 <td><span class="category-badge">Spices & Condiments</span></td>
                 <td>₱15.00 / pack</td>
                 <td>
-                  <span class="stock-badge stock-good">In Stock (15 packs)</span>
+                  <span class="stock-badge stock-good"
+                    >In Stock (15 packs)</span
+                  >
+                </td>
+                <td>
+                  <div class="supplier-info">
+                    <strong>Silver Swan Dist.</strong>
+                    <small>0945-678-9012</small>
+                  </div>
                 </td>
                 <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
               <tr>
@@ -764,12 +967,24 @@
                 <td><span class="category-badge">Spices & Condiments</span></td>
                 <td>₱6.00 / pack</td>
                 <td>
-                  <span class="stock-badge stock-warning">Low Stock (12 packs)</span>
+                  <span class="stock-badge stock-warning"
+                    >Low Stock (12 packs)</span
+                  >
+                </td>
+                <td>
+                  <div class="supplier-info">
+                    <strong>Silver Swan Dist.</strong>
+                    <small>0945-678-9012</small>
+                  </div>
                 </td>
                 <td>
                   <a href="#editModal" class="btn btn-sm btn-edit mr-1">Edit</a>
-                  <a href="#updateModal" class="btn btn-sm btn-update mr-1">Update</a>
-                  <a href="#deleteModal" class="btn btn-sm btn-delete">Delete</a>
+                  <a href="#updateModal" class="btn btn-sm btn-update mr-1"
+                    >Update</a
+                  >
+                  <a href="#deleteModal" class="btn btn-sm btn-delete"
+                    >Remove</a
+                  >
                 </td>
               </tr>
             </tbody>
@@ -792,15 +1007,15 @@
               required
             />
           </div>
-          <label for="avatar">Choose a Product Image:</label>
-
-          <input
-            type="file"
-            id="avatar"
-            name="avatar"
-            accept="image/png, image/jpeg"
-          />
-
+          <div class="form-group">
+            <label for="Avatar">Product Image</label>
+            <input
+              type="file"
+              id="avatar"
+              name="avatar"
+              accept="image/png, image/jpeg"
+            />
+          </div>
           <div class="form-group">
             <label>Category</label>
             <select class="form-control" required>
@@ -808,6 +1023,14 @@
               <option value="Frozen">Frozen & Poultry</option>
               <option value="Fresh">Fresh Goods</option>
               <option value="Spices">Spices & Condiments</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Unit Type</label>
+            <select class="form-control" required>
+              <option value="kg">Kilogram (kg)</option>
+              <option value="pack">Pack</option>
+              <option value="piece">Piece</option>
             </select>
           </div>
           <div class="form-row">
@@ -834,17 +1057,31 @@
               />
             </div>
           </div>
-          <div class="form-group">
-            <label>Unit Type</label>
-            <select class="form-control" required>
-              <option value="kg">Kilogram (kg)</option>
-              <option value="pack">Pack</option>
-              <option value="piece">Piece</option>
-            </select>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Supplier Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="e.g., John Smith"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Supplier Phone Number</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="e.g., 09123456789"
+                required
+              />
+            </div>
           </div>
           <div class="modal-actions">
             <a href="#" class="btn-cancel">Cancel</a>
-            <button type="submit" class="btn-submit">Add Product</button>
+            <button type="submit" class="btn-update-confirm">
+              Add Product
+            </button>
           </div>
         </form>
       </div>
@@ -864,13 +1101,15 @@
               required
             />
           </div>
-          <label for="avatar"><b style="font-size: 0.9rem;">Choose a Product Image:</b></label>
-          <input
-            type="file"
-            id="avatar"
-            name="avatar"
-            accept="image/png, image/jpeg"
-          />
+          <div class="form-group">
+            <label for="Avatar">Product Image</label>
+            <input
+              type="file"
+              id="avatar"
+              name="avatar"
+              accept="image/png, image/jpeg"
+            />
+          </div>
           <div class="form-group">
             <label>Category</label>
             <select class="form-control" required>
@@ -890,9 +1129,31 @@
               required
             />
           </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Supplier Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="e.g., John Smith"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Supplier Phone Number</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="e.g., 09123456789"
+                required
+              />
+            </div>
+          </div>
           <div class="modal-actions">
             <a href="#" class="btn-cancel">Cancel</a>
-            <button type="submit" class="btn-submit">Save Changes</button>
+            <button type="submit" class="btn-update-confirm">
+              Save Changes
+            </button>
           </div>
         </form>
       </div>
@@ -936,9 +1197,25 @@
     </div>
 
     <!-- Single Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+      <div class="modal-content modal-small">
+        <h2>Confirm Remove</h2>
+        <p>
+          Are you sure you want to
+          <b>Remove this product?</b>
+        </p>
+        <p>This action <b>cannot be undone</b>.</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-cancel">Cancel</a>
+          <a href="#" class="btn-delete-confirm">Remove</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
     <div class="modal-overlay" id="LogOutModal">
       <div class="modal-content modal-small">
-        <h2> Confirm Log Out</h2>
+        <h2>Confirm Log Out</h2>
         <p>Are you sure you want to <b>Log Out?</b></p>
         <p class="warning-text">Any unsaved action <b>cannot be undone</b>.</p>
         <div class="modal-actions">

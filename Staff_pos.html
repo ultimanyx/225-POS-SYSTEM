@@ -617,8 +617,10 @@
                     />
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
-                  <input type="checkbox" id="btn-liog" />
-                  <label for="btn-liog" class="add-btn mt-2">Add to Cart</label>
+                  <a href="#noStockModal"><input type="checkbox" id="btn-whole" />
+                  <label class="add-btn mt-2"
+                    >Add to Cart</label
+                  ></a>
                 </div>
               </div>
             </div>
@@ -1014,6 +1016,7 @@
               <span class="cart-item-price">₱160.00</span>
             </div>
           </div>
+          <!--
           <div class="cart-item" id="cart-liog">
             <div class="cart-item-row">
               <div class="cart-item-info">
@@ -1023,6 +1026,7 @@
               <span class="cart-item-price">₱160.00</span>
             </div>
           </div>
+        -->
           <div class="cart-item" id="cart-whole">
             <div class="cart-item-row">
               <div class="cart-item-info">
@@ -1172,6 +1176,18 @@
             style="background: var(--sidebar-gradient); border: none"
             >New Sale</a
           >
+        </div>
+      </div>
+    </div>
+
+    <!-- No Stock Confirmation Modal -->
+    <div class="modal-overlay" id="noStockModal">
+      <div class="modal-content modal-small">
+        <h2>This item is currently out of stock.</h2>
+        <p>Please Call Your Supplier: <b>Fresh Chicken Co.</b></p>
+        <p>Phone Number: <b>0912-345-6789</b></p>
+        <div class="modal-actions">
+          <a href="Staff_pos.html" class="btn-cancel">Return</a>
         </div>
       </div>
     </div>

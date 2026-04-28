@@ -162,9 +162,6 @@
         border: none;
       }
 
-      .card:hover {
-        transform: translateY(-5px);
-      }
 
       .card span {
         font-size: 2.2rem;
@@ -231,12 +228,12 @@
         display: inline-block;
       }
 
-      .status-fresh {
+      .status-good {
         background: #d4edda;
         color: #155724;
       }
 
-      .status-low {
+      .status-danger {
         background: #fee2e2;
         color: #b91c1c;
       }
@@ -393,24 +390,25 @@
     <div class="main-content">
       <header>
         <h1>Inventory Overview</h1>
-        <div class="user-info">Welcome, Admin</div>
+        <div class="user-info">Welcome, Staff</div>
       </header>
 
       <!-- Cards -->
       <div class="cards">
         <div class="card">
           Total Products
-          <span id="total-items">152</span>
+          <span id="total-items">14</span>
         </div>
         <div class="card">
-          Near Expiry
-          <span id="near-expiry">8</span>
+          No Stock Items
+          <span id="no-stock">0</span>
         </div>
         <div class="card">
-          Low Stock
-          <span id="low-stock">12</span>
+          Low Stock Items
+          <span id="low-stock">4</span>
         </div>
       </div>
+
 
       <!-- Inventory Table -->
       <section class="inventory-table">
@@ -421,32 +419,32 @@
               <th>Product Name</th>
               <th>Category</th>
               <th>Stock Level</th>
-              <th>Expiration Date</th>
+              <th>Last Stock Update</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody id="inventory-body">
             <tr>
-              <td>Frozen Chicken (1kg)</td>
-              <td>Frozen Meat</td>
-              <td>45 pcs</td>
+              <td>Whole Chicken</td>
+              <td>Frozen and Poultry</td>
+              <td>5 kg </td>
               <td>2026-12-15</td>
-              <td><span class="status-badge status-fresh">Fresh</span></td>
+              <td><span class="status-badge status-warning">Low Stock</span></td>
             </tr>
             <tr>
-              <td>Processed Ham (250g)</td>
-              <td>Canned Goods</td>
-              <td>5 pcs</td>
+              <td>Bell Pepper</td>
+              <td>Fresh Goods</td>
+              <td>4 kg</td>
               <td>2026-05-10</td>
-              <td><span class="status-badge status-low">Low Stock</span></td>
+              <td><span class="status-badge status-warning">Low Stock</span></td>
             </tr>
             <tr>
-              <td>Canned Sardines</td>
-              <td>Canned Goods</td>
-              <td>88 pcs</td>
+              <td>Liog</td>
+              <td>Frozen and Poultry</td>
+              <td>No Stock</td>
               <td>2026-04-20</td>
               <td>
-                <span class="status-badge status-warning">Near Expiry</span>
+                <span class="status-badge status-danger">No Stock</span>
               </td>
             </tr>
           </tbody>

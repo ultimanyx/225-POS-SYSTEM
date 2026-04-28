@@ -354,23 +354,7 @@
         color: white;
       }
 
-      /* Modal */
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        bacKground: rgba(0, 0, 0, 0.6);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-      }
 
-      .modal-overlay:target {
-        display: flex;
-      }
 
       /* Receipt Modal */
       .receipt-modal {
@@ -455,8 +439,9 @@
 
       .modal-small p {
         margin-bottom: 25px;
-        color: var(--text-muted);
       }
+
+
 
       .warning-text {
         color: var(--danger-red);
@@ -575,7 +560,7 @@
         <li><a href="reports.html">Reports</a></li>
         <li><a href="product_management.html">Product Management</a></li>
         <li>
-          <a href="staff_management.html">Staff Management</a>
+          <a href="manage_staff.html">Staff Management</a>
         </li>
         <li id="logout-btn">
           <a href="#LogOutModal" style="color: var(--brand-red-light)">Logout</a>
@@ -620,9 +605,13 @@
               </div>
             </div>
 
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/chicken neck.jpg" class="card-img-top" alt="Liog" />
+                <img
+                  src="/Image/chicken neck.jpg"
+                  class="card-img-top"
+                  alt="Liog"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Liog (Neck)</h5>
                   <p class="price mb-1">₱160.00 / Kg</p>
@@ -639,8 +628,10 @@
                     />
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
-                  <input type="checkbox" id="btn-liog" />
-                  <label for="btn-liog" class="add-btn mt-2">Add to Cart</label>
+                  <a href="#noStockModal"><input type="checkbox" id="btn-whole" />
+                  <label class="add-btn mt-2"
+                    >Add to Cart</label
+                  ></a>
                 </div>
               </div>
             </div>
@@ -970,6 +961,7 @@
               <span class="cart-item-price">₱160.00</span>
             </div>
           </div>
+          <!--
           <div class="cart-item" id="cart-liog">
             <div class="cart-item-row">
               <div class="cart-item-info">
@@ -979,6 +971,7 @@
               <span class="cart-item-price">₱160.00</span>
             </div>
           </div>
+        -->
           <div class="cart-item" id="cart-whole">
             <div class="cart-item-row">
               <div class="cart-item-info">
@@ -1127,6 +1120,19 @@
       </div>
     </div>
 
+    <!-- No Stock Confirmation Modal -->
+    <div class="modal-overlay" id="noStockModal">
+      <div class="modal-content modal-small">
+        <h2>This item is currently out of stock.</h2>
+        <p>Please Call Your Supplier: <b>Fresh Chicken Co.</b></p>
+        <p>Phone Number: <b>0912-345-6789</b></p>
+        <div class="modal-actions">
+          <a href="Staff_pos.html" class="btn-cancel">Return</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Log Out Confirmation Modal -->  
     <div class="modal-overlay" id="LogOutModal">
       <div class="modal-content modal-small">
         <h2> Confirm Log Out</h2>

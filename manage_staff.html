@@ -477,7 +477,6 @@
 
       .modal-small p {
         margin-bottom: 25px;
-        color: var(--text-muted);
       }
 
       .warning-text {
@@ -583,18 +582,18 @@
                 <td><span class="badge badge-warning">On Leave</span></td>
                 <td>
                   <a href="#editStaffModal" class="btn-edit mr-1">Edit</a>
-                  <a href="#deleteStaffModal" class="btn-delete">Delete</a>
+                  <a href="#deleteStaffModal" class="btn-delete">Remove</a>
                 </td>
               </tr>
               <tr>
                 <td>2</td>
                 <td><strong>Marlo Sanki</strong></td>
-                <td>Cashier</td>
+                <td>Staff</td>
                 <td>0912 345 6789</td>
                 <td><span class="badge badge-success">Active</span></td>
                 <td>
                   <a href="#editStaffModal" class="btn-edit mr-1">Edit</a>
-                  <a href="#deleteStaffModal" class="btn-delete">Delete</a>
+                  <a href="#deleteStaffModal" class="btn-delete">Remove</a>
                 </td>
               </tr>
               <tr>
@@ -605,7 +604,7 @@
                 <td><span class="badge badge-danger">Inactive</span></td>
                 <td>
                   <a href="#editStaffModal" class="btn-edit mr-1">Edit</a>
-                  <a href="#deleteStaffModal" class="btn-delete">Delete</a>
+                  <a href="#deleteStaffModal" class="btn-delete">Remove</a>
                 </td>
               </tr>
             </tbody>
@@ -660,9 +659,7 @@
             <select class="form-control" required>
               <option value="" disabled selected>Select Role</option>
               <option value="Owner">Owner</option>
-              <option value="Cashier">Cashier</option>
               <option value="Staff">Staff</option>
-              <option value="Temporary Staff">Temporary Staff</option>
             </select>
           </div>
           <div class="form-row">
@@ -743,12 +740,12 @@
     <!-- Delete Staff Modal -->
     <div class="modal-overlay" id="deleteStaffModal">
       <div class="modal-content modal-small">
-        <h2>Confirm Delete</h2>
-        <p>Are you sure you want to delete this staff member?</p>
-        <p class="warning-text">This action <b>cannot be undone</b>.</p>
+        <h2>Confirm Remove</h2>
+        <p>Are you sure you want to <b>Remove this staff member?</b></p>
+        <p>This action <b>cannot be undone</b>.</p>
         <div class="modal-actions">
           <a href="#" class="btn-cancel">Cancel</a>
-          <a href="#" class="btn-delete-confirm">Delete</a>
+          <a href="#" class="btn-delete-confirm">Remove</a>
         </div>
       </div>
     </div>
