@@ -4,556 +4,563 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>POS - W&A Inventory</title>
-    <link
-      rel="stylesheet"
-      href="bootstrap-4.6.2-dist/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <style>
-      :root {
-        --brand-magenta: #E91E8C;
-        --brand-magenta-light: #F74FA8;
-        --brand-magenta-dark: #C9177A;
-        --brand-green: #22C55E;
-        --brand-green-light: #4ADE80;
-        --brand-green-dark: #16A34A;
-        --brand-red: #E63946;
-        --brand-red-light: #F15D68;
-        --brand-red-dark: #C92A35;
-        --brand-blue: #5DADE2;
-        --brand-blue-light: #7EC0E8;
-        --brand-blue-dark: #3D93C9;
-        --primary-color: #212121;
-        --accent-purple: var(--brand-magenta);
-        --sidebar-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-magenta-dark) 100%);
-        --success-green: var(--brand-green);
-        --bg-light: #F5F5F5;
-        --white: #FFFFFF;
-        --text-dark: #212121;
-        --text-muted: #616161;
-        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        --danger-color: var(--brand-red);
+            :root {
+              --brand-magenta: #E91E8C;
+              --brand-magenta-light: #F74FA8;
+              --brand-magenta-dark: #C9177A;
+              --brand-green: #22C55E;
+              --brand-green-light: #4ADE80;
+              --brand-green-dark: #16A34A;
+              --brand-red: #E63946;
+              --brand-red-light: #F15D68;
+              --brand-red-dark: #C92A35;
+              --brand-blue: #5DADE2;
+              --brand-blue-light: #7EC0E8;
+              --brand-blue-dark: #3D93C9;
+              --primary-color: #212121;
+              --accent-purple: var(--brand-magenta);
+              --sidebar-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-magenta-dark) 100%);
+              --success-green: var(--brand-green);
+              --bg-light: #F5F5F5;
+              --white: #FFFFFF;
+              --text-dark: #212121;
+              --text-muted: #616161;
+              --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+              --danger-color: var(--brand-red);
+            }
+
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+              font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+              display: flex;
+              bacKground-color: var(--bg-light);
+              min-height: 100vh;
+              color: var(--text-dark);
+            }
+
+            /* Sidebar */
+            .sidebar {
+              width: 260px;
+              bacKground-color: var(--primary-color);
+              color: var(--white);
+              padding: 25px;
+              display: flex;
+              flex-direction: column;
+              position: sticky;
+              top: 0;
+              height: 100vh;
+              flex-shrink: 0;
+            }
+
+            .sidebar h2 {
+              font-size: 1.4rem;
+              text-align: center;
+              padding-bottom: 20px;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+              margin-bottom: 25px;
+              letter-spacing: 1px;
+            }
+
+            .navbar-brand {
+              display: flex;
+              justify-content: center;
+              margin-bottom: 10px;
+            }
+
+            .sidebar ul {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
+
+            .sidebar ul li {
+              margin-bottom: 8px;
+              border-radius: 10px;
+              transition: all 0.3s ease;
+            }
+
+            .sidebar ul li a {
+              display: block;
+              padding: 15px 20px;
+              color: white;
+              text-decoration: none;
+              font-weight: 500;
+            }
+
+            .sidebar ul li:hover {
+              bacKground: var(--sidebar-gradient);
+              transform: translateX(8px);
+            }
+
+            .sidebar ul li.active {
+              bacKground: var(--sidebar-gradient);
+              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            #logout-btn {
+              margin-top: auto;
+              bacKground-color: rgba(230, 57, 70, 0.1);
+            }
+
+            #logout-btn:hover {
+              bacKground: var(--danger-color);
+              transform: none;
+            }
+
+            /* Main Layout */
+            .pos-container {
+              display: flex;
+              flex: 1;
+              padding: 20px 40px 40px 40px;
+              gap: 30px;
+              height: 100vh;
+              overflow: hidden;
+            }
+
+            .products-area {
+              flex: 3;
+              display: flex;
+              flex-direction: column;
+              overflow: hidden;
+            }
+
+            .category-nav {
+              display: flex;
+              gap: 15px;
+              bacKground: var(--white);
+              padding: 15px;
+              border-radius: 15px;
+              margin-bottom: 20px;
+              box-shadow: var(--shadow);
+            }
+
+            .category-btn {
+              padding: 10px 20px;
+              bacKground: #F5F5F5;
+              border-radius: 10px;
+              font-weight: 600;
+              color: var(--primary-color);
+              text-decoration: none;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            }
+
+            .category-btn:hover {
+              bacKground: var(--sidebar-gradient);
+              color: white;
+              text-decoration: none;
+            }
+
+            .scroll-container {
+              overflow-y: auto;
+              padding-right: 10px;
+              flex: 1;
+            }
+
+            .products-area h2 {
+              margin: 30px 0 20px 0;
+              font-size: 1.6rem;
+              color: var(--primary-color);
+              border-left: 5px solid var(--accent-purple);
+              padding-left: 15px;
+            }
+
+            /* Product Card Styles */
+            .product-card {
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+              border: 1px solid var(--brand-blue-light);
+              min-height: 400px;
+            }
+
+            .product-card:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            }
+
+            .product-card .card-img-top {
+              width: 100%;
+              height: 140px;
+              object-fit: contain;
+              padding: 10px;
+              bacKground: #fff;
+            }
+
+            .product-card .card-title {
+              font-size: 1.2rem;
+              margin-bottom: 5px;
+              min-height: 2.4em;
+              color: var(--accent-purple);
+            }
+
+            .product-card .price {
+              font-size: 1rem;
+              font-weight: 700;
+              color: var(--primary-color);
+              margin: 5px;
+            }
+
+            .product-card .stock {
+              font-size: 0.8rem;
+              color: var(--text-muted);
+              margin-bottom: 5px;
+            }
+
+            .qty-selector {
+              margin: 5px 0px 5px ;
+              bacKground: #F5F5F5;
+              padding: 10px;
+              border-radius: 8px;
+            }
+
+            .qty-label {
+              font-size: 0.85rem;
+              color: var(--text-muted);
+              margin-bottom: 5px;
+              display: block;
+            }
+
+            .qty-selector input {
+              width: 100%;
+              padding: 10px;
+              border: 1px solid var(--brand-blue-light);
+              border-radius: 6px;
+              bacKground: white;
+              font-weight: 500;
+              font-size: 1rem;
+            }
+
+            .qty-hint {
+              font-size: 0.7rem;
+              color: var(--text-muted);
+              margin-top: 4px;
+              display: block;
+            }
+
+            /* Add to Cart Button */
+            .add-btn {
+              width: 100%;
+              padding: 10px;
+              bacKground: var(--sidebar-gradient);
+              color: white;
+              border-radius: 8px;
+              font-weight: 600;
+              display: block;
+              text-align: center;
+              cursor: pointer;
+              border: none;
+              transition: opacity 0.3s ease;
+            }
+
+            .add-btn:hover {
+              opacity: 0.9;
+            }
+
+
+
+            /* Cart Area */
+            .cart-area {
+              flex: 1.2;
+              bacKground: var(--white);
+              border-radius: 20px;
+              box-shadow: var(--shadow);
+              display: flex;
+              flex-direction: column;
+              min-width: 350px;
+              height: 100%;
+            }
+
+            .cart-header {
+              padding: 25px;
+              bacKground: var(--sidebar-gradient);
+              color: white;
+              border-radius: 20px 20px 0 0;
+              display: flex;
+              justify-content: space-between;
+            }
+
+            .cart-items {
+              flex: 1;
+              padding: 20px;
+              overflow-y: auto;
+            }
+
+            .cart-item {
+              display: none;
+              padding: 12px 0;
+              border-bottom: 1px solid var(--brand-blue-light);
+            }
+
+            .cart-item-row {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+
+            .cart-item-name {
+              font-weight: 600;
+              font-size: 0.95rem;
+            }
+
+            .cart-item-detail {
+              font-size: 0.85rem;
+              color: var(--text-muted);
+            }
+
+            .cart-item-price {
+              color: var(--accent-purple);
+              font-weight: 600;
+            }
+
+            .cart-footer {
+              padding: 10px;
+              bacKground: #F5F5F5;
+              border-radius: 0 0 20px 20px;
+              border-top: 1px solid var(--brand-blue-light);
+            }
+
+            .total-row {
+              display: flex;
+              justify-content: space-between;
+              margin-top: 15px;
+              font-weight: 800;
+              font-size: 1.4rem;
+            }
+
+            .checkout-btn {
+              width: 100%;
+              padding: 16px;
+              margin-top: 20px;
+              bacKground: var(--success-green);
+              color: white;
+              border-radius: 12px;
+              font-size: 1.1rem;
+              font-weight: 700;
+              display: block;
+              text-align: center;
+              text-decoration: none;
+              border: none;
+              cursor: pointer;
+              transition: opacity 0.3s ease;
+            }
+
+            .checkout-btn:hover {
+              opacity: 0.9;
+              text-decoration: none;
+              color: white;
+            }
+
+
+
+            /* Receipt Modal */
+            .receipt-modal {
+              bacKground: white;
+              border-radius: 20px;
+              padding: 30px;
+              max-width: 400px;
+              width: 90%;
+            }
+
+            .receipt-header {
+              text-align: center;
+              border-bottom: 2px dashed var(--brand-blue-light);
+              padding-bottom: 20px;
+              margin-bottom: 20px;
+            }
+
+            .receipt-total {
+              font-size: 1.5rem;
+              font-weight: 800;
+              text-align: right;
+              padding-top: 15px;
+              border-top: 2px solid #212121;
+            }
+
+            .receipt-footer {
+              display: flex;
+              gap: 10px;
+              margin-top: 25px;
+            }
+
+            /* Hidden checkbox for cart toggle */
+            .card input[type="checkbox"] {
+              display: none;
+            }
+
+            /* Modal Overlay */
+            .modal-overlay {
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: rgba(0, 0, 0, 0.5);
+              display: none;
+              align-items: center;
+              justify-content: center;
+              z-index: 1000;
+            }
+
+            .modal-overlay:target {
+              display: flex;
+            }
+
+            .modal-content {
+              background: white;
+              border-radius: 15px;
+              padding: 30px;
+              width: 90%;
+              max-width: 500px;
+              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+              border: none;
+            }
+
+            .modal-content h2 {
+              margin-bottom: 20px;
+              color: var(--primary-color);
+              font-size: 1.5rem;
+            }
+
+            .modal-actions {
+              display: flex;
+              gap: 12px;
+              margin-top: 25px;
+            }
+
+            /* Delete Modal */
+            .modal-small {
+              max-width: 400px;
+              text-align: center;
+            }
+
+            .modal-small p {
+              margin-bottom: 25px;
+            }
+
+
+
+            .warning-text {
+              color: var(--danger-red);
+              font-weight: 600;
+            }
+
+            .product-name-display {
+              font-weight: 700;
+              color: var(--primary-color);
+            }
+
+
+            .btn-cancel {
+              flex: 1;
+              padding: 14px;
+              background: #F5F5F5;
+              color: var(--text-dark);
+              border: none;
+              border-radius: 8px;q
+              font-weight: 600;
+              font-size: 1rem;
+              cursor: pointer;
+              text-align: center;
+              text-decoration: none;
+              transition: background 0.3s ease;
+            }
+
+            .btn-cancel:hover {
+              background: var(--brand-blue-light);
+              color: var(--text-dark);
+              text-decoration: none;
+            }
+
+            .btn-delete-confirm {
+          flex: 1;
+          padding: 14px;
+          background: var(--danger-red, #dc3545); /* fallback red */
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 1rem;
+          cursor: pointer;
+          text-decoration: none;
+          transition: background 0.3s ease;
+          display: inline-block;
+          text-align: center;
       }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      .btn-delete-confirm:hover {
+          background: var(--brand-red-dark, #b02a37);
+          color: white;
       }
 
-      body {
-        display: flex;
-        bacKground-color: var(--bg-light);
-        min-height: 100vh;
-        color: var(--text-dark);
-      }
-
-      /* Sidebar */
-      .sidebar {
-        width: 260px;
-        bacKground-color: var(--primary-color);
-        color: var(--white);
-        padding: 25px;
-        display: flex;
-        flex-direction: column;
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        flex-shrink: 0;
-      }
-
-      .sidebar h2 {
-        font-size: 1.4rem;
-        text-align: center;
-        padding-bottom: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        margin-bottom: 25px;
-        letter-spacing: 1px;
-      }
-
-      .sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .sidebar ul li {
-        margin-bottom: 8px;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-      }
-
-      .sidebar ul li a {
-        display: block;
-        padding: 15px 20px;
-        color: white;
-        text-decoration: none;
-        font-weight: 500;
-      }
-
-      .sidebar ul li:hover {
-        bacKground: var(--sidebar-gradient);
-        transform: translateX(8px);
-      }
-
-      .sidebar ul li.active {
-        bacKground: var(--sidebar-gradient);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      }
-
-      #logout-btn {
-        margin-top: auto;
-        bacKground-color: rgba(230, 57, 70, 0.1);
-      }
-
-      #logout-btn:hover {
-        bacKground: var(--danger-color);
-        transform: none;
-      }
-
-      /* Main Layout */
-      .pos-container {
-        display: flex;
-        flex: 1;
-        padding: 20px 40px 40px 40px;
-        gap: 30px;
-        height: 100vh;
-        overflow: hidden;
-      }
-
-      .products-area {
-        flex: 3;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-
-      .category-nav {
-        display: flex;
-        gap: 15px;
-        bacKground: var(--white);
-        padding: 15px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        box-shadow: var(--shadow);
-      }
-
-      .category-btn {
-        padding: 10px 20px;
-        bacKground: #F5F5F5;
-        border-radius: 10px;
-        font-weight: 600;
-        color: var(--primary-color);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .category-btn:hover {
-        bacKground: var(--sidebar-gradient);
-        color: white;
-        text-decoration: none;
-      }
-
-      .scroll-container {
-        overflow-y: auto;
-        padding-right: 10px;
-        flex: 1;
-      }
-
-      .products-area h2 {
-        margin: 30px 0 20px 0;
-        font-size: 1.6rem;
-        color: var(--primary-color);
-        border-left: 5px solid var(--accent-purple);
-        padding-left: 15px;
-      }
-
-      /* Product Card Styles */
-      .product-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid var(--brand-blue-light);
-        min-height: 400px;
-      }
-
-      .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      }
-
-      .product-card .card-img-top {
-        width: 100%;
-        height: 140px;
-        object-fit: contain;
-        padding: 10px;
-        bacKground: #fff;
-      }
-
-      .product-card .card-title {
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-        min-height: 2.4em;
-        color: var(--accent-purple);
-      }
-
-      .product-card .price {
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--primary-color);
-        margin: 5px;
-      }
-
-      .product-card .stock {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        margin-bottom: 5px;
-      }
-
-      .qty-selector {
-        margin: 5px 0px 5px ;
-        bacKground: #F5F5F5;
-        padding: 10px;
-        border-radius: 8px;
-      }
-
-      .qty-label {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        margin-bottom: 5px;
-        display: block;
-      }
-
-      .qty-selector input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid var(--brand-blue-light);
-        border-radius: 6px;
-        bacKground: white;
-        font-weight: 500;
-        font-size: 1rem;
-      }
-
-      .qty-hint {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-        margin-top: 4px;
-        display: block;
-      }
-
-      /* Add to Cart Button */
-      .add-btn {
-        width: 100%;
-        padding: 10px;
-        bacKground: var(--sidebar-gradient);
-        color: white;
-        border-radius: 8px;
-        font-weight: 600;
-        display: block;
-        text-align: center;
-        cursor: pointer;
-        border: none;
-        transition: opacity 0.3s ease;
-      }
-
-      .add-btn:hover {
-        opacity: 0.9;
-      }
-
-
-
-      /* Cart Area */
-      .cart-area {
-        flex: 1.2;
-        bacKground: var(--white);
-        border-radius: 20px;
-        box-shadow: var(--shadow);
-        display: flex;
-        flex-direction: column;
-        min-width: 350px;
-        height: 100%;
-      }
-
-      .cart-header {
-        padding: 25px;
-        bacKground: var(--sidebar-gradient);
-        color: white;
-        border-radius: 20px 20px 0 0;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .cart-items {
-        flex: 1;
-        padding: 20px;
-        overflow-y: auto;
-      }
-
-      .cart-item {
-        display: none;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--brand-blue-light);
-      }
-
-      .cart-item-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .cart-item-name {
-        font-weight: 600;
-        font-size: 0.95rem;
-      }
-
-      .cart-item-detail {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-      }
-
-      .cart-item-price {
-        color: var(--accent-purple);
-        font-weight: 600;
-      }
-
-      .cart-footer {
-        padding: 10px;
-        bacKground: #F5F5F5;
-        border-radius: 0 0 20px 20px;
-        border-top: 1px solid var(--brand-blue-light);
-      }
-
-      .total-row {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 15px;
-        font-weight: 800;
-        font-size: 1.4rem;
-      }
-
-      .checkout-btn {
-        width: 100%;
-        padding: 16px;
-        margin-top: 20px;
-        bacKground: var(--success-green);
-        color: white;
-        border-radius: 12px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        display: block;
-        text-align: center;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-        transition: opacity 0.3s ease;
-      }
-
-      .checkout-btn:hover {
-        opacity: 0.9;
-        text-decoration: none;
-        color: white;
-      }
-
-
-
-      /* Receipt Modal */
-      .receipt-modal {
-        bacKground: white;
-        border-radius: 20px;
-        padding: 30px;
-        max-width: 400px;
-        width: 90%;
-      }
-
-      .receipt-header {
-        text-align: center;
-        border-bottom: 2px dashed var(--brand-blue-light);
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-      }
-
-      .receipt-total {
-        font-size: 1.5rem;
-        font-weight: 800;
-        text-align: right;
-        padding-top: 15px;
-        border-top: 2px solid #212121;
-      }
-
-      .receipt-footer {
-        display: flex;
-        gap: 10px;
-        margin-top: 25px;
-      }
-
-      /* Hidden checkbox for cart toggle */
-      .card input[type="checkbox"] {
-        display: none;
-      }
-
-      /* Modal Overlay */
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-      }
-
-      .modal-overlay:target {
-        display: flex;
-      }
-
-      .modal-content {
-        background: white;
-        border-radius: 15px;
-        padding: 30px;
-        width: 90%;
-        max-width: 500px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        border: none;
-      }
-
-      .modal-content h2 {
-        margin-bottom: 20px;
-        color: var(--primary-color);
-        font-size: 1.5rem;
-      }
-
-      .modal-actions {
-        display: flex;
-        gap: 12px;
-        margin-top: 25px;
-      }
-      
-      /* Delete Modal */
-      .modal-small {
-        max-width: 400px;
-        text-align: center;
-      }
-
-      .modal-small p {
-        margin-bottom: 25px;
-      }
-
-
-
-      .warning-text {
-        color: var(--danger-red);
-        font-weight: 600;
-      }
-
-      .product-name-display {
-        font-weight: 700;
-        color: var(--primary-color);
-      }
-      
-      
-      .btn-cancel {
-        flex: 1;
-        padding: 14px;
-        background: #F5F5F5;
-        color: var(--text-dark);
-        border: none;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        transition: background 0.3s ease;
-      }
-
-      .btn-cancel:hover {
-        background: var(--brand-blue-light);
-        color: var(--text-dark);
-        text-decoration: none;
-      }
-
-      .btn-delete-confirm {
-    flex: 1;
-    padding: 14px;
-    background: var(--danger-red, #dc3545); /* fallback red */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.3s ease;
-    display: inline-block;
-    text-align: center;
-}
-
-.btn-delete-confirm:hover {
-    background: var(--brand-red-dark, #b02a37);
-    color: white;
-}
-
-      /* Cart Visibility based on checkbox */
-      body:has(#btn-backbone:checked) #cart-backbone,
-      body:has(#btn-liog:checked) #cart-liog,
-      body:has(#btn-whole:checked) #cart-whole,
-      body:has(#btn-cutups:checked) #cart-cutups,
-      body:has(#btn-liver:checked) #cart-liver,
-      body:has(#btn-gizzard:checked) #cart-gizzard,
-      body:has(#btn-head:checked) #cart-head,
-      body:has(#btn-feet:checked) #cart-feet,
-      body:has(#btn-intestine:checked) #cart-intestine,
-      body:has(#btn-marinated:checked) #cart-marinated,
-      body:has(#btn-bellpepper:checked) #cart-bellpepper,
-      body:has(#btn-garlic:checked) #cart-garlic,
-      body:has(#btn-onion:checked) #cart-onion,
-      body:has(#btn-potato:checked) #cart-potato,
-      body:has(#btn-ginger:checked) #cart-ginger,
-      body:has(#btn-carrots:checked) #cart-carrots,
-      body:has(#btn-sayote:checked) #cart-sayote,
-      body:has(#btn-oil:checked) #cart-oil,
-      body:has(#btn-cocomama:checked) #cart-cocomama,
-      body:has(#btn-soybig:checked) #cart-soybig,
-      body:has(#btn-soysmall:checked) #cart-soysmall,
-      body:has(#btn-vinegar:checked) #cart-vinegar,
-      body:has(#btn-magic:checked) #cart-magic,
-      body:has(#btn-ginisa:checked) #cart-ginisa,
-      body:has(#btn-sinigang:checked) #cart-sinigang {
-        display: block;
-      }
-
-      @media (max-width: 1200px) {
-        .grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 768px) {
-        body {
-          flex-direction: column;
-        }
-        .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative;
-          padding: 15px;
-        }
-        .pos-container {
-          flex-direction: column;
-          padding: 20px;
-        }
-        .cart-area {
-          min-width: 100%;
-        }
-      }
+            /* Cart Visibility based on checkbox */
+            body:has(#btn-backbone:checked) #cart-backbone,
+            body:has(#btn-liog:checked) #cart-liog,
+            body:has(#btn-whole:checked) #cart-whole,
+            body:has(#btn-cutups:checked) #cart-cutups,
+            body:has(#btn-liver:checked) #cart-liver,
+            body:has(#btn-gizzard:checked) #cart-gizzard,
+            body:has(#btn-head:checked) #cart-head,
+            body:has(#btn-feet:checked) #cart-feet,
+            body:has(#btn-intestine:checked) #cart-intestine,
+            body:has(#btn-marinated:checked) #cart-marinated,
+            body:has(#btn-bellpepper:checked) #cart-bellpepper,
+            body:has(#btn-garlic:checked) #cart-garlic,
+            body:has(#btn-onion:checked) #cart-onion,
+            body:has(#btn-potato:checked) #cart-potato,
+            body:has(#btn-ginger:checked) #cart-ginger,
+            body:has(#btn-carrots:checked) #cart-carrots,
+            body:has(#btn-sayote:checked) #cart-sayote,
+            body:has(#btn-oil:checked) #cart-oil,
+            body:has(#btn-cocomama:checked) #cart-cocomama,
+            body:has(#btn-soybig:checked) #cart-soybig,
+            body:has(#btn-soysmall:checked) #cart-soysmall,
+            body:has(#btn-vinegar:checked) #cart-vinegar,
+            body:has(#btn-magic:checked) #cart-magic,
+            body:has(#btn-ginisa:checked) #cart-ginisa,
+            body:has(#btn-sinigang:checked) #cart-sinigang {
+              display: block;
+            }
+
+            @media (max-width: 1200px) {
+              .grid {
+                grid-template-columns: repeat(2, 1fr);
+              }
+            }
+
+            @media (max-width: 768px) {
+              body {
+                flex-direction: column;
+              }
+              .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 15px;
+              }
+              .pos-container {
+                flex-direction: column;
+                padding: 20px;
+              }
+              .cart-area {
+                min-width: 100%;
+              }
+            }
     </style>
   </head>
   <body>
     <div class="sidebar">
-      <h2>W&A Inventory</h2>
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="dashboard.html">
+        <img src="Image/Logo.png" alt="logo" style="width: 100px" />
+      </a>
+      <h2>W&A Fresh and Frozen Products</h2>
       <ul>
         <li><a href="dashboard.html">Dashboard</a></li>
         <li class="active"><a href="pos.html">POS</a></li>
@@ -563,7 +570,9 @@
           <a href="manage_staff.html">Staff Management</a>
         </li>
         <li id="logout-btn">
-          <a href="#LogOutModal" style="color: var(--brand-red-light)">Logout</a>
+          <a href="#LogOutModal" style="color: var(--brand-red-light)"
+            >Logout</a
+          >
         </li>
       </ul>
     </div>
@@ -580,9 +589,12 @@
           <h2 id="frozen">Frozen & Poultry</h2>
           <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-
               <div class="card product-card">
-                <img src="/Image/backbone.jpg" class="card-img-top" alt="Backbone" />
+                <img
+                  src="/Image/backbone.jpg"
+                  class="card-img-top"
+                  alt="Backbone"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Backbone / SouPiece</h5>
                   <p class="price mb-1">₱160.00 / Kg</p>
@@ -600,12 +612,14 @@
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
                   <input type="checkbox" id="btn-backbone" />
-                  <label for="btn-backbone" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-backbone" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
 
-             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
                 <img
                   src="/Image/chicken neck.jpg"
@@ -628,17 +642,21 @@
                     />
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
-                  <a href="#noStockModal"><input type="checkbox" id="btn-whole" />
-                  <label class="add-btn mt-2"
-                    >Add to Cart</label
-                  ></a>
+                  <a href="#noStockModal"
+                    ><input type="checkbox" id="btn-whole" />
+                    <label class="add-btn mt-2">Add to Cart</label></a
+                  >
                 </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/dressed chicken.jpg" class="card-img-top" alt="Whole Chicken" />
+                <img
+                  src="/Image/dressed chicken.jpg"
+                  class="card-img-top"
+                  alt="Whole Chicken"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Whole Chicken</h5>
                   <p class="price mb-1">₱210.00 / Kg</p>
@@ -656,14 +674,20 @@
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
                   <input type="checkbox" id="btn-whole" />
-                  <label for="btn-whole" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-whole" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/assorted cut ups.jpg" class="card-img-top" alt="Assorted Cut-ups" />
+                <img
+                  src="/Image/assorted cut ups.jpg"
+                  class="card-img-top"
+                  alt="Assorted Cut-ups"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Assorted Cut-ups</h5>
                   <p class="price mb-1">₱215.00 / Kg</p>
@@ -681,14 +705,20 @@
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
                   <input type="checkbox" id="btn-cutups" />
-                  <label for="btn-cutups" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-cutups" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/chicken liver.jpg" class="card-img-top" alt="Liver" />
+                <img
+                  src="/Image/chicken liver.jpg"
+                  class="card-img-top"
+                  alt="Liver"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Atay (Liver)</h5>
                   <p class="price mb-1">₱220.00 / Kg</p>
@@ -706,14 +736,20 @@
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
                   <input type="checkbox" id="btn-liver" />
-                  <label for="btn-liver" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-liver" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/chicken gizzard.jpg" class="card-img-top" alt="Gizzard" />
+                <img
+                  src="/Image/chicken gizzard.jpg"
+                  class="card-img-top"
+                  alt="Gizzard"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Baticolon (Gizzard)</h5>
                   <p class="price mb-1">₱220.00 / Kg</p>
@@ -731,7 +767,9 @@
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
                   <input type="checkbox" id="btn-gizzard" />
-                  <label for="btn-gizzard" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-gizzard" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
@@ -741,7 +779,11 @@
           <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/bell pepper.jpg" class="card-img-top" alt="Bell Pepper" />
+                <img
+                  src="/Image/bell pepper.jpg"
+                  class="card-img-top"
+                  alt="Bell Pepper"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Bell Pepper</h5>
                   <p class="price mb-1">₱200.00 / Kg</p>
@@ -759,14 +801,20 @@
                     <span class="qty-hint">Type amount (e.g., 0.5 Kg)</span>
                   </div>
                   <input type="checkbox" id="btn-bellpepper" />
-                  <label for="btn-bellpepper" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-bellpepper" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/garlic.jpg" class="card-img-top" alt="Garlic" />
+                <img
+                  src="/Image/garlic.jpg"
+                  class="card-img-top"
+                  alt="Garlic"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Garlic</h5>
                   <p class="price mb-1">₱180.00 / Kg</p>
@@ -784,7 +832,9 @@
                     <span class="qty-hint">Type amount (e.g., 0.5 Kg)</span>
                   </div>
                   <input type="checkbox" id="btn-garlic" />
-                  <label for="btn-garlic" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-garlic" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
@@ -809,14 +859,20 @@
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
                   <input type="checkbox" id="btn-onion" />
-                  <label for="btn-onion" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-onion" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/potato.jpg" class="card-img-top" alt="Potato" />
+                <img
+                  src="/Image/potato.jpg"
+                  class="card-img-top"
+                  alt="Potato"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Potato</h5>
                   <p class="price mb-1">₱150.00 / Kg</p>
@@ -834,7 +890,9 @@
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
                   <input type="checkbox" id="btn-potato" />
-                  <label for="btn-potato" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-potato" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
@@ -844,7 +902,11 @@
           <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/oil.jpg" class="card-img-top" alt="Cooking Oil" />
+                <img
+                  src="/Image/oil.jpg"
+                  class="card-img-top"
+                  alt="Cooking Oil"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Cooking Oil (Kilo)</h5>
                   <p class="price mb-1">₱30.00 / Piece</p>
@@ -869,7 +931,11 @@
 
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/coco mama.jpg" class="card-img-top" alt="Coco Mama" />
+                <img
+                  src="/Image/coco mama.jpg"
+                  class="card-img-top"
+                  alt="Coco Mama"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Coco Mama</h5>
                   <p class="price mb-1">₱45.00 / Piece</p>
@@ -887,14 +953,20 @@
                     <span class="qty-hint">Type amount (e.g., 3 Pieces)</span>
                   </div>
                   <input type="checkbox" id="btn-cocomama" />
-                  <label for="btn-cocomama" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-cocomama" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/silver swan big.jpg" class="card-img-top" alt="Soy Sauce Big" />
+                <img
+                  src="/Image/silver swan big.jpg"
+                  class="card-img-top"
+                  alt="Soy Sauce Big"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Soy Sauce Big</h5>
                   <p class="price mb-1">₱15.00 / Piece</p>
@@ -912,14 +984,20 @@
                     <span class="qty-hint">Type amount (e.g., 3 Pieces)</span>
                   </div>
                   <input type="checkbox" id="btn-soybig" />
-                  <label for="btn-soybig" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-soybig" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card product-card">
-                <img src="/Image/silver swan small.jpg" class="card-img-top" alt="Soy Sauce Small" />
+                <img
+                  src="/Image/silver swan small.jpg"
+                  class="card-img-top"
+                  alt="Soy Sauce Small"
+                />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Soy Sauce Small</h5>
                   <p class="price mb-1">₱6.00 / Piece</p>
@@ -937,7 +1015,9 @@
                     <span class="qty-hint">Type amount (e.g., 5 Pieces)</span>
                   </div>
                   <input type="checkbox" id="btn-soysmall" />
-                  <label for="btn-soysmall" class="add-btn mt-2">Add to Cart</label>
+                  <label for="btn-soysmall" class="add-btn mt-2"
+                    >Add to Cart</label
+                  >
                 </div>
               </div>
             </div>
@@ -1115,7 +1195,12 @@
         <div class="receipt-total">Total: ₱0.00</div>
         <div class="receipt-footer">
           <a href="#" class="btn btn-secondary flex-fill">Close</a>
-          <a href="#" class="btn btn-primary flex-fill" style="bacKground: var(--sidebar-gradient); border: none;">New Sale</a>
+          <a
+            href="#"
+            class="btn btn-primary flex-fill"
+            style="background: var(--sidebar-gradient); border: none"
+            >New Sale</a
+          >
         </div>
       </div>
     </div>
@@ -1132,10 +1217,10 @@
       </div>
     </div>
 
-    <!-- Log Out Confirmation Modal -->  
+    <!-- Log Out Confirmation Modal -->
     <div class="modal-overlay" id="LogOutModal">
       <div class="modal-content modal-small">
-        <h2> Confirm Log Out</h2>
+        <h2>Confirm Log Out</h2>
         <p>Are you sure you want to <b>Log Out?</b></p>
         <p class="warning-text">Any unsaved action <b>cannot be undone</b>.</p>
         <div class="modal-actions">
@@ -1144,6 +1229,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>

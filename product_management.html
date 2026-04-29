@@ -64,6 +64,12 @@
         flex-shrink: 0;
       }
 
+      .navbar-brand {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
       .sidebar h2 {
         font-size: 1.4rem;
         text-align: center;
@@ -372,7 +378,6 @@
           sans-serif;
       }
 
-
       /* Modal Overlay */
       .modal-overlay {
         position: fixed;
@@ -406,8 +411,6 @@
         color: var(--primary-color);
         font-size: 1.5rem;
       }
-
-      
 
       .form-group {
         margin-bottom: 18px;
@@ -575,7 +578,11 @@
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
-      <h2>W&A Inventory</h2>
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="dashboard.html">
+        <img src="Image/Logo.png" alt="logo" style="width: 100px" />
+      </a>
+      <h2>W&A Fresh and Frozen Products</h2>
       <ul>
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="pos.html">POS</a></li>

@@ -5,33 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>W&A Inventory System - Dashboard</title>
     <!-- Bootstrap 4 CSS -->
-    <link
-      rel="stylesheet"
-      href="bootstrap-4.6.2-dist/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <style>
       :root {
-        --brand-magenta: #E91E8C;
-        --brand-magenta-light: #F74FA8;
-        --brand-magenta-dark: #C9177A;
-        --brand-green: #22C55E;
-        --brand-green-light: #4ADE80;
-        --brand-green-dark: #16A34A;
-        --brand-red: #E63946;
-        --brand-red-light: #F15D68;
-        --brand-red-dark: #C92A35;
-        --brand-blue: #5DADE2;
-        --brand-blue-light: #7EC0E8;
-        --brand-blue-dark: #3D93C9;
+        --brand-magenta: #e91e8c;
+        --brand-magenta-light: #f74fa8;
+        --brand-magenta-dark: #c9177a;
+        --brand-green: #22c55e;
+        --brand-green-light: #4ade80;
+        --brand-green-dark: #16a34a;
+        --brand-red: #e63946;
+        --brand-red-light: #f15d68;
+        --brand-red-dark: #c92a35;
+        --brand-blue: #5dade2;
+        --brand-blue-light: #7ec0e8;
+        --brand-blue-dark: #3d93c9;
         --primary-color: #212121;
         --accent-color: var(--brand-green);
         --warning-color: #f39c12;
         --danger-color: var(--brand-red);
-        --bg-light: #F5F5F5;
-        --white: #FFFFFF;
+        --bg-light: #f5f5f5;
+        --white: #ffffff;
         --text-dark: #212121;
         --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        --sidebar-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-magenta-dark) 100%);
+        --sidebar-gradient: linear-gradient(
+          135deg,
+          var(--brand-magenta) 0%,
+          var(--brand-magenta-dark) 100%
+        );
       }
 
       * {
@@ -60,6 +61,12 @@
         top: 0;
         height: 100vh;
         flex-shrink: 0;
+      }
+
+      .navbar-brand {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
       }
 
       .sidebar h2 {
@@ -160,7 +167,7 @@
         transition: transform 0.3s ease;
         border: none;
       }
-      
+
       .card span {
         font-size: 2.2rem;
         font-weight: 700;
@@ -199,7 +206,7 @@
       table th {
         text-align: left;
         padding: 15px;
-        background-color: #F5F5F5;
+        background-color: #f5f5f5;
         color: var(--text-dark);
         font-weight: 600;
         border-bottom: 2px solid var(--brand-blue-light);
@@ -212,7 +219,7 @@
       }
 
       table tbody tr:hover {
-        background-color: #F5F5F5;
+        background-color: #f5f5f5;
       }
 
       /* Status Badges - Matching Staff Management visible style */
@@ -280,7 +287,7 @@
         gap: 12px;
         margin-top: 25px;
       }
-      
+
       /* Delete Modal */
       .modal-small {
         max-width: 400px;
@@ -301,12 +308,11 @@
         font-weight: 700;
         color: var(--primary-color);
       }
-      
-      
+
       .btn-cancel {
         flex: 1;
         padding: 14px;
-        background: #F5F5F5;
+        background: #f5f5f5;
         color: var(--text-dark);
         border: none;
         border-radius: 8px;
@@ -325,26 +331,26 @@
       }
 
       .btn-delete-confirm {
-    flex: 1;
-    padding: 14px;
-    background: var(--danger-red, #dc3545); /* fallback red */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.3s ease;
-    display: inline-block;
-    text-align: center;
-}
+        flex: 1;
+        padding: 14px;
+        background: var(--danger-red, #dc3545); /* fallback red */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.3s ease;
+        display: inline-block;
+        text-align: center;
+      }
 
-.btn-delete-confirm:hover {
-    background: var(--brand-red-dark, #b02a37);
-    text-decoration: none;
-    color: white;
-}
+      .btn-delete-confirm:hover {
+        background: var(--brand-red-dark, #b02a37);
+        text-decoration: none;
+        color: white;
+      }
 
       /* Mobile */
       @media (max-width: 768px) {
@@ -372,7 +378,11 @@
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
-      <h2>W&A Inventory</h2>
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="dashboard.html">
+        <img src="Image/Logo.png" alt="logo" style="width: 100px" />
+      </a>
+      <h2>W&A Fresh and Frozen Products</h2>
       <ul>
         <li class="active"><a href="dashboard.html">Dashboard</a></li>
         <li><a href="pos.html">POS</a></li>
@@ -382,7 +392,9 @@
           <a href="manage_staff.html">Staff Management</a>
         </li>
         <li id="logout-btn">
-          <a href="#LogOutModal" style="color: var(--brand-red-light)">Logout</a>
+          <a href="#LogOutModal" style="color: var(--brand-red-light)"
+            >Logout</a
+          >
         </li>
       </ul>
     </div>
@@ -427,16 +439,20 @@
             <tr>
               <td>Whole Chicken</td>
               <td>Frozen and Poultry</td>
-              <td>5 kg </td>
+              <td>5 kg</td>
               <td>2026-12-15</td>
-              <td><span class="status-badge status-warning">Low Stock</span></td>
+              <td>
+                <span class="status-badge status-warning">Low Stock</span>
+              </td>
             </tr>
             <tr>
               <td>Bell Pepper</td>
               <td>Fresh Goods</td>
               <td>4 kg</td>
               <td>2026-05-10</td>
-              <td><span class="status-badge status-warning">Low Stock</span></td>
+              <td>
+                <span class="status-badge status-warning">Low Stock</span>
+              </td>
             </tr>
             <tr>
               <td>Liog</td>
@@ -454,7 +470,7 @@
 
     <div class="modal-overlay" id="LogOutModal">
       <div class="modal-content modal-small">
-        <h2> Confirm Log Out</h2>
+        <h2>Confirm Log Out</h2>
         <p>Are you sure you want to <b>Log Out?</b></p>
         <p class="warning-text">Any unsaved action <b>cannot be undone</b>.</p>
         <div class="modal-actions">
@@ -463,6 +479,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>

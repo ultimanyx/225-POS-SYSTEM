@@ -8,18 +8,18 @@
     <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <style>
       :root {
-        --brand-magenta: #E91E8C;
-        --brand-magenta-light: #F74FA8;
-        --brand-magenta-dark: #C9177A;
-        --brand-green: #22C55E;
-        --brand-green-light: #4ADE80;
-        --brand-green-dark: #16A34A;
-        --brand-red: #E63946;
-        --brand-red-light: #F15D68;
-        --brand-red-dark: #C92A35;
-        --brand-blue: #5DADE2;
-        --brand-blue-light: #7EC0E8;
-        --brand-blue-dark: #3D93C9;
+        --brand-magenta: #e91e8c;
+        --brand-magenta-light: #f74fa8;
+        --brand-magenta-dark: #c9177a;
+        --brand-green: #22c55e;
+        --brand-green-light: #4ade80;
+        --brand-green-dark: #16a34a;
+        --brand-red: #e63946;
+        --brand-red-light: #f15d68;
+        --brand-red-dark: #c92a35;
+        --brand-blue: #5dade2;
+        --brand-blue-light: #7ec0e8;
+        --brand-blue-dark: #3d93c9;
         --primary-color: #212121;
         --accent-color: var(--brand-green);
         --accent-purple: var(--brand-magenta);
@@ -27,12 +27,16 @@
         --danger-color: var(--brand-red);
         --danger-red: var(--brand-red);
         --success-green: var(--brand-green);
-        --bg-light: #F5F5F5;
-        --white: #FFFFFF;
+        --bg-light: #f5f5f5;
+        --white: #ffffff;
         --text-dark: #212121;
         --text-muted: #616161;
         --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        --sidebar-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-magenta-dark) 100%);
+        --sidebar-gradient: linear-gradient(
+          135deg,
+          var(--brand-magenta) 0%,
+          var(--brand-magenta-dark) 100%
+        );
       }
 
       * {
@@ -61,6 +65,12 @@
         top: 0;
         height: 100vh;
         flex-shrink: 0;
+      }
+
+      .navbar-brand {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
       }
 
       .sidebar h2 {
@@ -210,7 +220,7 @@
 
       .table-header {
         padding: 20px 25px;
-        background: #F5F5F5;
+        background: #f5f5f5;
         border-bottom: 1px solid var(--brand-blue-light);
         display: flex;
         justify-content: space-between;
@@ -237,7 +247,7 @@
       .table th {
         text-align: left;
         padding: 18px;
-        background: #F5F5F5;
+        background: #f5f5f5;
         color: var(--text-dark);
         font-weight: 600;
         border-bottom: 2px solid var(--brand-blue-light);
@@ -250,7 +260,7 @@
       }
 
       .table tbody tr:hover {
-        background-color: #F5F5F5;
+        background-color: #f5f5f5;
       }
 
       /* Status Badges */
@@ -333,7 +343,7 @@
         margin: 0.4rem 0;
       }
 
-            /* Modal Overlay */
+      /* Modal Overlay */
       .modal-overlay {
         position: fixed;
         top: 0;
@@ -412,7 +422,7 @@
       .btn-cancel {
         flex: 1;
         padding: 14px;
-        background: #F5F5F5;
+        background: #f5f5f5;
         color: var(--text-dark);
         border: none;
         border-radius: 8px;
@@ -506,17 +516,23 @@
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
-      <h2>W&A Inventory</h2>
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="dashboard.html">
+        <img src="Image/Logo.png" alt="logo" style="width: 100px" />
+      </a>
+      <h2>W&A Fresh and Frozen Products</h2>
       <ul>
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="pos.html">POS</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="product_management.html">Product Management</a></li>
         <li class="active">
-          <a href="staff_management.html">Staff Management</a>
+          <a href="manage_staff.html">Staff Management</a>
         </li>
         <li id="logout-btn">
-          <a href="#LogOutModal" style="color: var(--brand-red-light)">Logout</a>
+          <a href="#LogOutModal" style="color: var(--brand-red-light)"
+            >Logout</a
+          >
         </li>
       </ul>
     </div>
@@ -532,19 +548,28 @@
       <!-- Staff Stats Cards -->
       <div class="row mb-4">
         <div class="col-md-4 mb-4">
-          <div class="staff-card" style="background: var(--brand-magenta-dark); color: white">
+          <div
+            class="staff-card"
+            style="background: var(--brand-magenta-dark); color: white"
+          >
             <span>3</span>
             <p>Total Staff</p>
           </div>
         </div>
         <div class="col-md-4 mb-4">
-          <div class="staff-card" style="background: var(--brand-green); color: white">
+          <div
+            class="staff-card"
+            style="background: var(--brand-green); color: white"
+          >
             <span>1</span>
             <p>Active Staff</p>
           </div>
         </div>
         <div class="col-md-4 mb-4">
-          <div class="staff-card" style="background: var(--brand-red); color: white">
+          <div
+            class="staff-card"
+            style="background: var(--brand-red); color: white"
+          >
             <span>2</span>
             <p>Inactive Staff</p>
           </div>
@@ -750,13 +775,13 @@
       </div>
     </div>
 
-     <div class="modal-overlay" id="LogOutModal">
+    <div class="modal-overlay" id="LogOutModal">
       <div class="modal-content modal-small">
-        <h2> Confirm Log Out</h2>
+        <h2>Confirm Log Out</h2>
         <p>Are you sure you want to <b>Log Out?</b></p>
         <p class="warning-text">This action <b>cannot be undone</b>.</p>
         <div class="modal-actions">
-          <a href="staff_login.html" class="btn-cancel">Yes</a>
+          <a href="index.html" class="btn-cancel">Yes</a>
           <a href="#" class="btn-delete-confirm">No</a>
         </div>
       </div>

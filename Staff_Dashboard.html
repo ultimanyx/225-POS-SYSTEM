@@ -63,6 +63,12 @@
         flex-shrink: 0;
       }
 
+      .navbar-brand {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
       .sidebar h2 {
         font-size: 1.4rem;
         text-align: center;
@@ -161,7 +167,6 @@
         transition: transform 0.3s ease;
         border: none;
       }
-
 
       .card span {
         font-size: 2.2rem;
@@ -372,7 +377,11 @@
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
-      <h2>W&A Inventory</h2>
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="Staff_Dashboard.html">
+        <img src="Image/Logo.png" alt="logo" style="width: 100px" />
+      </a>
+      <h2>W&A Fresh and Frozen Products</h2>
       <ul>
         <li class="active"><a href="Staff_Dashboard.html">Dashboard</a></li>
         <li><a href="Staff_pos.html">POS</a></li>
@@ -409,7 +418,6 @@
         </div>
       </div>
 
-
       <!-- Inventory Table -->
       <section class="inventory-table">
         <h3>Current Stock Status</h3>
@@ -427,16 +435,20 @@
             <tr>
               <td>Whole Chicken</td>
               <td>Frozen and Poultry</td>
-              <td>5 kg </td>
+              <td>5 kg</td>
               <td>2026-12-15</td>
-              <td><span class="status-badge status-warning">Low Stock</span></td>
+              <td>
+                <span class="status-badge status-warning">Low Stock</span>
+              </td>
             </tr>
             <tr>
               <td>Bell Pepper</td>
               <td>Fresh Goods</td>
               <td>4 kg</td>
               <td>2026-05-10</td>
-              <td><span class="status-badge status-warning">Low Stock</span></td>
+              <td>
+                <span class="status-badge status-warning">Low Stock</span>
+              </td>
             </tr>
             <tr>
               <td>Liog</td>

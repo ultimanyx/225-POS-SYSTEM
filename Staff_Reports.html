@@ -59,6 +59,12 @@
         flex-shrink: 0;
       }
 
+      .navbar-brand {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
       .sidebar h2 {
         font-size: 1.4rem;
         text-align: center;
@@ -351,7 +357,11 @@
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
-      <h2>W&A Inventory</h2>
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="Staff_Dashboard.html">
+        <img src="Image/Logo.png" alt="logo" style="width: 100px" />
+      </a>
+      <h2>W&A Fresh and Frozen Products</h2>
       <ul>
         <li><a href="Staff_Dashboard.html">Dashboard</a></li>
         <li><a href="Staff_pos.html">POS</a></li>
