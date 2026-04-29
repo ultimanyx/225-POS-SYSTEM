@@ -363,6 +363,34 @@
         box-shadow: 0 0 0 0.2rem rgba(233, 30, 140, 0.25);
       }
 
+      /* Footer Nia */
+      footer {
+        background: transparent;
+        padding: 20px 0;
+        margin-top: auto;
+        border-radius: 15px;
+        text-align: center;
+      }
+
+      footer p {
+        margin: 0;
+        color: #616161;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .footer-content small {
+        color: #9e9e9e;
+        font-size: 0.8rem;
+      }
+
       @media (max-width: 768px) {
         body {
           flex-direction: column;
@@ -509,7 +537,15 @@
           </table>
         </div>
       </div>
+      <footer>
+        <div class="footer-content">
+          <p>&copy; 2026 W&A Fresh and Frozen Products. All rights reserved.</p>
+          <small>POS and Inventory</small>
+        </div>
+      </footer>
     </div>
+    </div>
+    
 
     <!-- Single Delete Confirmation Modal -->
     <div class="modal-overlay" id="deleteModal">
