@@ -7,6 +7,7 @@
     <!-- Bootstrap 4 CSS -->
     <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <style>
+      /* Tawaga rani nga color  example color=var(--brand-magenta) para ma change ang color sa magenta*/
       :root {
         --brand-magenta: #e91e8c;
         --brand-magenta-light: #f74fa8;
@@ -40,15 +41,15 @@
       }
 
       * {
-        margin: 0;
-        padding: 0;
+        margin: 0; /* default ang margin or wala */
+        padding: 0;  /* default ang padding or wala */
         box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* muni nag font nga gigamit kani ra i change  */
       }
 
       body {
         display: flex;
-        background-color: var(--bg-light);
+        background-color: var(--bg-light); /* muni ang background color sa tanan body */
         min-height: 100vh;
         color: var(--text-dark);
       }
@@ -57,7 +58,8 @@
       .sidebar {
         width: 260px;
         background-color: var(--primary-color);
-        color: var(--white);
+        color: var(--white); /* Change text color ilisdi ni para sa side bar i copy paste nia "color:white;" para 
+        ma change ang text color sa white */
         padding: 25px;
         display: flex;
         flex-direction: column;
@@ -97,7 +99,8 @@
       .sidebar ul li a {
         display: block;
         padding: 15px 20px;
-        color: white;
+        color: white;/* Change text color ilisdi ni para sa side bar i copy paste nia "color:black;" para 
+        ma change ang text color sa black */
         text-decoration: none;
         font-weight: 500;
         border-radius: 10px;
@@ -120,7 +123,7 @@
 
       #logout-btn {
         margin-top: auto;
-        background-color: rgba(230, 57, 70, 0.1);
+        background-color: rgba(230, 57, 70, 0.1); 
       }
 
       #logout-btn:hover {
@@ -546,6 +549,7 @@
     <div class="sidebar">
       <!-- Brand/logo -->
       <a class="navbar-brand" href="dashboard.html">
+        <!-- Src ilisdi ang sulod sa "" para ma change ang Logo Image -->
         <img src="Image/Logo.png" alt="logo" style="width: 100px" />
       </a>
       <h2>W&A Fresh and Frozen Products</h2>
@@ -554,7 +558,7 @@
         <li><a href="pos.html">POS</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="product_management.html">Product Management</a></li>
-        <li class="active">
+        <li class="active"> <!-- Butngi sa class ang element para ma change ang color sa active na  ang ibutang kay class="active" -->
           <a href="manage_staff.html">Staff Management</a>
         </li>
         <li id="logout-btn">
@@ -574,29 +578,35 @@
       </header>
 
       <!-- Staff Stats Cards -->
+
+      <!-- Total Staff -->
       <div class="row mb-4">
         <div class="col-md-4 mb-4">
           <div
             class="staff-card"
-            style="background: var(--brand-magenta-dark); color: white"
+            style="background: var(--white); color: var(--brand-magenta-dark)"
           >
             <span>3</span>
             <p>Total Staff</p>
           </div>
         </div>
+
+        <!-- Active Staff -->
         <div class="col-md-4 mb-4">
           <div
             class="staff-card"
-            style="background: var(--brand-green); color: white"
+            style="background: var(--white); color: var(--brand-green-dark)"
           >
             <span>1</span>
             <p>Active Staff</p>
           </div>
         </div>
+
+        <!-- Inactive Staff -->
         <div class="col-md-4 mb-4">
           <div
             class="staff-card"
-            style="background: var(--brand-red); color: white"
+            style="background: var(--white); color: var(--brand-red-dark)"
           >
             <span>2</span>
             <p>Inactive Staff</p>
@@ -814,7 +824,7 @@
       <div class="modal-content modal-small">
         <h2>Confirm Log Out</h2>
         <p>Are you sure you want to <b>Log Out?</b></p>
-        <p class="warning-text">This action <b>cannot be undone</b>.</p>
+        <p>This action <b>cannot be undone</b>.</p>
         <div class="modal-actions">
           <a href="index.html" class="btn-cancel">Yes</a>
           <a href="#" class="btn-delete-confirm">No</a>
