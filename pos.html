@@ -182,8 +182,9 @@
         transition:
           transform 0.3s ease,
           box-shadow 0.3s ease;
-        border: 1px solid var(--brand-blue-light);
-        min-height: 400px;
+        border: 1px solid var(--bg-light);
+        box-shadow: var(--shadow);
+        min-height: 530px;
       }
 
       .product-card:hover {
@@ -195,14 +196,14 @@
         width: 100%;
         height: 140px;
         object-fit: contain;
-        padding: 10px;
+        padding: 8px;
         background: #fff;
       }
 
       .product-card .card-title {
         font-size: 1.2rem;
-        margin-bottom: 5px;
-        min-height: 2.4em;
+        margin-bottom: 3px;
+        min-height: 2.2em;
         color: var(--accent-purple);
       }
 
@@ -235,6 +236,7 @@
 
       .qty-selector input {
         width: 100%;
+        height: auto;
         padding: 10px;
         border: 1px solid var(--brand-blue-light);
         border-radius: 6px;
@@ -372,9 +374,19 @@
 
       .receipt-header {
         text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .receipt-info {
+        text-align: left;
+        border-top: 2px dashed var(--brand-blue-light);
         border-bottom: 2px dashed var(--brand-blue-light);
-        padding-bottom: 20px;
-        margin-bottom: 20px;
+      }
+
+      .receipt-info p{
+        font-size: 0.9rem;
+        margin-bottom: 1px;
+        color: var(--text-muted);
       }
 
       .receipt-total {
@@ -389,6 +401,33 @@
         display: flex;
         gap: 10px;
         margin-top: 25px;
+      }
+
+
+      /* Table CSS */
+      .table-receipt {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .table-receipt th {
+        text-align: center;
+        padding: 12px 8px;
+        background-color: #f8f9fa;
+        color: var(--text-dark);
+        font-weight: 600;
+        border-bottom: 1px solid var(--brand-blue-light);
+        font-size: 1rem;
+
+      }
+
+      .table-receipt td {
+        text-align: left;
+        padding: 12px 8px;
+        border-bottom: 1px solid #e9ecef;
+        font-size: 0.9rem;
+        vertical-align: middle;
       }
 
       /* Hidden checkbox for cart toggle */
@@ -908,7 +947,7 @@
                 />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Cooking Oil (Kilo)</h5>
-                  <p class="price mb-1">₱30.00 / Piece</p>
+                  <p class="price mb-1">₱80.00 / Kg</p>
                   <p class="stock text-muted mb-2">Stock: 10 Kg</p>
                   <div class="qty-selector mt-auto">
                     <span class="qty-label">Quantity (Kg):</span>
@@ -1131,9 +1170,9 @@
             <div class="cart-item-row">
               <div class="cart-item-info">
                 <span class="cart-item-name">Cooking Oil</span>
-                <span class="cart-item-detail">Qty: 1 Piece</span>
+                <span class="cart-item-detail">Qty: 1 kg</span>
               </div>
-              <span class="cart-item-price">₱30.00</span>
+              <span class="cart-item-price">₱80.00</span>
             </div>
           </div>
           <div class="cart-item" id="cart-cocomama">
@@ -1179,19 +1218,43 @@
     <div class="modal-overlay" id="receipt-modal">
       <div class="receipt-modal">
         <div class="receipt-header">
-          <h2>🧾 W&A Inventory</h2>
+          <h2>W&A Inventory</h2>
           <p>Order Receipt</p>
-          <small>Simulation Mode</small>
+        </div>
+        <div class="receipt-info">
+          <p>Transaction ID: <b>#123456789</b></p>
+          <p>Date: <b>June 15, 2024</b></p>
+          <p>Time: <b>11:21 AM</b></p>
         </div>
         <div class="receipt-items">
-          <p style="text-align: center; color: var(--text-muted)">
-            Selected items would appear here
-          </p>
-          <p style="text-align: center; margin-top: 10px">
-            Transaction Complete ✓
-          </p>
+          <table class="table-receipt table-bordered">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price(₱)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Whole Chicken</td>
+        <td>2 kg</td>
+        <td>₱420.00</td>
+      </tr>
+      <tr>
+        <td>Cooking Oil</td>
+        <td>0.5 kg</td>
+        <td>₱53.00</td>
+      </tr>
+      <tr>
+        <td>Soy Sauce Big</td>
+        <td>1 pc</td>
+        <td>₱15.00</td>
+      </tr>
+    </tbody>
+  </table>
         </div>
-        <div class="receipt-total">Total: ₱0.00</div>
+        <div class="receipt-total">Total: ₱488.00</div>
         <div class="receipt-footer">
           <a href="#" class="btn btn-secondary flex-fill">Close</a>
           <a

@@ -8,12 +8,17 @@
     <style>
       :root {
         --brand-magenta: #e91e8c;
+        --brand-magenta-light: #f74fa8;
         --brand-magenta-dark: #c9177a;
         --brand-green: #22c55e;
+        --brand-green-light: #4ade80;
+        --brand-green-dark: #16a34a;
         --brand-red: #e63946;
+        --brand-red-light: #f15d68;
         --brand-red-dark: #c92a35;
         --brand-blue: #5dade2;
         --brand-blue-light: #7ec0e8;
+        --brand-blue-dark: #3d93c9;
         --primary-color: #212121;
         --accent-purple: var(--brand-magenta);
         --sidebar-gradient: linear-gradient(
@@ -58,12 +63,6 @@
         flex-shrink: 0;
       }
 
-      .navbar-brand {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
-      }
-
       .sidebar h2 {
         font-size: 1.4rem;
         text-align: center;
@@ -71,6 +70,12 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         margin-bottom: 25px;
         letter-spacing: 1px;
+      }
+
+      .navbar-brand {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
       }
 
       .sidebar ul {
@@ -111,10 +116,6 @@
       #logout-btn:hover {
         background: var(--danger-color);
         transform: none;
-      }
-
-      #logout-btn a {
-        color: #f15d68;
       }
 
       /* Main Layout */
@@ -181,8 +182,9 @@
         transition:
           transform 0.3s ease,
           box-shadow 0.3s ease;
-        border: 1px solid var(--brand-blue-light);
-        height: 100%;
+        border: 1px solid var(--bg-light);
+        box-shadow: var(--shadow);
+        min-height: 530px;
       }
 
       .product-card:hover {
@@ -194,18 +196,14 @@
         width: 100%;
         height: 140px;
         object-fit: contain;
-        padding: 10px;
+        padding: 8px;
         background: #fff;
-      }
-
-      .product-card .card-body {
-        min-height: 260px;
       }
 
       .product-card .card-title {
         font-size: 1.2rem;
-        margin-bottom: 5px;
-        min-height: 2.4em;
+        margin-bottom: 3px;
+        min-height: 2.2em;
         color: var(--accent-purple);
       }
 
@@ -238,6 +236,7 @@
 
       .qty-selector input {
         width: 100%;
+        height: auto;
         padding: 10px;
         border: 1px solid var(--brand-blue-light);
         border-radius: 6px;
@@ -375,9 +374,19 @@
 
       .receipt-header {
         text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .receipt-info {
+        text-align: left;
+        border-top: 2px dashed var(--brand-blue-light);
         border-bottom: 2px dashed var(--brand-blue-light);
-        padding-bottom: 20px;
-        margin-bottom: 20px;
+      }
+
+      .receipt-info p{
+        font-size: 0.9rem;
+        margin-bottom: 1px;
+        color: var(--text-muted);
       }
 
       .receipt-total {
@@ -392,6 +401,33 @@
         display: flex;
         gap: 10px;
         margin-top: 25px;
+      }
+
+
+      /* Table CSS */
+      .table-receipt {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .table-receipt th {
+        text-align: center;
+        padding: 12px 8px;
+        background-color: #f8f9fa;
+        color: var(--text-dark);
+        font-weight: 600;
+        border-bottom: 1px solid var(--brand-blue-light);
+        font-size: 1rem;
+
+      }
+
+      .table-receipt td {
+        text-align: left;
+        padding: 12px 8px;
+        border-bottom: 1px solid #e9ecef;
+        font-size: 0.9rem;
+        vertical-align: middle;
       }
 
       /* Hidden checkbox for cart toggle */
@@ -439,6 +475,7 @@
         margin-top: 25px;
       }
 
+      /* Delete Modal */
       .modal-small {
         max-width: 400px;
         text-align: center;
@@ -446,12 +483,16 @@
 
       .modal-small p {
         margin-bottom: 25px;
-        color: var(--text-muted);
       }
 
       .warning-text {
-        color: var(--brand-red);
+        color: var(--danger-red);
         font-weight: 600;
+      }
+
+      .product-name-display {
+        font-weight: 700;
+        color: var(--primary-color);
       }
 
       .btn-cancel {
@@ -471,14 +512,14 @@
 
       .btn-cancel:hover {
         background: var(--brand-blue-light);
-        text-decoration: none;
         color: var(--text-dark);
+        text-decoration: none;
       }
 
       .btn-delete-confirm {
         flex: 1;
         padding: 14px;
-        background: var(--brand-red);
+        background: var(--danger-red, #dc3545); /* fallback red */
         color: white;
         border: none;
         border-radius: 8px;
@@ -492,7 +533,7 @@
       }
 
       .btn-delete-confirm:hover {
-        background: var(--brand-red-dark);
+        background: var(--brand-red-dark, #b02a37);
         color: white;
       }
 
@@ -525,6 +566,12 @@
         display: block;
       }
 
+      @media (max-width: 1200px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
       @media (max-width: 768px) {
         body {
           flex-direction: column;
@@ -548,7 +595,7 @@
   <body>
     <div class="sidebar">
       <!-- Brand/logo -->
-      <a class="navbar-brand" href="Staff_Dashboard.html">
+      <a class="navbar-brand" href="dashboard.html">
         <img src="Image/Logo.png" alt="logo" style="width: 100px" />
       </a>
       <h2>W&A Fresh and Frozen Products</h2>
@@ -557,7 +604,9 @@
         <li class="active"><a href="Staff_pos.html">POS</a></li>
         <li><a href="Staff_Reports.html">Reports</a></li>
         <li id="logout-btn">
-          <a href="#LogOutModal">Logout</a>
+          <a href="#LogOutModal" style="color: var(--brand-red-light)"
+            >Logout</a
+          >
         </li>
       </ul>
     </div>
@@ -894,7 +943,7 @@
                 />
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">Cooking Oil (Kilo)</h5>
-                  <p class="price mb-1">₱30.00 / Piece</p>
+                  <p class="price mb-1">₱80.00 / Kg</p>
                   <p class="stock text-muted mb-2">Stock: 10 Kg</p>
                   <div class="qty-selector mt-auto">
                     <span class="qty-label">Quantity (Kg):</span>
@@ -1117,9 +1166,9 @@
             <div class="cart-item-row">
               <div class="cart-item-info">
                 <span class="cart-item-name">Cooking Oil</span>
-                <span class="cart-item-detail">Qty: 1 Piece</span>
+                <span class="cart-item-detail">Qty: 1 kg</span>
               </div>
-              <span class="cart-item-price">₱30.00</span>
+              <span class="cart-item-price">₱80.00</span>
             </div>
           </div>
           <div class="cart-item" id="cart-cocomama">
@@ -1165,19 +1214,43 @@
     <div class="modal-overlay" id="receipt-modal">
       <div class="receipt-modal">
         <div class="receipt-header">
-          <h2>🧾 W&A Inventory</h2>
+          <h2>W&A Inventory</h2>
           <p>Order Receipt</p>
-          <small>Simulation Mode</small>
+        </div>
+        <div class="receipt-info">
+          <p>Transaction ID: <b>#123456789</b></p>
+          <p>Date: <b>June 15, 2024</b></p>
+          <p>Time: <b>11:21 AM</b></p>
         </div>
         <div class="receipt-items">
-          <p style="text-align: center; color: var(--text-muted)">
-            Selected items would appear here
-          </p>
-          <p style="text-align: center; margin-top: 10px">
-            Transaction Complete ✓
-          </p>
+          <table class="table-receipt table-bordered">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price(₱)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Whole Chicken</td>
+        <td>2 kg</td>
+        <td>₱420.00</td>
+      </tr>
+      <tr>
+        <td>Cooking Oil</td>
+        <td>0.5 kg</td>
+        <td>₱53.00</td>
+      </tr>
+      <tr>
+        <td>Soy Sauce Big</td>
+        <td>1 pc</td>
+        <td>₱15.00</td>
+      </tr>
+    </tbody>
+  </table>
         </div>
-        <div class="receipt-total">Total: ₱0.00</div>
+        <div class="receipt-total">Total: ₱488.00</div>
         <div class="receipt-footer">
           <a href="#" class="btn btn-secondary flex-fill">Close</a>
           <a
@@ -1202,10 +1275,10 @@
       </div>
     </div>
 
-    <!-- Logout Confirmation Modal -->
+    <!-- Log Out Confirmation Modal -->
     <div class="modal-overlay" id="LogOutModal">
       <div class="modal-content modal-small">
-        <h2>Confirm Logout</h2>
+        <h2>Confirm Log Out</h2>
         <p>Are you sure you want to <b>Log Out?</b></p>
         <p class="warning-text">Any unsaved action <b>cannot be undone</b>.</p>
         <div class="modal-actions">

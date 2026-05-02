@@ -222,6 +222,23 @@
         background-color: #f5f5f5;
       }
 
+      /* Supplier Info */
+      .supplier-info {
+        line-height: 1.4;
+      }
+
+      .supplier-info strong {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--primary-color);
+      }
+
+      .supplier-info small {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+
       /* Status Badges - Matching Staff Management visible style */
       .status-badge {
         padding: 6px 14px;
@@ -438,7 +455,7 @@
         </div>
         <div class="card">
           No Stock Items
-          <span id="no-stock">0</span>
+          <span id="no-stock">1</span>
         </div>
         <div class="card">
           Low Stock Items
@@ -455,7 +472,7 @@
               <th>Product Name</th>
               <th>Category</th>
               <th>Stock Level</th>
-              <th>Last Stock Update</th>
+              <th>Supplier</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -464,7 +481,12 @@
               <td>Whole Chicken</td>
               <td>Frozen and Poultry</td>
               <td>5 kg</td>
-              <td>2026-12-15</td>
+              <td>
+                  <div class="supplier-info">
+                    <strong>Fresh Chicken Co.</strong>
+                    <small>0912-345-6789</small>
+                  </div>
+                </td>
               <td>
                 <span class="status-badge status-warning">Low Stock</span>
               </td>
@@ -473,7 +495,12 @@
               <td>Bell Pepper</td>
               <td>Fresh Goods</td>
               <td>4 kg</td>
-              <td>2026-05-10</td>
+              <td>
+                  <div class="supplier-info">
+                    <strong>Green Valley Farms</strong>
+                    <small>0923-456-7890</small>
+                  </div>
+                </td>
               <td>
                 <span class="status-badge status-warning">Low Stock</span>
               </td>
@@ -482,11 +509,45 @@
               <td>Liog</td>
               <td>Frozen and Poultry</td>
               <td>No Stock</td>
-              <td>2026-04-20</td>
+              <td>
+                  <div class="supplier-info">
+                    <strong>Fresh Chicken Co.</strong>
+                    <small>0912-345-6789</small>
+                  </div>
+                </td>
               <td>
                 <span class="status-badge status-danger">No Stock</span>
               </td>
             </tr>
+            
+              <t<tr>
+              <td>Garlic</td>
+              <td>Fresh Goods</td>
+              <td>6 kg</td>
+              <td>
+                  <div class="supplier-info">
+                    <strong>Green Valley Farms</strong>
+                    <small>0923-456-7890</small>
+                  </div>
+                </td>
+              <td>
+                <span class="status-badge status-warning">Low Stock</span>
+              </td>
+              </tr>
+              <tr>
+              <td>Soy Sauce Small</td>
+              <td>Spices & Condiments</td>
+              <td>6 pieces</td>
+              <td>
+                  <div class="supplier-info">
+                    <strong>Silver Swan Dist.</strong>
+                    <small>0945-678-9012</small>
+                  </div>
+                </td>
+              <td>
+                <span class="status-badge status-warning">Low Stock</span>
+              </td>
+              </tr>
           </tbody>
         </table>
       </section>
