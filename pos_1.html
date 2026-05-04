@@ -105,7 +105,7 @@
 
       .sidebar ul li.active {
         background: var(--sidebar-gradient);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 15px #00000033;
       }
 
       #logout-btn {
@@ -598,9 +598,13 @@
       </a>
       <h2>W&A Fresh and Frozen Products</h2>
       <ul>
-        <li><a href="Staff_Dashboard.html">Dashboard</a></li>
-        <li class="active"><a href="Staff_pos.html">POS</a></li>
-        <li><a href="Staff_Reports.html">Reports</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li class="active"><a href="pos.html">POS</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="product_management.html">Product Management</a></li>
+        <li>
+          <a href="manage_staff.html">Staff Management</a>
+        </li>
         <li id="logout-btn">
           <a href="#LogOutModal" style="color: var(--brand-red-light)"
             >Logout</a
@@ -706,9 +710,7 @@
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
                   <input type="checkbox" id="btn-whole" />
-                  <label for="btn-whole" class="add-btn mt-2"
-                    >Add to Cart</label
-                  >
+                  <label for="btn-whole" class="added-btn mt-2">Added</label>
                 </div>
               </div>
             </div>
@@ -1255,7 +1257,7 @@
             href="#"
             class="btn btn-primary flex-fill"
             style="background: var(--sidebar-gradient); border: none"
-            >Complete Transaction</a
+            >New Sale</a
           >
         </div>
       </div>
@@ -1268,7 +1270,7 @@
         <p>Please Call Your Supplier: <b>Fresh Chicken Co.</b></p>
         <p>Phone Number: <b>0912-345-6789</b></p>
         <div class="modal-actions">
-          <a href="Staff_pos.html" class="btn-cancel">Return</a>
+          <a href="pos.html" class="btn-cancel">Return</a>
         </div>
       </div>
     </div>
@@ -1280,7 +1282,7 @@
         <p>Are you sure you want to <b>Log Out?</b></p>
         <p class="warning-text">Any unsaved action <b>cannot be undone</b>.</p>
         <div class="modal-actions">
-          <a href="staff_login.html" class="btn-cancel">Yes</a>
+          <a href="index.html" class="btn-cancel">Yes</a>
           <a href="#" class="btn-delete-confirm">No</a>
         </div>
       </div>
