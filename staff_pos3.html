@@ -266,6 +266,18 @@
         border: none;
         transition: opacity 0.3s ease;
       }
+      .added-btn {
+        width: 100%;
+        padding: 10px;
+        background: white;
+        color: var(--brand-magenta);
+        border-radius: 8px;
+        font-weight: 600;
+        display: block;
+        text-align: center;
+        cursor: default;
+        border: 1px solid var(--brand-magenta);
+      }
 
       .add-btn:hover {
         opacity: 0.9;
@@ -456,10 +468,6 @@
         vertical-align: middle;
       }
 
-      /* Hidden checkbox for cart toggle */
-      .card input[type="checkbox"] {
-        display: none;
-      }
 
       /* Modal Overlay */
       .modal-overlay {
@@ -561,6 +569,11 @@
       .btn-delete-confirm:hover {
         background: var(--brand-red-dark, #b02a37);
         color: white;
+      }
+
+      /* Hidden checkbox for cart toggle */
+      .card input[type="checkbox"] {
+        display: none;
       }
 
       /* Cart Visibility based on checkbox */
@@ -733,10 +746,10 @@
                     />
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
-                  <a href="staff_pos1.html">
-                    <input type="checkbox" id="btn-whole" />
-                    <label  class="add-btn mt-2"
-                      >Add to Cart</label
+                  <input type="checkbox" id="btn-whole" checked />
+                  <a href="Staff_pos.html">
+                    <label  class="added-btn mt-2"
+                      >Added</label
                     >
                   </a>
                 </div>
@@ -985,8 +998,10 @@
                     />
                     <span class="qty-hint">Type amount (e.g., 3 Pieces)</span>
                   </div>
-                  <input type="checkbox" id="btn-oil" />
-                  <label for="btn-oil" class="add-btn mt-2">Add to Cart</label>
+                  <a href="staff_pos1.html">
+                      <input type="checkbox" id="btn-oil" checked />
+                      <label class="added-btn mt-2">Added</label>
+                  </a>
                 </div>
               </div>
             </div>
@@ -1045,10 +1060,11 @@
                     />
                     <span class="qty-hint">Type amount (e.g., 3 Pieces)</span>
                   </div>
-                  <input type="checkbox" id="btn-soybig" />
-                  <label for="btn-soybig" class="add-btn mt-2"
-                    >Add to Cart</label
-                  >
+                  <a href="staff_pos2.html">
+                      <input type="checkbox" id="btn-soybig" checked/>
+                      <label class="added-btn mt-2"
+                        >Added</label>
+                  </a>
                 </div>
               </div>
             </div>
@@ -1231,7 +1247,7 @@
         <div class="cart-footer">
           <div class="total-row">
             <span>Total</span>
-            <span>₱0.00</span>
+            <span>₱488.00</span>
           </div>
           <a href="#receipt-modal" class="checkout-btn">Proceed Transaction</a>
         </div>
@@ -1293,7 +1309,7 @@
           <a
             href="#receipt_proceed-modal"
             class="btn btn-primary flex-fill"
-            style="background: var(--success-green); border: none;"
+            style="background: var(--success-green); border: none"
             >Proceed</a
           >
         </div>
