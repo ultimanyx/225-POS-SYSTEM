@@ -234,7 +234,7 @@
       }
 
       .table th {
-        text-align: left;
+        text-align: center;
         padding: 16px 18px;
         background: #fafafa;
         color: var(--primary-color);
@@ -252,6 +252,11 @@
         vertical-align: middle;
         font-size: 0.9rem;
       }
+
+      .table td:last-child {
+      white-space: nowrap;
+      min-width: 280px;
+    }
 
       .table tbody tr {
         transition: background-color 0.2s ease;
@@ -320,7 +325,7 @@
         background: var(--brand-blue);
         border: none;
         color: white;
-        padding: 6px 5px;
+        padding: 6px 4px;
         font-size: 0.8rem;
         font-weight: 600;
         border-radius: 6px;
@@ -395,7 +400,7 @@
       .modal-overlay:target {
         display: flex;
       }
-
+      
       .modal-content {
         background: white;
         border-radius: 15px;
@@ -1126,14 +1131,13 @@
             </button>
           </div>
         </form>
-
       </div>
     </div>
 
     <!-- Single Edit Product Modal -->
     <div class="modal-overlay" id="editModal">
       <div class="modal-content">
-        <h2>Edit Product</h2>
+        <h2>Edit Product Information</h2>
         <form method="get" action="#">
           <div class="form-group">
             <label>Product Name</label>
@@ -1207,7 +1211,7 @@
     <!-- Update Stock Modal -->
     <div class="modal-overlay" id="updateModal">
       <div class="modal-content">
-        <h2>Update Stock</h2>
+        <h2>Update Stock and Price</h2>
         <form method="get" action="#">
           <div class="form-group">
             <label>Add Stock (kg)</label>
@@ -1239,6 +1243,8 @@
           </div>
         </form>
       </div>
+    </div>
+
 
     <!-- Single Delete Confirmation Modal -->
     <div class="modal-overlay" id="deleteModal">

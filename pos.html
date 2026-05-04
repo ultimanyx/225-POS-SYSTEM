@@ -363,39 +363,67 @@
         color: white;
       }
 
-      /* Receipt Modal */
-      .receipt-modal {
-        background: white;
-        border-radius: 20px;
-        padding: 30px;
-        max-width: 400px;
-        width: 90%;
-      }
+        /* Receipt Modal */
+        .receipt-modal {
+          background: white;
+          border-radius: 20px;
+          padding: 30px;
+          max-width: 400px;
+          width: 90%;
+        }
 
-      .receipt-header {
-        text-align: center;
-        margin-bottom: 10px;
-      }
+        .receipt-header {
+          text-align: center;
+          margin-bottom: 10px;
+        }
 
-      .receipt-info {
-        text-align: left;
-        border-top: 2px dashed var(--brand-blue-light);
-        border-bottom: 2px dashed var(--brand-blue-light);
-      }
+        .receipt-info {
+          text-align: left;
+          border-top: 2px dashed var(--brand-blue-light);
+          border-bottom: 2px dashed var(--brand-blue-light);
+        }
 
-      .receipt-info p {
-        font-size: 0.9rem;
-        margin-bottom: 1px;
-        color: var(--text-muted);
-      }
+        .receipt-info p {
+          font-size: 0.9rem;
+          margin-bottom: 1px;
+          color: var(--text-muted);
+        }
 
-      .receipt-total {
-        font-size: 1.5rem;
-        font-weight: 800;
-        text-align: right;
-        padding-top: 15px;
-        border-top: 2px solid #212121;
-      }
+        .receipt-total {
+          font-size: 1rem;
+          font-weight: 700;
+          text-align: right;
+          padding-top: 15px;
+          border-top: 2px solid #212121;
+        }
+
+        .receipt2-summary {
+          width: 100%;
+          margin-top: 15px;
+          border-collapse: collapse;
+          font-size: 1rem;
+        }
+
+        .receipt2-summary td {
+          padding: 10px 5px;
+        }
+
+        .receipt2-summary tr:not(:last-child) td {
+          border-bottom: 2px dashed var(--brand-blue-light);
+        }
+
+        .text-right {
+          text-align: right;
+          font-weight: 600;
+          color: var(--text-dark);
+        }
+
+        /* Highlight Change in total money, money received and change */
+        .change-row td {
+          color: var(--text-dark);
+          font-weight: 700;
+          font-size: 1.1rem;
+        }
 
       .receipt-footer {
         display: flex;
@@ -709,10 +737,12 @@
                     />
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
-                  <input type="checkbox" id="btn-whole" />
-                  <label for="btn-whole" class="add-btn mt-2"
-                    >Add to Cart</label
-                  >
+                  <a href="pos_1.html">
+                    <input type="checkbox" id="btn-whole" />
+                    <label  class="add-btn mt-2"
+                      >Add to Cart</label
+                    >
+                  </a>
                 </div>
               </div>
             </div>
@@ -1253,13 +1283,90 @@
           </table>
         </div>
         <div class="receipt-total">Total: ₱488.00</div>
+        <div class="form-group">
+          <label><b>Cash Received</b></label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="e.g., ₱100.00"
+            required
+          />
+        </div>
         <div class="receipt-footer">
           <a href="#" class="btn btn-secondary flex-fill">Close</a>
           <a
+            href="#receipt_proceed-modal"
+            class="btn btn-primary flex-fill"
+            style="background: var(--success-green); border: none;"
+            >Proceed</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Receipt 2 Modal -->
+    <div class="modal-overlay" id="receipt_proceed-modal">
+      <div class="receipt-modal">
+        <div class="receipt-header">
+          <h2>W&A Inventory</h2>
+          <p>Order Receipt</p>
+        </div>
+        <div class="receipt-info">
+          <p>Transaction ID: <b>#WA-9921</b></p>
+          <p>Date: <b>June 15, 2024</b></p>
+          <p>Time: <b>11:21 AM</b></p>
+        </div>
+        <div class="receipt-items">
+          <table class="table-receipt table-bordered">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price(₱)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Whole Chicken</td>
+                <td>2 kg</td>
+                <td>₱420.00</td>
+              </tr>
+              <tr>
+                <td>Cooking Oil</td>
+                <td>0.5 kg</td>
+                <td>₱53.00</td>
+              </tr>
+              <tr>
+                <td>Soy Sauce Big</td>
+                <td>1 pc</td>
+                <td>₱15.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <table class="receipt2-summary">
+          <tr>
+            <td style="color: var(--text-dark); font-weight: 600">Total</td>
+            <td class="text-right">₱488.00</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-dark); font-weight: 600">
+              Cash Received
+            </td>
+            <td class="text-right">₱500.00</td>
+          </tr>
+          <tr class="change-row">
+            <td style="color: var(--text-dark); font-weight: 600">Change</td>
+            <td class="text-right">₱12.00</td>
+          </tr>
+        </table>
+        <div class="receipt-footer">
+          <a href="#receipt-modal" class="btn btn-secondary flex-fill">Return</a>
+          <a
             href="#"
             class="btn btn-primary flex-fill"
-            style="background: var(--sidebar-gradient); border: none"
-            >New Sale</a
+            style="background: var(--success-green); border: none"
+            >Complete Transaction</a
           >
         </div>
       </div>

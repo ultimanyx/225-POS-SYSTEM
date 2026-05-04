@@ -105,7 +105,7 @@
 
       .sidebar ul li.active {
         background: var(--sidebar-gradient);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 15px #00000033;
       }
 
       #logout-btn {
@@ -266,6 +266,18 @@
         border: none;
         transition: opacity 0.3s ease;
       }
+      .added-btn {
+        width: 100%;
+        padding: 10px;
+        background: white;
+        color: var(--brand-magenta);
+        border-radius: 8px;
+        font-weight: 600;
+        display: block;
+        text-align: center;
+        cursor: default;
+        border: 1px solid var(--brand-magenta);
+      }
 
       .add-btn:hover {
         opacity: 0.9;
@@ -363,41 +375,41 @@
         color: white;
       }
 
-      /* Receipt Modal */
-      .receipt-modal {
-        background: white;
-        border-radius: 20px;
-        padding: 30px;
-        max-width: 400px;
-        width: 90%;
-      }
+        /* Receipt Modal */
+        .receipt-modal {
+          background: white;
+          border-radius: 20px;
+          padding: 30px;
+          max-width: 400px;
+          width: 90%;
+        }
 
-      .receipt-header {
-        text-align: center;
-        margin-bottom: 10px;
-      }
+        .receipt-header {
+          text-align: center;
+          margin-bottom: 10px;
+        }
 
-      .receipt-info {
-        text-align: left;
-        border-top: 2px dashed var(--brand-blue-light);
-        border-bottom: 2px dashed var(--brand-blue-light);
-      }
+        .receipt-info {
+          text-align: left;
+          border-top: 2px dashed var(--brand-blue-light);
+          border-bottom: 2px dashed var(--brand-blue-light);
+        }
 
-      .receipt-info p {
-        font-size: 0.9rem;
-        margin-bottom: 1px;
-        color: var(--text-muted);
-      }
+        .receipt-info p {
+          font-size: 0.9rem;
+          margin-bottom: 1px;
+          color: var(--text-muted);
+        }
 
-      .receipt-total {
-        font-size: 1.5rem;
-        font-weight: 800;
-        text-align: right;
-        padding-top: 15px;
-        border-top: 2px solid #212121;
-      }
+        .receipt-total {
+          font-size: 1rem;
+          font-weight: 700;
+          text-align: right;
+          padding-top: 15px;
+          border-top: 2px solid #212121;
+        }
 
-      .receipt2-summary {
+        .receipt2-summary {
           width: 100%;
           margin-top: 15px;
           border-collapse: collapse;
@@ -425,7 +437,6 @@
           font-size: 1.1rem;
         }
 
-        /* footer sa receipt kanang return og complete transaction */
       .receipt-footer {
         display: flex;
         gap: 10px;
@@ -457,10 +468,6 @@
         vertical-align: middle;
       }
 
-      /* Hidden checkbox for cart toggle */
-      .card input[type="checkbox"] {
-        display: none;
-      }
 
       /* Modal Overlay */
       .modal-overlay {
@@ -564,6 +571,11 @@
         color: white;
       }
 
+      /* Hidden checkbox for cart toggle */
+      .card input[type="checkbox"] {
+        display: none;
+      }
+
       /* Cart Visibility based on checkbox */
       body:has(#btn-backbone:checked) #cart-backbone,
       body:has(#btn-liog:checked) #cart-liog,
@@ -627,9 +639,13 @@
       </a>
       <h2>W&A Fresh and Frozen Products</h2>
       <ul>
-        <li><a href="Staff_Dashboard.html">Dashboard</a></li>
-        <li class="active"><a href="Staff_pos.html">POS</a></li>
-        <li><a href="Staff_Reports.html">Reports</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li class="active"><a href="pos.html">POS</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="product_management.html">Product Management</a></li>
+        <li>
+          <a href="manage_staff.html">Staff Management</a>
+        </li>
         <li id="logout-btn">
           <a href="#LogOutModal" style="color: var(--brand-red-light)"
             >Logout</a
@@ -734,10 +750,12 @@
                     />
                     <span class="qty-hint">Type amount (e.g., 1.5 Kg)</span>
                   </div>
-                  <input type="checkbox" id="btn-whole" />
-                  <label for="btn-whole" class="add-btn mt-2"
-                    >Add to Cart</label
-                  >
+                  <input type="checkbox" id="btn-whole" checked />
+                  <a href="pos.html">
+                    <label  class="added-btn mt-2"
+                      >Added</label
+                    >
+                  </a>
                 </div>
               </div>
             </div>
@@ -984,8 +1002,10 @@
                     />
                     <span class="qty-hint">Type amount (e.g., 3 Pieces)</span>
                   </div>
-                  <input type="checkbox" id="btn-oil" />
-                  <label for="btn-oil" class="add-btn mt-2">Add to Cart</label>
+                  <a href="pos_1.html">
+                      <input type="checkbox" id="btn-oil" checked />
+                      <label class="added-btn mt-2">Added</label>
+                  </a>
                 </div>
               </div>
             </div>
@@ -1044,10 +1064,11 @@
                     />
                     <span class="qty-hint">Type amount (e.g., 3 Pieces)</span>
                   </div>
-                  <input type="checkbox" id="btn-soybig" />
-                  <label for="btn-soybig" class="add-btn mt-2"
-                    >Add to Cart</label
-                  >
+                  <a href="pos_2.html">
+                      <input type="checkbox" id="btn-soybig" checked/>
+                      <label class="added-btn mt-2"
+                        >Added</label>
+                  </a>
                 </div>
               </div>
             </div>
@@ -1230,7 +1251,7 @@
         <div class="cart-footer">
           <div class="total-row">
             <span>Total</span>
-            <span>₱0.00</span>
+            <span>₱488.00</span>
           </div>
           <a href="#receipt-modal" class="checkout-btn">Proceed Transaction</a>
         </div>
@@ -1367,7 +1388,6 @@
       </div>
     </div>
 
-
     <!-- No Stock Confirmation Modal -->
     <div class="modal-overlay" id="noStockModal">
       <div class="modal-content modal-small">
@@ -1375,7 +1395,7 @@
         <p>Please Call Your Supplier: <b>Fresh Chicken Co.</b></p>
         <p>Phone Number: <b>0912-345-6789</b></p>
         <div class="modal-actions">
-          <a href="Staff_pos.html" class="btn-cancel">Return</a>
+          <a href="pos.html" class="btn-cancel">Return</a>
         </div>
       </div>
     </div>
@@ -1387,7 +1407,7 @@
         <p>Are you sure you want to <b>Log Out?</b></p>
         <p class="warning-text">Any unsaved action <b>cannot be undone</b>.</p>
         <div class="modal-actions">
-          <a href="staff_login.html" class="btn-cancel">Yes</a>
+          <a href="index.html" class="btn-cancel">Yes</a>
           <a href="#" class="btn-delete-confirm">No</a>
         </div>
       </div>
